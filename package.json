@@ -1,0 +1,44 @@
+{
+  "name": "twelve-data-wrapper",
+  "version": "1.0.0",
+  "description": "Typescript TwelveData API wrapper",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx nodemon",
+    "build": "tsc -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Clyde-Goodall/TwelveDataWrapper.git"
+  },
+  "keywords": [
+    "API",
+    "Tyescript",
+    "Javascript",
+    "Axios",
+    "API",
+    "Wrapper",
+    "TwelveData",
+    "finance",
+    "financial",
+    "stocks",
+    "market",
+    "data",
+    "REST"
+  ],
+  "author": "Clyde Goodall",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Clyde-Goodall/TwelveDataWrapper/issues"
+  },
+  "homepage": "https://github.com/Clyde-Goodall/TwelveDataWrapper#readme",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "axios": "^1.4.0",
+    "dotenv": "^16.3.1",
+    "ts-node": "^10.9.1"
+  }
+}

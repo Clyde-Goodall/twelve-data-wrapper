@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "npx",
+            "name": "dev",
+            "command": "nodemon",
+            "scripts": "",
+        },
+        {
+            "type": "npm",
+            "name": "build",
+            "command": "tsc -p tsconfig.json",
+            "scripts": "",
+        },
+    ]
+}

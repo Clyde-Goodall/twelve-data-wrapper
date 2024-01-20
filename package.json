@@ -2,10 +2,8 @@
   "name": "twelve-data-wrapper",
   "version": "1.0.0",
   "description": "Typescript TwelveData API wrapper",
-  "main": "index.js",
-  "type": "module",
   "scripts": {
-    "dev": "npx nodemon",
+    "dev": "nodemon",
     "build": "tsc -p tsconfig.json"
   },
   "repository": {
@@ -37,6 +35,9 @@
   },
   "dependencies": {
     "dotenv": "^16.3.1",
+    "nodemon": "^3.0.3",
     "ts-node": "^10.9.1"
-  }
+  },
+  "main": "src/index.ts",
+  "types": "src/types/tweve-data-wrapper.d.ts"
 }

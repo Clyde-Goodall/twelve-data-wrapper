@@ -1,17 +1,18 @@
 {
     "compilerOptions": {
-      "target": "es2022",                          
-      "module": "commonJS", 
-      "lib": ["es2020", "dom"], 
-      "moduleResolution": "node",                    
+      "target": "es2022",
+      "module": "commonJS",
+      "lib": ["es2020", "dom"],
+      "moduleResolution": "node",
       "allowJs": true,
-      "outDir": "build",                          
+      "outDir": "dist",
       "rootDir": "src",
       "strict": true,         
       "noImplicitAny": true,
       "esModuleInterop": true,
       "allowSyntheticDefaultImports": true,
       "resolveJsonModule": true,
+      "declaration": true,
     },
     "ts-node": {
       "files": true

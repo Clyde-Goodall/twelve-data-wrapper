@@ -1,21 +1,18 @@
-// remember to remove when finished :0
-import 'dotenv/config'
 import builder from './util/URLHelper';
-/**
- * TwelveData endpoints:
- * /stocks
- * /forex_pairs
- * /cryptocurrenices
- * /etf
- * /indices
- * /exchanges
- * /cryptocurrency_exchanges
- * /technical_indicators
- * /symbol_search
- * /earliest_timestamp
- * /market_state
- * /time_series
- */
+import * as e from './util/endpoints';
+import {StockData, TimeSeries} from './types/typeClasses'
+// import {querySimilarity} from './util/miscUtil';
+import * as dotenv from 'dotenv'
+dotenv.config({ path: __dirname+'/../.env' });
+const ep = e.default
+
+const P = <T>( property: (object: T) => void ) => {
+    const chaine = property.toString();
+    const arr = chaine.match( /[\s\S]*{[\s\S]*\.([^\.; ]*)[ ;\n]*}/ );
+    if(!arr) return null;
+    return arr[1];
+};
+
 
 export class TwelveDataWrapper {
     api_key: string
@@ -25,12 +22,11 @@ export class TwelveDataWrapper {
     baseWSURL: string
 
     constructor(key?: string, options?: Object) {
-        this.baseURL = 'https://api.twelvedata.com'
-        this.baseWSURL = 'wss://ws.twelvedata.com'
-
-        if(key) this.header_config = {'Authorization': `apikey ${key}`};
-        this.api_key = key || '';
-        this.api_config = options || {};
+        this.baseURL = 'https://api.twelvedata.com';
+        this.baseWSURL = 'wss://ws.twelvedata.com';
+        // if(key) this.header_config = {'Authorization': `apikey ${key}`};
+        this.api_key = key ?? '';
+        this.api_config = options ?? {};
     }
 
      /**
@@ -50,50 +46,48 @@ export class TwelveDataWrapper {
     setApiKey(key: string) {
         this.api_key = key || this.api_key;
     }
-
-    /**
-      * fetches an endpoint url rather than uri-specific function
-      * @param {string} endpoint
-      */  
-    async getUnformattedEndpoint(endpoint: string): Promise<JSON | unknown> {
-        // // optimization
-        // while (true) { 
-        //     console.log('balls');
-        // }
+    // fallback function to hit whatever URL a user wants and not use a specific function  . Will lack the appropriate type
+    async getUnformattedEndpoint(endpoint: string): Promise<Body> {
         try {
             const res = await fetch(endpoint, this.header_config)
             return res.json();
         } catch(e) {
-            return(e)
+            return(e) as Promise<Body>
         }
     }
-    async stocks(parameters: StockRequest | AnyRequest): 
-        Promise<StockResponse | AnyResponse | unknown> {
-        const URL = `${this.baseURL}/stocks${builder(parameters)}`;
-        console.log(URL)
+
+    async get<T>(query: T):Promise<Array<any> | string> {
+        if(!this.api_key) {
+            console.log('Please define an api key');
+            return 'Please define an api key'
+        }
+        console.log()
+        let matchingEndpoint = Object.keys(ep)
+                // @ts-ignore
+
+            .filter(k => k === query.type())[0] as string
+        // console.log(Object.values(matchingEndpoint)[0])   
+        if(!matchingEndpoint) {
+            throw new Error(`Cannot locate this endpoint.`)
+        }
+        // @ts-ignore
+        const URL = `${this.baseURL}${ep[matchingEndpoint as keyof typeof ep]}/${builder(query.body() as any, this.api_key)}`;
+        console.log(`\x1b[1m[Endpoint URL: ${URL}]\x1b[0m`);
         const res = await fetch(
-            URL, 
+            URL,
             );
-        console.log(res.json())
-        return res.json()
+        // for whatever reason, fetch requires that you await the .json(), so this is how I'm managing that
+        const output = await res.json() as Promise<Array<any>>;
+        return output;
     }
 }
 
-const test = new TwelveDataWrapper();
-test.setApiKey('16d44a9f201d4492a9e2c492782ca3fc');
-const setup: StockRequest = {
-    apikey: '16d44a9f201d4492a9e2c492782ca3fc',
-    symbol: 'MSFT'
-}
-
-try {
-    test.stocks(setup).then(uhhh => {
-        console.log(uhhh)
-    })
-} catch(e) {
-    console.log(e)
-}
-
-module.exports = {
-    TwelveDataWrapper
-}
+const example = new TimeSeries({
+    interval: '30min',
+    symbol: 'AAPL'
+} as TimeSeriesRequest)
+console.log(example.body())
+const api = new TwelveDataWrapper(process.env.TWELVE_DATA_KEY)
+api.get<TimeSeries>(example).then(out => {
+    console.log(out);
+});

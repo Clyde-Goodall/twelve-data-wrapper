@@ -1,33 +1,34 @@
 {
     "compilerOptions": {
-      "target": "es2022",
-      "module": "commonJS",
+      "target": "es5",
+      "module": "es2020",
       "lib": ["es2020", "dom"],
-      "moduleResolution": "node",
+      "moduleResolution": "Node",
       "allowJs": true,
       "outDir": "dist",
-      "rootDir": "src",
       "strict": true,         
       "noImplicitAny": true,
       "esModuleInterop": true,
       "allowSyntheticDefaultImports": true,
       "resolveJsonModule": true,
       "declaration": true,
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["./src/*"]
+      }
     },
     "ts-node": {
       "files": true
     },
     "typeRoots": [
-      "./node_modules/@types", 
-      "./src/types/",
+      "node_modules/@types", 
+      "src/types/",
+    ],
+    "typings": [
+      "./src/types/index.d.ts"
     ],
     "include": [
-      "src/index.ts",
-      "src/*.ts",
-      "src/*.tsx",
-      "src/**/*.ts",
-      "src/**/*.tsx", 
-      "environment.d.ts"
+      "src"
     ],
     "exclude": ["node_modules"]
 }

@@ -1,10 +1,12 @@
 {
   "name": "twelve-data-wrapper",
   "version": "1.0.0",
+  "type": "module",
   "description": "Typescript TwelveData API wrapper",
   "scripts": {
     "dev": "nodemon",
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json",
+    "bundle": "tsup ./src"
   },
   "repository": {
     "type": "git",
@@ -31,6 +33,7 @@
   },
   "homepage": "https://github.com/Clyde-Goodall/TwelveDataWrapper#readme",
   "devDependencies": {
+    "tsup": "^8.0.1",
     "typescript": "^5.1.6"
   },
   "dependencies": {
@@ -38,6 +41,9 @@
     "nodemon": "^3.0.3",
     "ts-node": "^10.9.1"
   },
-  "main": "src/index.ts",
-  "types": "src/types/tweve-data-wrapper.d.ts"
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts"
 }

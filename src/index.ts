@@ -1,20 +1,13 @@
 import builder from './util/URLHelper';
 import * as e from './util/endpoints';
 import {StockData, TimeSeries} from './types/typeClasses'
+
 // import {querySimilarity} from './util/miscUtil';
-import * as dotenv from 'dotenv'
-dotenv.config({ path: __dirname+'/../.env' });
+// import * as dotenv from 'dotenv'
+// dotenv.config({ path: __dirname+'/../.env' });
 const ep = e.default
 
-const P = <T>( property: (object: T) => void ) => {
-    const chaine = property.toString();
-    const arr = chaine.match( /[\s\S]*{[\s\S]*\.([^\.; ]*)[ ;\n]*}/ );
-    if(!arr) return null;
-    return arr[1];
-};
-
-
-export class TwelveDataWrapper {
+class TwelveDataWrapper {
     api_key: string
     api_config: Object
     header_config?: Object
@@ -82,12 +75,8 @@ export class TwelveDataWrapper {
     }
 }
 
-const example = new TimeSeries({
-    interval: '30min',
-    symbol: 'AAPL'
-} as TimeSeriesRequest)
-console.log(example.body())
-const api = new TwelveDataWrapper(process.env.TWELVE_DATA_KEY)
-api.get<TimeSeries>(example).then(out => {
-    console.log(out);
-});
+export {
+    TwelveDataWrapper,
+    StockData,
+    TimeSeries,
+};

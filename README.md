@@ -6,6 +6,7 @@ This wrapper provides an option I felt was missing in the official/unofficial Tw
 
 ---
 ## Roadmap
+- Resolve potential CORS errors
 - Implement all available endpoints.
 - NPM Registry.
 - Websocket support

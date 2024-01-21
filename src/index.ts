@@ -2,9 +2,6 @@ import builder from './util/URLHelper';
 import * as e from './util/endpoints';
 import {StockData, TimeSeries} from './types/typeClasses'
 
-// import {querySimilarity} from './util/miscUtil';
-// import * as dotenv from 'dotenv'
-// dotenv.config({ path: __dirname+'/../.env' });
 const ep = e.default
 
 class TwelveDataWrapper {
@@ -66,9 +63,18 @@ class TwelveDataWrapper {
         // @ts-ignore
         const URL = `${this.baseURL}${ep[matchingEndpoint as keyof typeof ep]}/${builder(query.body() as any, this.api_key)}`;
         console.log(`\x1b[1m[Endpoint URL: ${URL}]\x1b[0m`);
-        const res = await fetch(
-            URL,
-            );
+        const headerInit = {
+            "Access-Control-Allow-Origin": "https://api.twelvedata.com",
+            // "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
+            "Access-Control-Allow-Headers": `
+            
+                Access-Control-Allow-Headers
+            `
+        }
+        const res = await fetch(URL, {
+            method: 'GET',
+            headers: headerInit,
+        });
         // for whatever reason, fetch requires that you await the .json(), so this is how I'm managing that
         const output = await res.json() as Promise<Array<any>>;
         return output;

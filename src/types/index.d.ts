@@ -1,9 +1,10 @@
 // Types are defined here for each endpoint available as per https://twelvedata.com/docs
-// If it's on there, it's in here.
-// I am debating whether I should have individual websocket types or just have an option to specify an option in a fucntion to make it a websocket. 
-// Or perhaps a wrapper function that yoou would call a function within.
+// If it's on there, it's in here. At least it should be.
+// I am debating whether I should have individual websocket types or just have an option to specify an option in a function to make it a websocket. 
+// Or perhaps a wrapper function that you would call a function within.
 // I guess I'll get there when I get there
 // - CJ
+
 declare module 'twelve-data-wrapper' {
     export class TwelveDataWrapper {
         constructor(key?: string, options?: Object);
@@ -13,7 +14,6 @@ declare module 'twelve-data-wrapper' {
         get(type: string, query: Object): Promise<Array<any>>;
         // stocks(parameters: StockRequest | AnyRequest): Promise<StockResponse | AnyResponse | unknown>
     }
-    export function fuckYou(): void;
 }
 
 declare global {

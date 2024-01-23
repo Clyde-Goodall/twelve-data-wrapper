@@ -64,22 +64,31 @@ class TwelveDataWrapper {
         const URL = `${this.baseURL}${ep[matchingEndpoint as keyof typeof ep]}/${builder(query.body() as any, this.api_key)}`;
         console.log(`\x1b[1m[Endpoint URL: ${URL}]\x1b[0m`);
         const headerInit = {
-            "Access-Control-Allow-Origin": "https://api.twelvedata.com",
-            // "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
-            "Access-Control-Allow-Headers": `
-            
-                Access-Control-Allow-Headers
-            `
         }
         const res = await fetch(URL, {
             method: 'GET',
-            headers: headerInit,
+            // headers: headerInit,
+            credentials: "omit"
         });
         // for whatever reason, fetch requires that you await the .json(), so this is how I'm managing that
         const output = await res.json() as Promise<Array<any>>;
+        console.log(output)
         return output;
     }
 }
+
+const new_api = new TwelveDataWrapper(
+    '41c2d05ca3404866813f89cabd600871',
+  )
+  const example = new TimeSeries({
+      interval: '30min',
+      symbol: 'AAPL'
+  })
+  // console.log(example)
+  new_api.get<TimeSeries>(example).then(out => {
+    console.log(out)
+
+  })
 
 export {
     TwelveDataWrapper,

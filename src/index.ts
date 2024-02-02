@@ -1,32 +1,31 @@
-import builder from './util/URLHelper';
-import * as e from './util/endpoints';
-import {StockData, TimeSeries} from './types/typeClasses'
+import builder from './util/URLHelper.js';
+import * as e from './util/endpoints.js';
+import {StockData, TimeSeries} from './types/typeClasses.js'
 
 const ep = e.default
 
 class TwelveDataWrapper {
     api_key: string
-    api_config: Object
     header_config?: Object
     baseURL: string
     baseWSURL: string
 
-    constructor(key?: string, options?: Object) {
-        this.baseURL = 'https://api.twelvedata.com';
+    constructor(key?: string, options?: {
+        proxy?: string,
+        wss_proxy?: string
+    }) {
+        this.baseURL = '';
         this.baseWSURL = 'wss://ws.twelvedata.com';
         // if(key) this.header_config = {'Authorization': `apikey ${key}`};
         this.api_key = key ?? '';
-        this.api_config = options ?? {};
-    }
+        // for CORS error prevention via proxy 
+        if(!options) return
+        if(Object.hasOwn(options, 'proxy')) {
+            this.baseURL = options?.proxy as string;
+            return
+        }
+        this.baseURL = 'https://api.twelvedata.com';
 
-     /**
-      * updates config if not set by constructor.
-      * potential TODO: go through options and not overwrrite any values previously set. Not sure if that would be handy or not.
-      * @param {Object} options
-      * 
-      */
-    setConfig(options: Object) {
-        this.api_config = options || this.api_config;
     }
 
      /**
@@ -46,49 +45,41 @@ class TwelveDataWrapper {
         }
     }
 
-    async get<T>(query: T):Promise<Array<any> | string> {
+    async get<T>(query: T):Promise<any | string> {
         if(!this.api_key) {
             console.log('Please define an api key');
             return 'Please define an api key'
         }
-        console.log()
         let matchingEndpoint = Object.keys(ep)
-                // @ts-ignore
-
-            .filter(k => k === query.type())[0] as string
-        // console.log(Object.values(matchingEndpoint)[0])   
+            // @ts-ignore
+            .filter(k => k === query.type())[0] as string;
         if(!matchingEndpoint) {
-            throw new Error(`Cannot locate this endpoint.`)
+            throw new Error(`Cannot locate this endpoint.`);
         }
         // @ts-ignore
-        const URL = `${this.baseURL}${ep[matchingEndpoint as keyof typeof ep]}/${builder(query.body() as any, this.api_key)}`;
-        console.log(`\x1b[1m[Endpoint URL: ${URL}]\x1b[0m`);
-        const headerInit = {
-        }
-        const res = await fetch(URL, {
-            method: 'GET',
-            // headers: headerInit,
-            credentials: "omit"
-        });
+        const URL = `${this.baseURL}${ep[matchingEndpoint as keyof typeof ep]}${builder(query.body() as any, this.api_key)}`;
+        console.log(`Endpoint URL: ${URL}`);
+        const res = await fetch(URL);
+        console.log(res);
         // for whatever reason, fetch requires that you await the .json(), so this is how I'm managing that
-        const output = await res.json() as Promise<Array<any>>;
-        console.log(output)
-        return output;
+        const output = await res.json();
+        if(output.status !== "ok") throw new Error('Could not GET TwelveData resource');
+        return {...output};
     }
 }
-
-const new_api = new TwelveDataWrapper(
-    '41c2d05ca3404866813f89cabd600871',
-  )
-  const example = new TimeSeries({
-      interval: '30min',
-      symbol: 'AAPL'
-  })
-  // console.log(example)
-  new_api.get<TimeSeries>(example).then(out => {
-    console.log(out)
-
-  })
+// example:
+//
+// const new_api = new TwelveDataWrapper(
+//     '41c2d05ca3404866813f89cabd600871',
+//   )
+//   const example = new TimeSeries({
+//       interval: '30min',
+//       symbol: 'AAPL'
+//   })
+//   // console.log(example)
+//   new_api.get<TimeSeries>(example).then(out => {
+//     console.log(out)
+//   })
 
 export {
     TwelveDataWrapper,

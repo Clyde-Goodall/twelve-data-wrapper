@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
-      "target": "ES2022",
-      "module": "ES2022",
-      "lib": ["ES2022", "dom"],
+      "target": "ESNext",
+      "module": "ESNext",
+      "lib": ["ESNext", "dom"],
       "moduleResolution": "Node",
       "allowJs": true,
       "outDir": "dist",
@@ -14,13 +14,11 @@
       "declaration": true,
       "baseUrl": ".",
       "paths": {
-        "@/*": ["./src/*"]
+        "*": ["*", ".ts"]
       }
     },
     "ts-node": { 
       "files": true,
-      "esm": true, 
-      "experimentalSpecifierResolution": true 
     },
     "typeRoots": [
       "node_modules/@types", 
@@ -30,7 +28,8 @@
       "./src/types/index.d.ts"
     ],
     "include": [
-      "src"
+      "src",
+      "node_modules"
     ],
     "exclude": ["node_modules"]
 }

@@ -58,9 +58,7 @@ class TwelveDataWrapper {
         }
         // @ts-ignore
         const URL = `${this.baseURL}${ep[matchingEndpoint as keyof typeof ep]}${builder(query.body() as any, this.api_key)}`;
-        console.log(`Endpoint URL: ${URL}`);
         const res = await fetch(URL);
-        console.log(res);
         // for whatever reason, fetch requires that you await the .json(), so this is how I'm managing that
         const output = await res.json();
         if(output.status !== "ok") throw new Error('Could not GET TwelveData resource');

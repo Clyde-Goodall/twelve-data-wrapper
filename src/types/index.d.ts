@@ -22,13 +22,14 @@ declare global {
     //          CLASSES
     //
     ///////////////////////////////////////////////////
-    class TimeSeries {
-        _type: string;
-        _body: TimeSeriesRequest;
-        constructor(body: TimeSeriesRequest);
-        body(): TimeSeriesRequest;
-        type(): string;
+    export class TDQuery<T> {
+        _body: any;
+        _type: T | unknown;
+        constructor(body: T);
+        body(): typeof this._body;
+        type(): typeof this._type;
     }
+
     ///////////////////////////////////////////////////
     //
     //          INTERFACES/TYPES
@@ -306,7 +307,7 @@ declare global {
     }
 
     // The API response could be an array of MarketStateResponse
-    type MarketStateAPIResponse = MarketStateResponse[];
+    type MarketStateListResponse = MarketStateResponse[];
 
     // For the API parameters
     interface TimeSeriesRequest {
@@ -346,7 +347,7 @@ declare global {
     }
 
     // The main interface for the API response
-    interface TimeSeriesAPIResponse {
+    interface TimeSeriesResponse {
         meta: TimeSeriesMeta;
         values: TimeSeriesValue[];
         status: string;
@@ -363,7 +364,7 @@ declare global {
     }
 
     // For the API response
-    interface ExchangeRateAPIResponse {
+    interface ExchangeRateResponse {
         symbol: string; // Requested currency symbol
         rate: number; // Real-time exchange rate
         timestamp: number; // Unix timestamp of the rate
@@ -396,7 +397,7 @@ declare global {
         range: string;
     }
 
-    interface QuoteAPIResponse {
+    interface QuoteResponse {
         symbol: string;
         name: string;
         exchange: string;
@@ -435,7 +436,7 @@ declare global {
         timezone?: string;
     }
 
-    interface CurrencyConversionAPIResponse {
+    interface CurrencyConversionResponse {
         symbol: string;
         rate: number;
         amount: number;
@@ -454,7 +455,7 @@ declare global {
         dp?: number;
     }
 
-    interface RealTimePriceAPIResponse {
+    interface RealTimePriceResponse {
         price: string;
     }
     interface EndOfDayPriceRequest {
@@ -468,7 +469,7 @@ declare global {
         dp?: number;
     }
 
-    interface EndOfDayPriceAPIResponse {
+    interface EndOfDayPriceResponse {
         symbol: string;
         exchange: string;
         mic_code: string;
@@ -492,7 +493,7 @@ declare global {
         Forex = '/market_movers/forex',
         Crypto = '/market_movers/crypto',
     }
-    interface MarketMoversAPIResponse {
+    interface MarketMoversResponse {
         symbol: string;
         name: string;
         exchange: string;
@@ -516,7 +517,7 @@ declare global {
         outputsize?: number;
         
     }
-    interface MutualFundsListAPIResponse {
+    interface MutualFundsListResponse {
         count: number;
         list: {
             symbol: string;
@@ -534,7 +535,7 @@ declare global {
         fund_family?: string;
         
     }
-    interface MutualFundsFamilyAPIResponse {
+    interface MutualFundsFamilyResponse {
         result: Record<string, string[]>;
         status: string;
     }
@@ -543,7 +544,7 @@ declare global {
         fund_type?: string;
         
     }
-    interface MutualFundsTypeAPIResponse {
+    interface MutualFundsTypeResponse {
         result: Record<string, string[]>;
         status: string;
     }
@@ -555,7 +556,7 @@ declare global {
     }
 
     // Output Interface
-    interface MutualFundAPIResponse {
+    interface MutualFundResponse {
         status: string;
         mutual_fund: {
             summary: {

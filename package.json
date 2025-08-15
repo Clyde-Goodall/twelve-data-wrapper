@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/Clyde-Goodall/TwelveDataWrapper#readme",
   "devDependencies": {
-    "tsup": "^8.0.1",
+    "tsup": "8.3.5",
     "typescript": "^5.1.6"
   },
   "dependencies": {

@@ -6,7 +6,7 @@
       "moduleResolution": "Node",
       "allowJs": true,
       "outDir": "dist",
-      "strict": true,         
+      "strict": true,
       "noImplicitAny": true,
       "esModuleInterop": true,
       "allowSyntheticDefaultImports": true,
@@ -17,7 +17,7 @@
         "*": ["*", ".ts"]
       }
     },
-    "ts-node": { 
+    "ts-node": {
       "files": true,
     },
     "typeRoots": [

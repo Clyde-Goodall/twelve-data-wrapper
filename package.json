@@ -13,6 +13,13 @@
     "type": "git",
     "url": "git+https://github.com/Clyde-Goodall/TwelveDataWrapper.git"
   },
+  "directories": {
+    "doc": "./doc",
+    "man": "./man"
+  },
+  "engines": {
+    "node": ""
+  },
   "keywords": [
     "API",
     "Tyescript",
@@ -28,11 +35,17 @@
     "REST"
   ],
   "author": "Clyde Goodall",
-  "license": "MIT",
+  "license": "(MIT OR Apache-2.0)",
   "bugs": {
     "url": "https://github.com/Clyde-Goodall/TwelveDataWrapper/issues"
   },
   "homepage": "https://github.com/Clyde-Goodall/TwelveDataWrapper#readme",
+  "contributors":[
+    {
+      "name": "Jonathan Hill",
+      "email": ""
+    }
+  ],
   "devDependencies": {
     "tsup": "^8.5.0",
     "typescript": "^5.9.2"

@@ -1,5 +1,5 @@
 import axios, {AxiosInstance} from "axios";
-import {TwelveDataConfig} from "./types/config.ts";
+import {TwelveDataConfig} from "./types/config";
 import {configDefaults} from "./defaults";
 
 export function buildApiClient(config: TwelveDataConfig = configDefaults): AxiosInstance {

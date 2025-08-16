@@ -1,18 +1,18 @@
 import { describe, it } from "node:test";
 import assert from "node:assert";
-import type {TwelveDataConfig} from "../src/types/config.ts";
-import TwelveDataWrapper from "../src/twelveDataWrapper.ts";
-import {configDefaults} from "../src/defaults/index.ts";
-import Advanced from "../src/endpoints/advanced.ts";
-import Analysis from "../src/endpoints/analysis.ts";
-import Core from "../src/endpoints/core.ts";
-import Currencies from "../src/endpoints/currencies.ts";
-import ETFs from "../src/endpoints/etfs.ts";
-import Fundamentals from "../src/endpoints/fundamentals.ts";
-import MutualFunds from "../src/endpoints/mutualFunds.ts";
-import Reference from "../src/endpoints/reference.ts";
-import Regulatory from "../src/endpoints/regulatory.ts";
-import TechnicalIndicators from "../src/endpoints/technicalIndicators.ts";
+import type {TwelveDataConfig} from "../src/types/config";
+import TwelveDataWrapper from "../src/twelveDataWrapper";
+import {configDefaults} from "../src/defaults/index";
+import Advanced from "../src/endpoints/advanced";
+import Analysis from "../src/endpoints/analysis";
+import Core from "../src/endpoints/core";
+import Currencies from "../src/endpoints/currencies";
+import ETFs from "../src/endpoints/etfs";
+import Fundamentals from "../src/endpoints/fundamentals";
+import MutualFunds from "../src/endpoints/mutualFunds";
+import Reference from "../src/endpoints/reference";
+import Regulatory from "../src/endpoints/regulatory";
+import TechnicalIndicators from "../src/endpoints/technicalIndicators";
 
 // @ts-ignore
 const testConfig: TwelveDataConfig = {

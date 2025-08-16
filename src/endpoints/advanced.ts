@@ -1,6 +1,6 @@
 import type {AxiosInstance} from "axios";
-import type {APIUsageResponse} from "../types/responses.ts";
-import type {APIUsageRequest} from "../types/requests.ts";
+import type {APIUsageResponse} from "../types/responses";
+import type {APIUsageRequest} from "../types/requests";
 
 
 export default class Advanced {

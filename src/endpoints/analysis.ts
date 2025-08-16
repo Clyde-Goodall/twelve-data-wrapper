@@ -3,12 +3,12 @@ import type {
     EarningsEstimateRequest,
     EPSTrendRequest,
     RevenueEstimateRequest
-} from "../types/requests.ts";
+} from "../types/requests";
 import type {
     EarningsEstimateResponse,
     EPSTrendResponse,
     RevenueEstimateResponse
-} from "../types/responses.ts";
+} from "../types/responses";
 
 
 

@@ -1,4 +1,4 @@
-import type {TwelveDataConfig} from "../types/config.ts";
+import type {TwelveDataConfig} from "../types/config";
 
 export const configDefaults: TwelveDataConfig = {
     apiKey: 'demo',

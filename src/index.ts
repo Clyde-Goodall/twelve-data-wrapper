@@ -32,17 +32,6 @@ export default class TwelveDataWrapper {
             .join('&');
     }
 
-    // Endpoint fetching functions starts here
-    async APIUsage(requestConfig?: APIUsageRequest): Promise<APIUsageResponse> {
-        const params = this.buildURLParams(requestConfig as unknown as Record<string, string>);
-        const response = await fetch(`${this.config.baseUrl}/usage?${params}`)
-        if (!response.ok) {
-            throw new Error(response.statusText);
-        }
-        console.log(response.json())
-        const responseJSON = await response.json();
-        return keysAsCamelCase(responseJSON) as APIUsageResponse; // This currently does not take into account the CSV option which is currently not supported yet.
-    }
 }
 
 function toSnakeCase(str: string) {

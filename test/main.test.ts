@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert";
-import type {TwelveDataConfig} from "../src/types/index.ts";
+import type {TwelveDataConfig} from "../src/types/config.ts";
 import TwelveDataWrapper from "../src/index.ts";
 import {configDefaults} from "../src/defaults/index.ts";
 
@@ -15,16 +15,15 @@ const testConfig: TwelveDataConfig = {
 }
 
 describe("TwelveData Class constructor initialization", () => {
-    it("Should return the twelveData instance with default config options", () => {
+    it("Should return the TwelveData instance with default config options", () => {
         const client = new TwelveDataWrapper({apiKey: 'demo'} as TwelveDataConfig);
         assert.strictEqual(client instanceof TwelveDataWrapper, true);
         assert.deepEqual(client.config, configDefaults)
     });
-    it("Should return the twelvedata instance with custom config options", () => {
+    it("Should return the TwelveData instance with custom config options", () => {
         const client = new TwelveDataWrapper(testConfig);
         assert.strictEqual(client instanceof TwelveDataWrapper, true);
         assert.deepEqual(client.config, testConfig)
-
-    })
+    });
 })
 

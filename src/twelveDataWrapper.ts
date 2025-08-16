@@ -1,5 +1,5 @@
 import type {TwelveDataConfig} from "./types/config";
-import {configDefaults} from "./defaults/index";
+import {getDefaultConfig} from "./defaults";
 import Advanced from "./endpoints/advanced";
 import {AxiosInstance} from "axios";
 import {buildApiClient} from "./apiClient";
@@ -26,14 +26,17 @@ export default class TwelveDataWrapper {
     public readonly reference: Reference;
     public readonly regulatory: Regulatory;
     public readonly technicalIndicators: TechnicalIndicators;
-    constructor(config: TwelveDataConfig = configDefaults) {
+
+    constructor(config?: TwelveDataConfig ) {
+
+        const configDefaults = getDefaultConfig();
         this.config = {
-            apiKey: config.apiKey ?? configDefaults.apiKey,
-            debugMode: config.debugMode ?? configDefaults.debugMode,
-            baseUrl: config.baseUrl ?? configDefaults.baseUrl,
-            timeout: config.timeout ?? configDefaults.timeout,
-            retryCount: config.retryCount ?? configDefaults.retryCount,
-            retryWaitTime: config.retryWaitTime ?? configDefaults.retryWaitTime
+            apiKey: config?.apiKey ?? configDefaults.apiKey,
+            debugMode: config?.debugMode ?? configDefaults.debugMode,
+            baseUrl: config?.baseUrl ?? configDefaults.baseUrl,
+            timeout: config?.timeout ?? configDefaults.timeout,
+            retryCount: config?.retryCount ?? configDefaults.retryCount,
+            retryWaitTime: config?.retryWaitTime ?? configDefaults.retryWaitTime
         }
         this.apiClient = buildApiClient(this.config);
         // endpoint class binding

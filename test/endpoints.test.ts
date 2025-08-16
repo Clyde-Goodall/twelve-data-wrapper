@@ -1,8 +1,8 @@
-import {describe, it, beforeEach, afterEach} from "node:test";
+import {afterEach, beforeEach, describe, it} from "node:test";
 import assert from "node:assert";
 import nock from "nock";
 import TwelveDataWrapper from "../src/twelveDataWrapper";
-import {configDefaults} from "../src/defaults";
+import {getDefaultConfig} from "../src/defaults";
 
 
 describe('Endpoint response testing', () => {
@@ -21,8 +21,8 @@ describe('Endpoint response testing', () => {
             planLimit: 1000
         }
         const client = new TwelveDataWrapper();
-        nock(configDefaults.baseUrl!)
-            .get(`/usage?${client.buildURLParams()}`) // with no config it should only be appending the apikey
+        nock(getDefaultConfig().baseUrl!)
+            .get(`/usage?apikey=demo`) // with no config it should only be appending the apikey
             .reply(200, mockUsageData);
 
         const usage = await client.advanced.APIUsage();

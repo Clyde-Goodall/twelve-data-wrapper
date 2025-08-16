@@ -1,15 +1,6 @@
 import type {AxiosInstance} from "axios";
-import type {
-    EarningsEstimateRequest,
-    EPSTrendRequest,
-    RevenueEstimateRequest
-} from "../types/requests";
-import type {
-    EarningsEstimateResponse,
-    EPSTrendResponse,
-    RevenueEstimateResponse
-} from "../types/responses";
-
+import type {EarningsEstimateRequest, EPSTrendRequest, RevenueEstimateRequest} from "../types/requests";
+import type {EarningsEstimateResponse, EPSTrendResponse, RevenueEstimateResponse} from "../types/responses";
 
 
 export default class Analysis {

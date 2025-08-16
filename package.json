@@ -1,17 +1,22 @@
 {
   "name": "twelve-data-wrapper",
   "version": "1.0.0",
-  "type": "module",
   "description": "Typescript TwelveData API wrapper",
   "scripts": {
-    "dev": "nodemon",
     "build": "tsc -p tsconfig.json",
     "bundle": "tsup ./src",
-    "test": "npm run build && node ./dist/index.js"
+    "test": "node --require ts-node/register --test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Clyde-Goodall/TwelveDataWrapper.git"
+  },
+  "directories": {
+    "doc": "./doc",
+    "man": "./man"
+  },
+  "engines": {
+    "node": ""
   },
   "keywords": [
     "API",
@@ -28,17 +33,26 @@
     "REST"
   ],
   "author": "Clyde Goodall",
-  "license": "MIT",
+  "license": "(MIT OR Apache-2.0)",
   "bugs": {
     "url": "https://github.com/Clyde-Goodall/TwelveDataWrapper/issues"
   },
   "homepage": "https://github.com/Clyde-Goodall/TwelveDataWrapper#readme",
+  "contributors": [
+    {
+      "name": "Jonathan Hill",
+      "email": ""
+    }
+  ],
   "devDependencies": {
     "tsup": "^8.5.0",
     "typescript": "^5.9.2"
   },
   "dependencies": {
+    "axios": "^1.11.0",
+    "axios-retry": "^4.5.0",
     "dotenv": "^16.3.1",
+    "nock": "^14.0.10",
     "ts-node": "^10.9.1"
   },
   "main": "dist/index.js",

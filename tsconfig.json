@@ -1,12 +1,12 @@
 {
     "compilerOptions": {
       "target": "ESNext",
-      "module": "ESNext",
+      "module": "CommonJS",
       "lib": ["ESNext", "dom"],
-      "moduleResolution": "Node",
+      "moduleResolution": "NodeNext",
       "allowJs": true,
       "outDir": "dist",
-      "strict": true,         
+      "strict": true,
       "noImplicitAny": true,
       "esModuleInterop": true,
       "allowSyntheticDefaultImports": true,
@@ -17,8 +17,8 @@
         "*": ["*", ".ts"]
       }
     },
-    "ts-node": { 
-      "files": true,
+    "ts-node": {
+      "files": true
     },
     "typeRoots": [
       "node_modules/@types", 

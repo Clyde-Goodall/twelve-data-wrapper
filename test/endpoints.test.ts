@@ -1,7 +1,8 @@
 import {describe, it, beforeEach, afterEach} from "node:test";
 import assert from "node:assert";
 import nock from "nock";
-import TwelveDataWrapper from "../src/twelveDataWrapper.ts";
+import TwelveDataWrapper from "../src/twelveDataWrapper";
+import {configDefaults} from "../src/defaults";
 
 
 describe('Endpoint response testing', () => {
@@ -20,11 +21,11 @@ describe('Endpoint response testing', () => {
             planLimit: 1000
         }
         const client = new TwelveDataWrapper();
-        nock(client.config.baseUrl)
+        nock(configDefaults.baseUrl!)
             .get(`/usage?${client.buildURLParams()}`) // with no config it should only be appending the apikey
             .reply(200, mockUsageData);
 
-        const usage = await client.APIUsage();
+        const usage = await client.advanced.APIUsage();
         assert.deepEqual(usage, mockUsageData)
     })
 })

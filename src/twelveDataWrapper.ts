@@ -27,17 +27,13 @@ export default class TwelveDataWrapper {
     public readonly regulatory: Regulatory;
     public readonly technicalIndicators: TechnicalIndicators;
     constructor(config: TwelveDataConfig = configDefaults) {
-        if (!config) {
-            this.config = configDefaults;
-        } else {
-            this.config = {
-                apiKey: config.apiKey ?? configDefaults.apiKey,
-                debugMode: config.debugMode ?? configDefaults.debugMode,
-                baseUrl: config.baseUrl ?? configDefaults.baseUrl,
-                timeout: config.timeout ?? configDefaults.timeout,
-                retryCount: config.retryCount ?? configDefaults.retryCount,
-                retryWaitTime: config.retryWaitTime ?? configDefaults.retryWaitTime
-            }
+        this.config = {
+            apiKey: config.apiKey ?? configDefaults.apiKey,
+            debugMode: config.debugMode ?? configDefaults.debugMode,
+            baseUrl: config.baseUrl ?? configDefaults.baseUrl,
+            timeout: config.timeout ?? configDefaults.timeout,
+            retryCount: config.retryCount ?? configDefaults.retryCount,
+            retryWaitTime: config.retryWaitTime ?? configDefaults.retryWaitTime
         }
         this.apiClient = buildApiClient(this.config);
         // endpoint class binding
@@ -51,6 +47,5 @@ export default class TwelveDataWrapper {
         this.reference = new Reference(this.apiClient);
         this.regulatory = new Regulatory(this.apiClient);
         this.technicalIndicators = new TechnicalIndicators(this.apiClient);
-
     }
 }

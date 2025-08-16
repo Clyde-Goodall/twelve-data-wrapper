@@ -49,7 +49,6 @@ function toSnakeCase(str: string) {
     return str.replace(/(([a-z])(?=[A-Z][a-zA-Z])|([A-Z])(?=[A-Z][a-z]))/g,'$1_').toLowerCase()
 }
 
-
 function keysAsCamelCase<T>(obj: T): T {
     if (Array.isArray(obj)) {
         return obj.map((v) => keysAsCamelCase(v)) as T;

@@ -1,7 +1,7 @@
 import { describe, it } from "node:test";
 import assert from "node:assert";
 import type {TwelveDataConfig} from "../src/types/config.ts";
-import TwelveDataWrapper from "../src/index.ts";
+import TwelveDataWrapper from "../src/twelveDataWrapper.ts";
 import {configDefaults} from "../src/defaults/index.ts";
 
 // @ts-ignore

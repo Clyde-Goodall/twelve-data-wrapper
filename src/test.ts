@@ -1,10 +1,10 @@
-import {TwelveDataConfig} from "./types/config.ts";
+import type {TwelveDataConfig} from "./types/config.ts";
 
 class BaseClient {
     public testThing: () => void;
     public fundamentals: Fundamentals;
     constructor(config?: TwelveDataConfig) {
-        this.testThing = testThing.bind(this)
+        this.testThing = testThing.bind(this);
         this.fundamentals = Fundamentals.bind(this);
     }
 }

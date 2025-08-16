@@ -1,7 +1,7 @@
 import {describe, it, beforeEach, afterEach} from "node:test";
 import assert from "node:assert";
 import nock from "nock";
-import TwelveDataWrapper from "../src/index.ts";
+import TwelveDataWrapper from "../src/twelveDataWrapper.ts";
 
 
 describe('Endpoint response testing', () => {

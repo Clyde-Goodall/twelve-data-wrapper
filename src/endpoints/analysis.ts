@@ -1,12 +1,10 @@
 import type {AxiosInstance} from "axios";
 import type {
-    APIUsageRequest,
     EarningsEstimateRequest,
     EPSTrendRequest,
     RevenueEstimateRequest
 } from "../types/requests.ts";
 import type {
-    APIUsageResponse,
     EarningsEstimateResponse,
     EPSTrendResponse,
     RevenueEstimateResponse
@@ -23,11 +21,7 @@ export default class Analysis {
     // Endpoint fetching functions starts here
     async EarningsEstimate(requestConfig: EarningsEstimateRequest): Promise<EarningsEstimateResponse> {
         const params = new URLSearchParams();
-        for (const [key, value] of Object.entries(requestConfig ?? {})) {
-            const mappedKey = key;
-            const mappedName = value;
-            params.append(mappedKey, mappedName);
-        }
+
         const response = await this.apiClient.get(`/usage${params}`)
         if (response.status !== 200) {
             throw new Error(response.statusText);
@@ -37,11 +31,7 @@ export default class Analysis {
 
     async RevenueEstimate(requestConfig: RevenueEstimateRequest): Promise<RevenueEstimateResponse> {
         const params = new URLSearchParams();
-        for (const [key, value] of Object.entries(requestConfig ?? {})) {
-            const mappedKey = key;
-            const mappedName = value;
-            params.append(mappedKey, mappedName);
-        }
+
         const response = await this.apiClient.get(`/revenue_estimate${params}`)
         if (response.status !== 200) {
             throw new Error(response.statusText);
@@ -51,11 +41,7 @@ export default class Analysis {
 
     async EPSTrend(requestConfig: EPSTrendRequest): Promise<EPSTrendResponse> {
         const params = new URLSearchParams();
-        for (const [key, value] of Object.entries(requestConfig ?? {})) {
-            const mappedKey = key;
-            const mappedName = value;
-            params.append(mappedKey, mappedName);
-        }
+
         const response = await this.apiClient.get(`/eps_trend${params}`)
         if (response.status !== 200) {
             throw new Error(response.statusText);

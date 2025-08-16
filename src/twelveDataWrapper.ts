@@ -2,12 +2,16 @@ import type {TwelveDataConfig} from "./types/config.ts";
 import {configDefaults} from "./defaults/index.ts";
 import Advanced from "./endpoints/advanced.ts";
 import {AxiosInstance} from "axios";
+import {buildApiClient} from "./apiClient.ts";
+import Analysis from "./endpoints/analysis.ts";
 
 export default class TwelveDataWrapper {
-    config: TwelveDataConfig;
-    advanced: Advanced;
-    apiClient: AxiosInstance;
-    constructor(config?: TwelveDataConfig) {
+    private readonly config: TwelveDataConfig;
+    private readonly apiClient: AxiosInstance;
+    public readonly advanced: Advanced;
+    public readonly analysis: Analysis;
+    public readonly currencies: Currencies;
+    constructor(config: TwelveDataConfig = configDefaults) {
         if (!config) {
             this.config = configDefaults;
         } else {
@@ -20,8 +24,10 @@ export default class TwelveDataWrapper {
                 retryWaitTime: config.retryWaitTime ?? configDefaults.retryWaitTime
             }
         }
-
+        this.apiClient = buildApiClient(this.config);
         // endpoint class binding
-        this.advanced = new Advanced();
+        this.advanced = new Advanced(this.apiClient);
+        this.analysis = new Analysis(this.apiClient);
+
     }
 }

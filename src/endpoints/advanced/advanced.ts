@@ -12,7 +12,6 @@ export default class Advanced extends EndpointBase {
     // Endpoint fetching functions starts here
     async APIUsage(requestConfig?: APIUsageRequest): Promise<APIUsageResponse> {
         const params = new URLSearchParams();
-
         const response = await this.apiClient.get(`/usage${params}`)
         if (response.status !== 200) {
             throw new Error(response.statusText);

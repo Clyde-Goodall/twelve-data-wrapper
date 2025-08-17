@@ -12,9 +12,22 @@ export function getDefaultConfig(): TwelveDataConfig {
     };
 }
 
+type UrlParams = Record<string, string | number | boolean | undefined>;
+
 export abstract class EndpointBase {
     protected readonly apiClient: AxiosInstance;
     constructor(apiClient: AxiosInstance) {
         this.apiClient = apiClient;
+    }
+    
+    protected constructUrlParams(params: UrlParams): string {
+        const urlParams = new URLSearchParams();
+        for (const [key, value] of Object.entries(params)) {
+            if (value !== undefined) {
+                urlParams.append(key, String(value));
+            }
+        }
+        const paramString = urlParams.toString();
+        return paramString ? `?${paramString}` : '';
     }
 }

@@ -5,7 +5,7 @@ import TwelveDataWrapper from "../src/twelveDataWrapper";
 import {getDefaultConfig} from "../src/defaults";
 
 
-describe('Endpoint response testing', () => {
+describe('Analysis API Endpoint response test', () => {
     beforeEach(() => {
         nock.cleanAll();
     })

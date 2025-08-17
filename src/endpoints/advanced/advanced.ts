@@ -1,7 +1,6 @@
 import type { AxiosInstance } from "axios";
 import { EndpointBase } from "../../defaults";
-import { APIUsageRequest } from "../../types/requests";
-import { APIUsageResponse } from "../../types/responses";
+import { APIUsageRequest, APIUsageResponse } from "./advanced.interfaces";
 
 
 export default class Advanced extends EndpointBase {

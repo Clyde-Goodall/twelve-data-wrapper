@@ -12,7 +12,7 @@ export function getDefaultConfig(): TwelveDataConfig {
     };
 }
 
-type UrlParams = Record<string, string | number | boolean | undefined>;
+type UrlParams = Record<string, string | number | boolean | undefined> | {};
 
 export abstract class EndpointBase {
     protected readonly apiClient: AxiosInstance;

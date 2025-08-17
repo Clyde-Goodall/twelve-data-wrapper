@@ -1,17 +1,18 @@
 import type {TwelveDataConfig} from "./types/config";
 import {getDefaultConfig} from "./defaults";
-import Advanced from "./endpoints/advanced";
 import {AxiosInstance} from "axios";
+import Advanced from "./endpoints/advanced/advanced";
+import Analysis from "./endpoints/analysis/analysis";
+import Core from "./endpoints/core/core";
+import Currencies from "./endpoints/currencies/currencies";
+import ETFs from "./endpoints/etfs/etfs";
+import Fundamentals from "./endpoints/fundamentals/fundamentals";
+import MutualFunds from "./endpoints/mutualFunds/mutualFunds";
+import Reference from "./endpoints/reference/reference";
+import Regulatory from "./endpoints/regulatory/regulatory";
+import TechnicalIndicators from "./endpoints/technicalIndicators/technicalIndicators";
 import {buildApiClient} from "./apiClient";
-import Analysis from "./endpoints/analysis";
-import Core from "./endpoints/core";
-import Currencies from "./endpoints/currencies";
-import ETFs from "./endpoints/etfs";
-import Fundamentals from "./endpoints/fundamentals";
-import MutualFunds from "./endpoints/mutualFunds";
-import Reference from "./endpoints/reference";
-import Regulatory from "./endpoints/regulatory";
-import TechnicalIndicators from "./endpoints/technicalIndicators";
+
 
 export default class TwelveDataWrapper {
     private readonly config: TwelveDataConfig;

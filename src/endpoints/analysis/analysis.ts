@@ -1,12 +1,12 @@
-import type {AxiosInstance} from "axios";
-import type {EarningsEstimateRequest, EPSTrendRequest, RevenueEstimateRequest} from "../types/requests";
-import type {EarningsEstimateResponse, EPSTrendResponse, RevenueEstimateResponse} from "../types/responses";
+import type { AxiosInstance } from "axios";
+import { EndpointBase } from "../../defaults";
+import { EarningsEstimateResponse, EPSTrendResponse, RevenueEstimateResponse } from "../../types/responses";
+import { EarningsEstimateRequest, EPSTrendRequest, RevenueEstimateRequest } from "../../types/requests";
 
 
-export default class Analysis {
-    apiClient: AxiosInstance;
+export default class Analysis extends EndpointBase {
     constructor(apiClient: AxiosInstance) {
-        this.apiClient = apiClient;
+        super(apiClient);
     }
 
     // Endpoint fetching functions starts here

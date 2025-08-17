@@ -1,4 +1,5 @@
-import type {TwelveDataConfig} from "../types/config";
+import type { TwelveDataConfig } from "../types/config";
+import { AxiosInstance } from "axios";
 
 export function getDefaultConfig(): TwelveDataConfig {
     return {
@@ -9,4 +10,11 @@ export function getDefaultConfig(): TwelveDataConfig {
         retryCount: 1,
         retryWaitTime: 1000
     };
+}
+
+export abstract class EndpointBase {
+    protected readonly apiClient: AxiosInstance;
+    constructor(apiClient: AxiosInstance) {
+        this.apiClient = apiClient;
+    }
 }

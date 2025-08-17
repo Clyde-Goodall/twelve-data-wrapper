@@ -1,6 +1,6 @@
-import axios, {AxiosInstance} from "axios";
-import {TwelveDataConfig} from "./types/config";
-import {getDefaultConfig} from "./defaults";
+import axios, { AxiosInstance } from "axios";
+import { TwelveDataConfig } from "./types/config";
+import { getDefaultConfig } from "./defaults";
 
 export function buildApiClient(config?: TwelveDataConfig): AxiosInstance {
     if (!config) {

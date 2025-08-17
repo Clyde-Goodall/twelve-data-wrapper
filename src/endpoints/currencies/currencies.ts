@@ -1,9 +1,9 @@
-import type {AxiosInstance} from "axios";
+import type { AxiosInstance } from "axios";
+import { EndpointBase } from "../../defaults";
 
-export default class Currencies {
-    apiClient: AxiosInstance;
+export default class Currencies extends EndpointBase {
     constructor(apiClient: AxiosInstance) {
-        this.apiClient = apiClient;
+        super(apiClient);
     }
 
     // Endpoint fetching functions starts here

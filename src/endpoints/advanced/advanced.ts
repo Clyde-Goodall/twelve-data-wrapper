@@ -1,12 +1,12 @@
-import type {AxiosInstance} from "axios";
-import type {APIUsageResponse} from "../types/responses";
-import type {APIUsageRequest} from "../types/requests";
+import type { AxiosInstance } from "axios";
+import { EndpointBase } from "../../defaults";
+import { APIUsageRequest } from "../../types/requests";
+import { APIUsageResponse } from "../../types/responses";
 
 
-export default class Advanced {
-    apiClient: AxiosInstance;
+export default class Advanced extends EndpointBase {
     constructor(apiClient: AxiosInstance) {
-        this.apiClient = apiClient;
+        super(apiClient)
     }
 
     // Endpoint fetching functions starts here

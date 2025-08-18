@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 import { TwelveDataConfig } from "./types/config";
 import { getDefaultConfig } from "./defaults";
+import { serializeTwelveDataResponse } from "./serialization";
 
 export function buildApiClient(config?: TwelveDataConfig): AxiosInstance {
     if (!config) {
@@ -9,6 +10,7 @@ export function buildApiClient(config?: TwelveDataConfig): AxiosInstance {
     const client = axios.create({
         baseURL: config.baseUrl,
         timeout: config.timeout,
+        transformResponse: [serializeTwelveDataResponse]
     });
 
     client.interceptors.request.use(async(request) => {

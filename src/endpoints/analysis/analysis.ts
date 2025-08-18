@@ -29,88 +29,44 @@ export default class Analysis extends EndpointBase {
 
     // Endpoint fetching functions starts here
     async earningsEstimate(requestConfig: EarningsEstimateRequest): Promise<EarningsEstimateResponse> {
-        const params = new URLSearchParams();
-
-        const response = await this.apiClient.get(`/earnings_estimate?${params}`)
-        if (response.status !== 200) {
-            throw new Error(response.statusText);
-        }
-        return response.data;
+        const params = this.constructUrlParams(requestConfig, '/earnings_estimate');
+        return this.request<EarningsEstimateResponse>('/earnings_estimate', params);
     }
 
     async revenueEstimate(requestConfig: RevenueEstimateRequest): Promise<RevenueEstimateResponse> {
-        const params = new URLSearchParams();
-
-        const response = await this.apiClient.get(`/revenue_estimate?${params}`)
-        if (response.status !== 200) {
-            throw new Error(response.statusText);
-        }
-        return response.data;
+        const params = this.constructUrlParams(requestConfig, '/revenue_estimate');
+        return this.request<RevenueEstimateResponse>('/revenue_estimate', params);
     }
 
     async epsTrend(requestConfig: EPSTrendRequest): Promise<EPSTrendResponse> {
-        const params = new URLSearchParams();
-
-        const response = await this.apiClient.get(`/eps_trend?${params}`)
-        if (response.status !== 200) {
-            throw new Error(response.statusText);
-        }
-        return response.data;
+        const params = this.constructUrlParams(requestConfig, '/eps_trend');
+        return this.request<EPSTrendResponse>('/eps_trend', params);
     }
 
     async epsRevisions(requestConfig: EPSRevisionsRequest): Promise<EPSRevisionsResponse> {
-        const params = new URLSearchParams();
-        const response = await this.apiClient.get(`/eps_revisions?${params}`)
-        if (response.status !== 200) {
-            throw new Error(response.statusText);
-        }
-        return response.data;
+        const params = this.constructUrlParams(requestConfig, '/eps_revisions');
+        return this.request<EPSRevisionsResponse>('/eps_revisions', params);
     }
 
     async growthEstimates(requestConfig: GrowthEstimatesRequest): Promise<GrowthEstimatesResponse> {
-        const params = new URLSearchParams();
-
-        const response = await this.apiClient.get(`/growth_estimates?${params}`)
-        if (response.status !== 200) {
-            throw new Error(response.statusText);
-        }
-        return response.data;
+        const params = this.constructUrlParams(requestConfig, '/growth_estimates');
+        return this.request<GrowthEstimatesResponse>('/growth_estimates', params);
     }
 
     async recommendations(requestConfig: RecommendationsRequest): Promise<RecommendationsResponse> {
-        const params = new URLSearchParams();
-
-        const response = await this.apiClient.get(`/recommendations?${params}`)
-        if (response.status !== 200) {
-            throw new Error(response.statusText);
-        }
-        return response.data;
+        const params = this.constructUrlParams(requestConfig, '/recommendations');
+        return this.request<RecommendationsResponse>('/recommendations', params);
     }
     async priceTarget(requestConfig: PriceTargetRequest): Promise<PriceTargetResponse> {
-        const params = new URLSearchParams();
-
-        const response = await this.apiClient.get(`/price_target?${params}`)
-        if (response.status !== 200) {
-            throw new Error(response.statusText);
-        }
-        return response.data;
+        const params = this.constructUrlParams(requestConfig, '/price_target');
+        return this.request<PriceTargetResponse>('/price_target', params);
     }
     async analystRatingsSnapshot(requestConfig: AnalystRatingsSnapshotRequest): Promise<AnalystRatingsSnapshotResponse> {
-        const params = new URLSearchParams();
-
-        const response = await this.apiClient.get(`/analyst_ratings/light?${params}`)
-        if (response.status !== 200) {
-            throw new Error(response.statusText);
-        }
-        return response.data;
+        const params = this.constructUrlParams(requestConfig, '/analyst_ratings/light');
+        return this.request<AnalystRatingsSnapshotResponse>('/analyst_ratings/light', params);
     }
     async analystRatingsUsEquities(requestConfig: AnalystRatingsUSEquitiesRequest): Promise<AnalystRatingsUSEquitiesResponse> {
-        const params = new URLSearchParams();
-
-        const response = await this.apiClient.get(`/analyst_ratings/us_equities?${params}`)
-        if (response.status !== 200) {
-            throw new Error(response.statusText);
-        }
-        return response.data;
+        const params = this.constructUrlParams(requestConfig, '/analyst_ratings/us_equities');
+        return this.request<AnalystRatingsUSEquitiesResponse>('/analyst_ratings/us_equities', params);
     }
 }

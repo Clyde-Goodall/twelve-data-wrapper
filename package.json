@@ -45,7 +45,7 @@
     }
   ],
   "devDependencies": {
-    "strong-mock": "^9.0.1",
+    "@types/luxon": "^3.7.1",
     "tsup": "^8.5.0",
     "typescript": "^5.9.2"
   },
@@ -53,6 +53,7 @@
     "axios": "^1.11.0",
     "axios-retry": "^4.5.0",
     "dotenv": "^16.3.1",
+    "luxon": "^3.7.1",
     "nock": "^14.0.10",
     "ts-node": "^10.9.1"
   },

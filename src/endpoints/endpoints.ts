@@ -84,4 +84,11 @@ export enum Endpoints {
     MarketCap = '/market_cap',
     KeyExecutives = '/key_executives',
     APIUsage = '/api_usage',
+    Stocks = '/stocks',
+    ETFs = '/etfs',
+    ForexPairs = '/forex_pairs',
+    Cryptocurrencies = '/cryptocurrencies',
+    Funds = '/funds',
+    Commodities = '/commodities',
+    Bonds = '/bonds',
 }

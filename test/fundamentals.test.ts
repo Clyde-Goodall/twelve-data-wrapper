@@ -39,6 +39,7 @@ import {
     KeyExecutivesRequest,
     KeyExecutivesResponse
 } from "../src/endpoints/fundamentals/fundamental.interfaces";
+import { Endpoints } from "../src/endpoints/endpoints";
 
 describe('Fundamentals API Endpoint response test', () => {
     beforeEach(() => {
@@ -67,7 +68,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/logo?apikey=demo`)
+            .get(`${Endpoints.Logo}?apikey=demo`)
             .reply(200, logoResponseMockData);
 
         const result = await client.fundamentals.logo(logoRequestMockData);
@@ -103,7 +104,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/profile?apikey=demo`)
+            .get(`${Endpoints.Profile}?apikey=demo`)
             .reply(200, profileResponseMockData);
 
         const result = await client.fundamentals.profile(profileRequestMockData);
@@ -132,7 +133,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/dividends?apikey=demo`)
+            .get(`${Endpoints.Dividends}?apikey=demo`)
             .reply(200, dividendsResponseMockData);
 
         const result = await client.fundamentals.dividends(dividendsRequestMockData);
@@ -155,7 +156,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/dividends_calendar?apikey=demo`)
+            .get(`${Endpoints.DividendsCalendar}?apikey=demo`)
             .reply(200, dividendsCalendarResponseMockData);
 
         const result = await client.fundamentals.dividendsCalendar(dividendsCalendarRequestMockData);
@@ -186,7 +187,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/splits?apikey=demo`)
+            .get(`${Endpoints.Splits}?apikey=demo`)
             .reply(200, splitsResponseMockData);
 
         const result = await client.fundamentals.splits(splitsRequestMockData);
@@ -212,7 +213,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/splits_calendar?apikey=demo`)
+            .get(`${Endpoints.SplitsCalendar}?apikey=demo`)
             .reply(200, splitsCalendarResponseMockData);
 
         const result = await client.fundamentals.splitsCalendar(splitsCalendarRequestMockData);
@@ -244,7 +245,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/earnings?apikey=demo`)
+            .get(`${Endpoints.Earnings}?apikey=demo`)
             .reply(200, earningsResponseMockData);
 
         const result = await client.fundamentals.earnings(earningsRequestMockData);
@@ -275,7 +276,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/earnings_calendar?apikey=demo`)
+            .get(`${Endpoints.EarningsCalendar}?apikey=demo`)
             .reply(200, earningsCalendarResponseMockData);
 
         const result = await client.fundamentals.earningsCalendar(earningsCalendarRequestMockData);
@@ -302,7 +303,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/ipo_calendar?apikey=demo`)
+            .get(`${Endpoints.IpoCalendar}?apikey=demo`)
             .reply(200, ipoCalendarResponseMockData);
 
         const result = await client.fundamentals.ipoCalendar(ipoCalendarRequestMockData);
@@ -401,7 +402,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/statistics?apikey=demo`)
+            .get(`${Endpoints.Statistics}?apikey=demo`)
             .reply(200, statisticsResponseMockData);
 
         const result = await client.fundamentals.statistics(statisticsRequestMockData);
@@ -457,7 +458,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/income_statement?apikey=demo`)
+            .get(`${Endpoints.IncomeStatement}?apikey=demo`)
             .reply(200, incomeStatementResponseMockData);
 
         const result = await client.fundamentals.incomeStatement(incomeStatementRequestMockData);
@@ -610,7 +611,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/income_statement/consolidated?apikey=demo`)
+            .get(`${Endpoints.IncomeStatementConsolidated}?apikey=demo`)
             .reply(200, incomeStatementConsolidatedResponseMockData);
 
         const result = await client.fundamentals.incomeStatementConsolidated(incomeStatementConsolidatedRequestMockData);
@@ -703,7 +704,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/balance_sheet?apikey=demo`)
+            .get(`${Endpoints.BalanceSheet}?apikey=demo`)
             .reply(200, balanceSheetResponseMockData);
 
         const result = await client.fundamentals.balanceSheet(balanceSheetRequestMockData);
@@ -767,7 +768,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/cash_flow?apikey=demo`)
+            .get(`${Endpoints.CashFlow}?apikey=demo`)
             .reply(200, cashFlowResponseMockData);
 
         const result = await client.fundamentals.cashFlow(cashFlowRequestMockData);
@@ -923,7 +924,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/cash_flow/consolidated?apikey=demo`)
+            .get(`${Endpoints.CashFlowConsolidated}?apikey=demo`)
             .reply(200, cashFlowConsolidatedResponseMockData);
 
         const result = await client.fundamentals.cashFlowConsolidated(cashFlowConsolidatedRequestMockData);
@@ -950,7 +951,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/market_cap?apikey=demo`)
+            .get(`${Endpoints.MarketCap}?apikey=demo`)
             .reply(200, marketCapResponseMockData);
 
         const result = await client.fundamentals.marketCap(marketCapRequestMockData);
@@ -980,7 +981,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/key_executives?apikey=demo`)
+            .get(`${Endpoints.KeyExecutives}?apikey=demo`)
             .reply(200, keyExecutivesResponseMockData);
 
         const result = await client.fundamentals.keyExecutives(keyExecutivesRequestMockData);

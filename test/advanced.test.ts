@@ -3,6 +3,7 @@ import assert from "node:assert";
 import nock from "nock";
 import TwelveDataWrapper from "../src/twelveData";
 import {getDefaultConfig} from "../src/defaults";
+import { Endpoints } from "../src/endpoints/endpoints";
 
 
 describe('Analysis API Endpoint response test', () => {
@@ -21,7 +22,7 @@ describe('Analysis API Endpoint response test', () => {
         }
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/usage?apikey=demo`) // with no config it should only be appending the apikey
+            .get(`${Endpoints.APIUsage}?apikey=demo`) // with no config it should only be appending the apikey
             .reply(200, apiUsageResponseMockData);
         const usage = await client.advanced.APIUsage();
         assert.deepEqual(usage, apiUsageResponseMockData)

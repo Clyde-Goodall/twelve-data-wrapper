@@ -1,6 +1,5 @@
 import {describe, it} from "node:test";
 import assert from "node:assert";
-import type {TwelveDataConfig} from "../src/types/config";
 import TwelveDataWrapper from "../src/twelveData";
 import Advanced from "../src/endpoints/advanced/advanced";
 import Analysis from "../src/endpoints/analysis/analysis";

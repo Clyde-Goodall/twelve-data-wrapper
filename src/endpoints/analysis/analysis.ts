@@ -25,6 +25,7 @@ import { Endpoints } from '../endpoints'
 export default class Analysis extends EndpointBase {
     constructor(apiClient: AxiosInstance) {
         super(apiClient);
+
     }
 
     // Endpoint fetching functions starts here
@@ -35,6 +36,7 @@ export default class Analysis extends EndpointBase {
 
     async revenueEstimate(requestConfig: RevenueEstimateRequest): Promise<RevenueEstimateResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.RevenueEstimate);
+
         return this.request<RevenueEstimateResponse>(Endpoints.RevenueEstimate, params);
     }
 

@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from "axios";
-import { TwelveDataConfig } from "./types/config";
 import { getDefaultConfig } from "./defaults";
 import { serializeTwelveDataResponse } from "./serialization";
+import { TwelveDataConfig } from "./twelveData.interfaces";
 
 export function buildApiClient(config?: TwelveDataConfig): AxiosInstance {
     if (!config) {

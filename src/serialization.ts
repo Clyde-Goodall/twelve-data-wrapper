@@ -1,4 +1,5 @@
 import { DateTime } from "luxon";
+import { Endpoints } from "./endpoints/endpoints";
 
 export interface FieldMappings {
     [key: string]: string;
@@ -102,9 +103,11 @@ class TransformationManager {
         this.registerDefaultConfigurations();
     }
 
+    // TODO: move these configurations to the actual endpoint function definitions
+    // Won't fill out too many so it isn't clogged up
     private registerDefaultConfigurations(): void {
         // Time Series endpoint configuration
-        this.endpointConfigs.set('/time_series', {
+        this.endpointConfigs.set(Endpoints.TimeSeries, {
             requestMappings: {
                 outputSize: 'outputsize',
                 prePost: 'prepost',
@@ -118,8 +121,38 @@ class TransformationManager {
         });
 
         // API Usage endpoint configuration
-        this.endpointConfigs.set('/api_usage', {
+        this.endpointConfigs.set(Endpoints.APIUsage, {
             dateTimeFields: ['timestamp']
+        });
+
+        // Profile endpoint configuration
+        this.endpointConfigs.set(Endpoints.Profile, {
+            responseMappings: {
+                addressTwo: 'address2',
+            }
+        });
+
+        // Lots of redundant outputsize
+
+        // Splits Calendar Consolidated endpoint configuration
+        this.endpointConfigs.set(Endpoints.SplitsCalendar, {
+            requestMappings: {
+                outputSize: 'outputsize',
+            },
+        });
+
+        // Cash Flow Consolidated endpoint configuration
+        this.endpointConfigs.set(Endpoints.CashFlow, {
+            requestMappings: {
+                outputSize: 'outputsize',
+            },
+        });
+
+        // Cash Flow Consolidated endpoint configuration
+        this.endpointConfigs.set(Endpoints.CashFlowConsolidated, {
+            requestMappings: {
+                outputSize: 'outputsize',
+            },
         });
     }
 

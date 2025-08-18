@@ -20,11 +20,11 @@ export interface EarningsEstimateResponse {
 export interface EarningsEstimateEntry {
     date: string;
     period: string;
-    number_of_analysts: number;
-    avg_estimate: number;
-    low_estimate: number;
-    high_estimate: number;
-    year_ago_eps: number;
+    numberOfAnalysts: number;
+    avgEstimate: number;
+    lowEstimate: number;
+    highEstimate: number;
+    yearAgoEps: number;
 }
 
 /*
@@ -48,12 +48,12 @@ export interface RevenueEstimateResponse {
 export interface RevenueEstimateEntry {
     date: string;
     period: string;
-    number_of_analysts: number;
-    avg_estimate: number;
-    low_estimate: number;
-    high_estimate: number;
-    year_ago_sales: number;
-    sales_growth: number;
+    numberOfAnalysts: number;
+    avgEstimate: number;
+    lowEstimate: number;
+    highEstimate: number;
+    yearAgoSales: number;
+    salesGrowth: number;
 }
 
 /*
@@ -76,7 +76,7 @@ export interface EPSTrendResponse {
 export interface EPSTrendEntry {
     date: string;
     period: string;
-    current_estimate: number;
+    currentEstimate: number;
     sevenDaysAgo: number;
     thirtyDaysAgo: number;
     sixtyDaysAgo: number;

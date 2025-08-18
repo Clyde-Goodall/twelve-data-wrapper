@@ -38,19 +38,21 @@ export default class TwelveDataWrapper extends EndpointBase {
             retryWaitTime: config?.retryWaitTime ?? configDefaults.retryWaitTime
         }
 
-        super(buildApiClient(fullConfig));
+        const apiClient = buildApiClient(fullConfig);
+
+        super(apiClient);
         this.config = fullConfig;
 
         // endpoint class binding
-        this.advanced = new Advanced(this.apiClient);
-        this.analysis = new Analysis(this.apiClient);
-        this.core = new Core(this.apiClient);
-        this.currencies = new Currencies(this.apiClient);
-        this.etfs = new ETFs(this.apiClient);
-        this.fundamentals = new Fundamentals(this.apiClient);
-        this.mutualFunds = new MutualFunds(this.apiClient);
-        this.reference = new Reference(this.apiClient);
-        this.regulatory = new Regulatory(this.apiClient);
-        this.technicalIndicators = new TechnicalIndicators(this.apiClient);
+        this.advanced = new Advanced(apiClient);
+        this.analysis = new Analysis(apiClient);
+        this.core = new Core(apiClient);
+        this.currencies = new Currencies(apiClient);
+        this.etfs = new ETFs(apiClient);
+        this.fundamentals = new Fundamentals(apiClient);
+        this.mutualFunds = new MutualFunds(apiClient);
+        this.reference = new Reference(apiClient);
+        this.regulatory = new Regulatory(apiClient);
+        this.technicalIndicators = new TechnicalIndicators(apiClient);
     }
 }

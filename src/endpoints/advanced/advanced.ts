@@ -1,7 +1,7 @@
 import type { AxiosInstance } from "axios";
 import { EndpointBase } from "../../defaults";
-import { APIUsageRequest } from "../../types/requests";
-import { APIUsageResponse } from "../../types/responses";
+import { APIUsageRequest, APIUsageResponse } from "./advanced.interfaces";
+
 
 
 export default class Advanced extends EndpointBase {
@@ -11,12 +11,8 @@ export default class Advanced extends EndpointBase {
 
     // Endpoint fetching functions starts here
     async APIUsage(requestConfig?: APIUsageRequest): Promise<APIUsageResponse> {
-        const params = new URLSearchParams();
-        const response = await this.apiClient.get(`/usage${params}`)
-        if (response.status !== 200) {
-            throw new Error(response.statusText);
-        }
-        return response.data;
+        const params = this.constructUrlParams(requestConfig, "/api_usage");
+        return await this.request<APIUsageResponse>("/api_usage", params);
     }
 
 

@@ -12,6 +12,3 @@ export interface Meta {
     micCode?: string;
     type?: string;
 }
-
-
-

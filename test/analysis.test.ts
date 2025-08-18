@@ -1,7 +1,7 @@
 import {afterEach, beforeEach, describe, it} from "node:test";
 import assert from "node:assert";
 import nock from "nock";
-import TwelveDataWrapper from "../src/twelveDataWrapper";
+import TwelveDataWrapper from "../src/twelveData";
 import {getDefaultConfig} from "../src/defaults";
 import { 
     EarningsEstimateRequest, 

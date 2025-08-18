@@ -1,4 +1,4 @@
-import { Meta } from "../../types/responses";
+import { Meta } from "../shared.interfaces";
 
 /*
     /earnings_estimate

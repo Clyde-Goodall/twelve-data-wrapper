@@ -1,4 +1,4 @@
-import type { TwelveDataConfig } from "./types/config";
+import { TwelveDataConfig } from "./twelveData.interfaces";
 import { EndpointBase, getDefaultConfig } from "./defaults";
 import Advanced from "./endpoints/advanced/advanced";
 import Analysis from "./endpoints/analysis/analysis";

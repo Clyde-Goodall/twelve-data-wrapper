@@ -112,7 +112,7 @@ export interface ETFEntry {
     name: string;
     currency: string;
     exchange: string;
-    mic_code: string;
+    micCode: string;
     country: string;
     figiCode: string;
     cfiCode: string;

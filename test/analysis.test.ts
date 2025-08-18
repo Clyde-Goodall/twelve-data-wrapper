@@ -35,7 +35,7 @@ describe('Analysis API Endpoint response test', () => {
 
     it("Should return a valid EarningsEstimateResponse object", async () => {
         const earningsEstimateResponseMockData: EarningsEstimateResponse = {
-            meta: { symbol: "AAPL", name: "Apple Inc.", currency: "USD", exchangeTimezone: "America/New_York", exchange: "NASDAQ", micCode: "XNGS", type: "Common Stock" },
+            meta: { symbol: "AAPL", name: "Apple", currency: "USD", exchangeTimezone: "America/New_York", exchange: "NASDAQ", micCode: "XNGS", type: "Common Stock" },
             earningsEstimate: [{
                 date: "2023-12-31",
                 period: "Q4",
@@ -174,7 +174,15 @@ describe('Analysis API Endpoint response test', () => {
 
     it("Should return a valid RecommendationsResponse object", async () => {
         const recommendationsResponseMockData: RecommendationsResponse = {
-            meta: { symbol: "AAPL", name: "Apple Inc.", currency: "USD", exchangeTimezone: "America/New_York", exchange: "NASDAQ", micCode: "XNGS", type: "Common Stock" },
+            meta: {
+                symbol: "AAPL",
+                currency: "USD",
+                exchangeTimezone: "America/New_York",
+                exchange: "NASDAQ",
+                micCode: "XNGS",
+                type: "Common Stock",
+                interval: "1d"
+            },
             trends: {
                 currentMonth: {
                     strongBuy: 5,
@@ -224,7 +232,7 @@ describe('Analysis API Endpoint response test', () => {
 
     it("Should return a valid PriceTargetResponse object", async () => {
         const priceTargetResponseMockData: PriceTargetResponse = {
-            meta: { symbol: "AAPL", name: "Apple Inc.", currency: "USD", exchangeTimezone: "America/New_York", exchange: "NASDAQ", micCode: "XNGS", type: "Common Stock" },
+            meta: { symbol: "AAPL", currency: "USD", exchangeTimezone: "America/New_York", exchange: "NASDAQ", micCode: "XNGS", type: "Common Stock" },
             priceTarget: {
                 high: 200.0,
                 median: 180.0,

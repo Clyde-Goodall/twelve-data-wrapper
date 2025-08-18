@@ -31,7 +31,7 @@ export default class Analysis extends EndpointBase {
     async earningsEstimate(requestConfig: EarningsEstimateRequest): Promise<EarningsEstimateResponse> {
         const params = new URLSearchParams();
 
-        const response = await this.apiClient.get(`/usage${params}`)
+        const response = await this.apiClient.get(`/earnings_estimate?${params}`)
         if (response.status !== 200) {
             throw new Error(response.statusText);
         }
@@ -41,7 +41,7 @@ export default class Analysis extends EndpointBase {
     async revenueEstimate(requestConfig: RevenueEstimateRequest): Promise<RevenueEstimateResponse> {
         const params = new URLSearchParams();
 
-        const response = await this.apiClient.get(`/revenue_estimate${params}`)
+        const response = await this.apiClient.get(`/revenue_estimate?${params}`)
         if (response.status !== 200) {
             throw new Error(response.statusText);
         }
@@ -51,7 +51,7 @@ export default class Analysis extends EndpointBase {
     async epsTrend(requestConfig: EPSTrendRequest): Promise<EPSTrendResponse> {
         const params = new URLSearchParams();
 
-        const response = await this.apiClient.get(`/eps_trend${params}`)
+        const response = await this.apiClient.get(`/eps_trend?${params}`)
         if (response.status !== 200) {
             throw new Error(response.statusText);
         }
@@ -61,7 +61,7 @@ export default class Analysis extends EndpointBase {
     async epsRevisions(requestConfig: EPSRevisionsRequest): Promise<EPSRevisionsResponse> {
         const params = new URLSearchParams();
 
-        const response = await this.apiClient.get(`/eps_revisions${params}`)
+        const response = await this.apiClient.get(`/eps_revisions?${params}`)
         if (response.status !== 200) {
             throw new Error(response.statusText);
         }
@@ -71,7 +71,7 @@ export default class Analysis extends EndpointBase {
     async growthEstimates(requestConfig: GrowthEstimatesRequest): Promise<GrowthEstimatesResponse> {
         const params = new URLSearchParams();
 
-        const response = await this.apiClient.get(`/growth_estimates${params}`)
+        const response = await this.apiClient.get(`/growth_estimates?${params}`)
         if (response.status !== 200) {
             throw new Error(response.statusText);
         }
@@ -81,7 +81,7 @@ export default class Analysis extends EndpointBase {
     async recommendations(requestConfig: RecommendationsRequest): Promise<RecommendationsResponse> {
         const params = new URLSearchParams();
 
-        const response = await this.apiClient.get(`/recommendations${params}`)
+        const response = await this.apiClient.get(`/recommendations?${params}`)
         if (response.status !== 200) {
             throw new Error(response.statusText);
         }
@@ -90,7 +90,7 @@ export default class Analysis extends EndpointBase {
     async priceTarget(requestConfig: PriceTargetRequest): Promise<PriceTargetResponse> {
         const params = new URLSearchParams();
 
-        const response = await this.apiClient.get(`/price_target${params}`)
+        const response = await this.apiClient.get(`/price_target?${params}`)
         if (response.status !== 200) {
             throw new Error(response.statusText);
         }
@@ -99,7 +99,7 @@ export default class Analysis extends EndpointBase {
     async analystRatingsSnapshot(requestConfig: AnalystRatingsSnapshotRequest): Promise<AnalystRatingsSnapshotResponse> {
         const params = new URLSearchParams();
 
-        const response = await this.apiClient.get(`/analyst_ratings/light${params}`)
+        const response = await this.apiClient.get(`/analyst_ratings/light?${params}`)
         if (response.status !== 200) {
             throw new Error(response.statusText);
         }
@@ -108,7 +108,7 @@ export default class Analysis extends EndpointBase {
     async analystRatingsUsEquities(requestConfig: AnalystRatingsUSEquitiesRequest): Promise<AnalystRatingsUSEquitiesResponse> {
         const params = new URLSearchParams();
 
-        const response = await this.apiClient.get(`/analyst_ratings/us_equities${params}`)
+        const response = await this.apiClient.get(`/analyst_ratings/us_equities?${params}`)
         if (response.status !== 200) {
             throw new Error(response.statusText);
         }

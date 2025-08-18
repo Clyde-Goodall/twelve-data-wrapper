@@ -10,12 +10,11 @@ describe('Analysis API Endpoint response test', () => {
         nock.cleanAll();
     })
     afterEach(() => {
-        // Verify that all expected HTTP calls were made
         assert.strictEqual(nock.isDone(), true, 'Not all nocked requests were called');
     });
 
     it("Should return plan usage object with default (empty) config", async () => {
-        const mockUsageData = {
+        const apiUsageResponseMockData: any = {
             timestamp: '2021-01-01T00:00:00Z',
             currentUsage: 100,
             planLimit: 1000
@@ -23,9 +22,7 @@ describe('Analysis API Endpoint response test', () => {
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
             .get(`/usage?apikey=demo`) // with no config it should only be appending the apikey
-            .reply(200, mockUsageData);
-
         const usage = await client.advanced.APIUsage();
-        assert.deepEqual(usage, mockUsageData)
+        assert.deepEqual(usage, apiUsageResponseMockData)
     })
 })

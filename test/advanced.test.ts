@@ -22,6 +22,7 @@ describe('Analysis API Endpoint response test', () => {
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
             .get(`/usage?apikey=demo`) // with no config it should only be appending the apikey
+            .reply(200, apiUsageResponseMockData);
         const usage = await client.advanced.APIUsage();
         assert.deepEqual(usage, apiUsageResponseMockData)
     })

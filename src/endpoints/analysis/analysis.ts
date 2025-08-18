@@ -60,7 +60,6 @@ export default class Analysis extends EndpointBase {
 
     async epsRevisions(requestConfig: EPSRevisionsRequest): Promise<EPSRevisionsResponse> {
         const params = new URLSearchParams();
-
         const response = await this.apiClient.get(`/eps_revisions?${params}`)
         if (response.status !== 200) {
             throw new Error(response.statusText);

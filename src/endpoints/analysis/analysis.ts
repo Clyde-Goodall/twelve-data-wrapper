@@ -20,7 +20,7 @@ import {
     RevenueEstimateRequest,
     RevenueEstimateResponse
 } from "./analysis.interfaces";
-
+import { Endpoints } from '../endpoints'
 
 export default class Analysis extends EndpointBase {
     constructor(apiClient: AxiosInstance) {
@@ -29,44 +29,44 @@ export default class Analysis extends EndpointBase {
 
     // Endpoint fetching functions starts here
     async earningsEstimate(requestConfig: EarningsEstimateRequest): Promise<EarningsEstimateResponse> {
-        const params = this.constructUrlParams(requestConfig, '/earnings_estimate');
-        return this.request<EarningsEstimateResponse>('/earnings_estimate', params);
+        const params = this.constructUrlParams(requestConfig, Endpoints.EarningsEstimate);
+        return this.request<EarningsEstimateResponse>(Endpoints.EarningsEstimate, params);
     }
 
     async revenueEstimate(requestConfig: RevenueEstimateRequest): Promise<RevenueEstimateResponse> {
-        const params = this.constructUrlParams(requestConfig, '/revenue_estimate');
-        return this.request<RevenueEstimateResponse>('/revenue_estimate', params);
+        const params = this.constructUrlParams(requestConfig, Endpoints.RevenueEstimate);
+        return this.request<RevenueEstimateResponse>(Endpoints.RevenueEstimate, params);
     }
 
     async epsTrend(requestConfig: EPSTrendRequest): Promise<EPSTrendResponse> {
-        const params = this.constructUrlParams(requestConfig, '/eps_trend');
-        return this.request<EPSTrendResponse>('/eps_trend', params);
+        const params = this.constructUrlParams(requestConfig, Endpoints.EpsTrend);
+        return this.request<EPSTrendResponse>(Endpoints.EpsTrend, params);
     }
 
     async epsRevisions(requestConfig: EPSRevisionsRequest): Promise<EPSRevisionsResponse> {
-        const params = this.constructUrlParams(requestConfig, '/eps_revisions');
-        return this.request<EPSRevisionsResponse>('/eps_revisions', params);
+        const params = this.constructUrlParams(requestConfig, Endpoints.EpsRevisions);
+        return this.request<EPSRevisionsResponse>(Endpoints.EpsRevisions, params);
     }
 
     async growthEstimates(requestConfig: GrowthEstimatesRequest): Promise<GrowthEstimatesResponse> {
-        const params = this.constructUrlParams(requestConfig, '/growth_estimates');
-        return this.request<GrowthEstimatesResponse>('/growth_estimates', params);
+        const params = this.constructUrlParams(requestConfig, Endpoints.GrowthEstimates);
+        return this.request<GrowthEstimatesResponse>(Endpoints.GrowthEstimates, params);
     }
 
     async recommendations(requestConfig: RecommendationsRequest): Promise<RecommendationsResponse> {
-        const params = this.constructUrlParams(requestConfig, '/recommendations');
-        return this.request<RecommendationsResponse>('/recommendations', params);
+        const params = this.constructUrlParams(requestConfig, Endpoints.Recommendations);
+        return this.request<RecommendationsResponse>(Endpoints.Recommendations, params);
     }
     async priceTarget(requestConfig: PriceTargetRequest): Promise<PriceTargetResponse> {
-        const params = this.constructUrlParams(requestConfig, '/price_target');
-        return this.request<PriceTargetResponse>('/price_target', params);
+        const params = this.constructUrlParams(requestConfig, Endpoints.PriceTarget);
+        return this.request<PriceTargetResponse>(Endpoints.PriceTarget, params);
     }
     async analystRatingsSnapshot(requestConfig: AnalystRatingsSnapshotRequest): Promise<AnalystRatingsSnapshotResponse> {
-        const params = this.constructUrlParams(requestConfig, '/analyst_ratings/light');
-        return this.request<AnalystRatingsSnapshotResponse>('/analyst_ratings/light', params);
+        const params = this.constructUrlParams(requestConfig, Endpoints.AnalystRatingsSnapshot);
+        return this.request<AnalystRatingsSnapshotResponse>(Endpoints.AnalystRatingsSnapshot, params);
     }
     async analystRatingsUsEquities(requestConfig: AnalystRatingsUSEquitiesRequest): Promise<AnalystRatingsUSEquitiesResponse> {
-        const params = this.constructUrlParams(requestConfig, '/analyst_ratings/us_equities');
-        return this.request<AnalystRatingsUSEquitiesResponse>('/analyst_ratings/us_equities', params);
+        const params = this.constructUrlParams(requestConfig, Endpoints.AnalystRatingsUsEquities);
+        return this.request<AnalystRatingsUSEquitiesResponse>(Endpoints.AnalystRatingsUsEquities, params);
     }
 }

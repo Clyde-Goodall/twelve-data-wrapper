@@ -1,6 +1,6 @@
-import type { TwelveDataConfig } from "../types/config";
 import { AxiosInstance, AxiosError } from "axios";
 import { globalTransformationManager } from "../serialization";
+import { TwelveDataConfig } from "../twelveData.interfaces";
 
 export function getDefaultConfig(): TwelveDataConfig {
     return {

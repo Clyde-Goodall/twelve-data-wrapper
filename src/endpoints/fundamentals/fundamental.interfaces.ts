@@ -1,6 +1,8 @@
 /*
     /logo
 */
+import { SecurityType } from "../shared.interfaces";
+
 export interface LogoRequest {
     symbol: string;
     exchange: string;

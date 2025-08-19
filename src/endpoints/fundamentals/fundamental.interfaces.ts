@@ -195,10 +195,7 @@ export interface EarningsRequest {
     exchange?: string;
     micCode?: string;
     country?: string;
-    type?: 'American Depositary Receipt' | 'Bond' | 'Bond Fund' | 'Closed-end Fund' | 'Common Stock' |
-        'Depositary Receipt' | 'Digital Currency' | 'ETF' | 'Exchange-Traded Note' |
-        'Global Depositary Receipt' | 'Limited Partnership' | 'Mutual Fund' | 'Physical Currency' |
-        'Preferred Stock' | 'REIT' | 'Right' | 'Structured Product' | 'Trust' | 'Unit' | 'Warrant';
+    type?: SecurityType;
     period?: 'latest' | 'next';
     outputSize?: number;
     format?: 'JSON' | 'CSV';

@@ -1,4 +1,4 @@
-import { Meta } from "../../types/responses";
+import { Meta, TimeSeriesInterval } from "../shared.interfaces";
 
 export interface TimeSeriesRequest {
     symbol: string;              // Required: Symbol of the asset (e.g. "AAPL", "BTC/USD")
@@ -22,20 +22,7 @@ export interface TimeSeriesRequest {
     adjust?: string;              // Adjusting mode for prices ("none", "dividends", "splits", "all"). Default is "none"
 }
 
-export enum TimeSeriesInterval {
-    OneMin = "1min",
-    FiveMin = "5min",
-    FifteenMin = "15min",
-    ThirtyMin = "30min",
-    FortyFiveMin = "45min",
-    OneHour = "1h",
-    TwoHour = "2h",
-    FourHour = "4h",
-    FiveHour = "5h",
-    OneDay = "1day",
-    OneWeek = "1week",
-    OneMonth = "1month"
-}
+
 
 export interface TimeSeriesResponse {
     meta: Meta;

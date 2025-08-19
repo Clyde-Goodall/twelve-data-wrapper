@@ -3,6 +3,8 @@
     /symbol_search
  */
 
+import { Interval } from "../../shared.interfaces";
+
 export interface SymbolSearchRequest {
     symbol: string;
     outputSize?: number;
@@ -54,16 +56,18 @@ export interface CrossListingsResponse {
 /*
     /earliest_timestamp
  */
+type TimestampInterval = Omit<Interval, "5h">;
 export interface EarliestTimestampRequest {
     symbol?: string;
     figi?: string;
     isin?: string;
     cusip?: string;
-    interval?: '1min' | '5min' | '15min' | '30min' | '45min' | '1h' | '2h' | '4h' | '1day' | '1week' | '1month';
+    interval?: TimestampInterval;
     exchange?: string;
     micCode?: string;
     timezone?: string;
 }
+
 export interface EarliestTimestampResponse {
     datetime: string;
     unixTime: number;

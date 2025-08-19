@@ -125,11 +125,11 @@ export interface GrowthEstimatesResponse {
     meta: Meta;
     growthEstimates: {
         currentQuarter: number;
-        nextQuarter: 0.01;
-        currentYear: 0.087;
-        nextYear: 0.055999998;
-        nextFiveYearsPa: 0.094799995;
-        pastFiveYearsPa: 0.23867;
+        nextQuarter: number;
+        currentYear: number;
+        nextYear: number;
+        nextFiveYearsPa: number;
+        pastFiveYearsPa: number;
     };
 }
 

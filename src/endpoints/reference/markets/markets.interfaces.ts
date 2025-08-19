@@ -2,8 +2,10 @@
 /*
     /exchanges
  */
+import { SecurityType } from "../../shared.interfaces";
+
 export interface ExchangesRequest {
-    type?: "American Depositary Receipt" | "Bond" | "Bond Fund" | "Closed-end Fund" | "Common Stock" | "Depositary Receipt" | "Digital Currency" | "ETF" | "Exchange-Traded Note" | "Global Depositary Receipt" | "Limited Partnership" | "Mutual Fund" | "Physical Currency" | "Preferred Stock" | "REIT" | "Right" | "Structured Product" | "Trust" | "Unit" | "Warrant";
+    type?: SecurityType;
     name?: string;
     code?: string;
     country?: string;

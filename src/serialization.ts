@@ -23,7 +23,7 @@ function toCamelCase(str: string): string {
 
 // Core transformation function with mapping support
 function transformKeysWithMapping<T>(
-    obj: any,
+    obj: T,
     keyTransformer: (key: string) => string,
     fieldMappings: FieldMappings = {}
 ): T {
@@ -44,34 +44,56 @@ function transformKeysWithMapping<T>(
     return result;
 }
 
-// Date transformation function
-function transformDates<T>(obj: T, config: TransformConfig, direction: 'serialize' | 'deserialize'): T {
-    if (!obj || typeof obj !== 'object') return obj;
+type SerializeDirection = 'serialize' | 'deserialize';
 
+// Date transformation function
+function transformDates<T>(obj: T, config: TransformConfig, direction: SerializeDirection): T {
     const result = { ...obj } as any;
     const { dateFields = [], dateTimeFields = [] } = config;
+    const allDateFields: string[] = [...dateFields, ...dateTimeFields];
 
-    for (const field of [...dateFields, ...dateTimeFields]) {
-        if (field in result && result[field]) {
-            if (direction === 'serialize') {
-                // Convert Date to string for API
-                if (result[field] instanceof Date) {
-                    result[field] = dateFields.includes(field)
-                        ? DateTime.fromJSDate(result[field]).toISODate() // YYYY-MM-DD for date fields
-                        : DateTime.fromJSDate(result[field]).toFormat('yyyy-MM-dd HH:mm:ss'); // For datetime fields
-                }
-            } else {
-                // Convert string to Date from API
-                if (typeof result[field] === 'string') {
-                    result[field] = dateFields.includes(field)
-                        ? DateTime.fromISO(result[field]).toJSDate() // Convert to Date for date
-                        : DateTime.fromFormat(result[field], 'yyyy-MM-dd HH:mm:ss').toJSDate(); // Convert to Date for datetime
-                }
-            }
+    for (const [key, value] of Object.entries(result)) {
+        if (!value) { continue; }
+        if (allDateFields.includes(key) && isDateOrString(value)) {
+            result[key] = transformDateValue(key, value, config, direction);
+            console.log();
+        } else if (Array.isArray(value)) {
+            result[key] = value.map(item => transformDates(item, config, direction));
+        } else if (typeof value === 'object') {
+            result[key] = transformDates(value, config, direction);
         }
     }
 
     return result;
+}
+
+type DateOrString<T> = T extends string | Date ? T : never;
+function isDateOrString<T>(value: unknown): value is DateOrString<T> {
+    return typeof value === 'string' || value instanceof Date;
+}
+
+function transformDateValue(
+    key: string,
+    value: string | Date,
+    config: TransformConfig,
+    direction: SerializeDirection
+): string | Date {
+    const { dateFields = [] } = config;
+    if (direction === 'serialize') {
+        if (value instanceof Date) {
+            return dateFields.includes(key)
+                ? DateTime.fromJSDate(value).toISODate()! // YYYY-MM-DD for date fields
+                : DateTime.fromJSDate(value).toFormat('yyyy-MM-dd HH:mm:ss'); // Custom format for datetime
+        }
+    } else {
+        if (typeof value === 'string') {
+            // Check for a space because the API will return dates or date-times in the same field depending on context
+            return value.indexOf(' ') === -1
+                ? DateTime.fromISO(value).toJSDate()
+                : DateTime.fromFormat(value, 'yyyy-MM-dd HH:mm:ss').toJSDate();
+        }
+    }
+    throw new Error(`Error serializing/deserializing date field ${key} with value ${value}`);
 }
 
 // Public transformation functions

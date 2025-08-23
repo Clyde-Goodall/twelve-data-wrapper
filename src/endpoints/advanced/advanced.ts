@@ -1,24 +1,25 @@
-import type {AxiosInstance} from "axios";
-import type {APIUsageResponse} from "../types/responses";
-import type {APIUsageRequest} from "../types/requests";
+import type { AxiosInstance } from "axios";
+import { EndpointBase } from "../../defaults";
+import { APIUsageRequest, APIUsageResponse } from "./advanced.interfaces";
+import { Endpoints } from "../endpoints";
+import { globalTransformationManager, TransformConfig } from "../../serialization";
 
-
-export default class Advanced {
-    apiClient: AxiosInstance;
+export default class Advanced extends EndpointBase {
     constructor(apiClient: AxiosInstance) {
-        this.apiClient = apiClient;
+        super(apiClient);
+        registerAPIUsageTransformations();
     }
 
     // Endpoint fetching functions starts here
     async APIUsage(requestConfig?: APIUsageRequest): Promise<APIUsageResponse> {
-        const params = new URLSearchParams();
 
-        const response = await this.apiClient.get(`/usage${params}`)
-        if (response.status !== 200) {
-            throw new Error(response.statusText);
-        }
-        return response.data;
+        const params = this.constructUrlParams(requestConfig, Endpoints.APIUsage);
+        return await this.request<APIUsageResponse>(Endpoints.APIUsage, params);
     }
+}
 
-
+function registerAPIUsageTransformations() {
+    globalTransformationManager.addEndpointConfig(Endpoints.APIUsage, {
+        dateTimeFields: ['timestamp']
+    });
 }

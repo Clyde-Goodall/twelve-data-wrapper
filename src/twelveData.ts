@@ -1,6 +1,5 @@
-import type {TwelveDataConfig} from "./types/config";
-import {getDefaultConfig} from "./defaults";
-import {AxiosInstance} from "axios";
+import { TwelveDataConfig } from "./twelveData.interfaces";
+import { EndpointBase, getDefaultConfig } from "./defaults";
 import Advanced from "./endpoints/advanced/advanced";
 import Analysis from "./endpoints/analysis/analysis";
 import Core from "./endpoints/core/core";
@@ -11,12 +10,11 @@ import MutualFunds from "./endpoints/mutualFunds/mutualFunds";
 import Reference from "./endpoints/reference/reference";
 import Regulatory from "./endpoints/regulatory/regulatory";
 import TechnicalIndicators from "./endpoints/technicalIndicators/technicalIndicators";
-import {buildApiClient} from "./apiClient";
+import { buildApiClient } from "./apiClient";
 
 
-export default class TwelveDataWrapper {
+export default class TwelveDataWrapper extends EndpointBase {
     private readonly config: TwelveDataConfig;
-    private readonly apiClient: AxiosInstance;
     public readonly advanced: Advanced;
     public readonly analysis: Analysis;
     public readonly core: Core;
@@ -28,10 +26,10 @@ export default class TwelveDataWrapper {
     public readonly regulatory: Regulatory;
     public readonly technicalIndicators: TechnicalIndicators;
 
-    constructor(config?: TwelveDataConfig ) {
+    constructor(config?: TwelveDataConfig) {
 
         const configDefaults = getDefaultConfig();
-        this.config = {
+        const fullConfig: TwelveDataConfig = {
             apiKey: config?.apiKey ?? configDefaults.apiKey,
             debugMode: config?.debugMode ?? configDefaults.debugMode,
             baseUrl: config?.baseUrl ?? configDefaults.baseUrl,
@@ -39,17 +37,22 @@ export default class TwelveDataWrapper {
             retryCount: config?.retryCount ?? configDefaults.retryCount,
             retryWaitTime: config?.retryWaitTime ?? configDefaults.retryWaitTime
         }
-        this.apiClient = buildApiClient(this.config);
+
+        const apiClient = buildApiClient(fullConfig);
+
+        super(apiClient);
+        this.config = fullConfig;
+
         // endpoint class binding
-        this.advanced = new Advanced(this.apiClient);
-        this.analysis = new Analysis(this.apiClient);
-        this.core = new Core(this.apiClient);
-        this.currencies = new Currencies(this.apiClient);
-        this.etfs = new ETFs(this.apiClient);
-        this.fundamentals = new Fundamentals(this.apiClient);
-        this.mutualFunds = new MutualFunds(this.apiClient);
-        this.reference = new Reference(this.apiClient);
-        this.regulatory = new Regulatory(this.apiClient);
-        this.technicalIndicators = new TechnicalIndicators(this.apiClient);
+        this.advanced = new Advanced(apiClient);
+        this.analysis = new Analysis(apiClient);
+        this.core = new Core(apiClient);
+        this.currencies = new Currencies(apiClient);
+        this.etfs = new ETFs(apiClient);
+        this.fundamentals = new Fundamentals(apiClient);
+        this.mutualFunds = new MutualFunds(apiClient);
+        this.reference = new Reference(apiClient);
+        this.regulatory = new Regulatory(apiClient);
+        this.technicalIndicators = new TechnicalIndicators(apiClient);
     }
 }

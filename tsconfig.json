@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
       "target": "ESNext",
-      "module": "CommonJS",
+      "module": "NodeNext",
       "lib": ["ESNext", "dom"],
       "moduleResolution": "NodeNext",
       "allowJs": true,
@@ -12,6 +12,7 @@
       "allowSyntheticDefaultImports": true,
       "resolveJsonModule": true,
       "declaration": true,
+      "skipLibCheck": true,
       "baseUrl": ".",
       "paths": {
         "*": ["*", ".ts"]
@@ -28,8 +29,7 @@
       "./src/types/index.d.ts"
     ],
     "include": [
-      "src",
-      "node_modules"
+      "src"
     ],
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules", "dist"]
 }

@@ -36,6 +36,8 @@ import {
     StatisticsRequest,
     StatisticsResponse
 } from "./fundamental.interfaces";
+import { globalTransformationManager } from "../../serialization";
+import { Endpoints } from "../endpoints";
 
 export default class Fundamentals extends EndpointBase {
     constructor(apiClient: AxiosInstance) {

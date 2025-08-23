@@ -21,11 +21,17 @@ import {
     RevenueEstimateResponse
 } from "./analysis.interfaces";
 import { Endpoints } from '../endpoints'
+import { globalTransformationManager } from "../../serialization";
 
 export default class Analysis extends EndpointBase {
     constructor(apiClient: AxiosInstance) {
         super(apiClient);
-
+        registerEPSTrendEstimateTransformations();
+        registerEPSRevisionsEstimateTransformations();
+        registerRevenueEstimateTransformations();
+        registerEarningsEstimateTransformations();
+        registerAnalystRatingsSnapshotTransformations();
+        registerAnalystRatingsUSEquitiesTransformations();
     }
 
     // Endpoint fetching functions starts here
@@ -71,4 +77,40 @@ export default class Analysis extends EndpointBase {
         const params = this.constructUrlParams(requestConfig, Endpoints.AnalystRatingsUsEquities);
         return this.request<AnalystRatingsUSEquitiesResponse>(Endpoints.AnalystRatingsUsEquities, params);
     }
+}
+
+function registerEarningsEstimateTransformations() {
+    globalTransformationManager.addEndpointConfig(Endpoints.EarningsEstimate, {
+        dateFields: ['date'],
+    });
+}
+
+function registerRevenueEstimateTransformations() {
+    globalTransformationManager.addEndpointConfig(Endpoints.RevenueEstimate, {
+        dateFields: ['date'],
+    });
+}
+
+function registerEPSTrendEstimateTransformations() {
+    globalTransformationManager.addEndpointConfig(Endpoints.EpsTrend, {
+        dateFields: ['date'],
+    });
+}
+
+function registerEPSRevisionsEstimateTransformations() {
+    globalTransformationManager.addEndpointConfig(Endpoints.EpsRevisions, {
+        dateFields: ['date'],
+    });
+}
+
+function registerAnalystRatingsSnapshotTransformations() {
+    globalTransformationManager.addEndpointConfig(Endpoints.AnalystRatingsSnapshot, {
+        dateFields: ['date'],
+    });
+}
+
+function registerAnalystRatingsUSEquitiesTransformations() {
+    globalTransformationManager.addEndpointConfig(Endpoints.AnalystRatingsUsEquities, {
+        dateFields: ['date'],
+    });
 }

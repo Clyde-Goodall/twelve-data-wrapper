@@ -1,11 +1,11 @@
-import { Meta, TimeSeriesInterval } from "../shared.interfaces";
+import { Interval, Meta } from "../shared.interfaces";
 
 export interface TimeSeriesRequest {
     symbol: string;              // Required: Symbol of the asset (e.g. "AAPL", "BTC/USD")
     figi?: string;                // Financial Instrument Global Identifier
     isin?: string;                // International Securities Identification Number
     cusip?: string;               // Committee on Uniform Securities Identification Procedures
-    interval: TimeSeriesInterval; // Required: Time interval for the candles (e.g. "1min", "1day")
+    interval: Interval;         // Required: Time interval for the candles (e.g. "1min", "1day")
     exchange?: string;            // Exchange code (e.g. "NASDAQ", "Binance")
     micCode?: string;             // Market Identifier Code (e.g. "XNAS" for NASDAQ)
     country?: string;             // Country code (e.g. "US" or "United States")

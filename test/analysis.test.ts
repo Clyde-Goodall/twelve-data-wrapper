@@ -39,11 +39,11 @@ describe('Analysis API Endpoint response test', () => {
             earningsEstimate: [{
                 date: "2023-12-31",
                 period: "Q4",
-                number_of_analysts: 15,
-                avg_estimate: 2.5,
-                low_estimate: 2.0,
-                high_estimate: 3.0,
-                year_ago_eps: 2.1
+                numberOfAnalysts: 15,
+                avgEstimate: 2.5,
+                lowEstimate: 2.0,
+                highEstimate: 3.0,
+                yearAgoEps: 2.1
             }]
         };
         const earningsEstimateRequestMockData: EarningsEstimateRequest = {
@@ -67,12 +67,12 @@ describe('Analysis API Endpoint response test', () => {
             revenueEstimate: [{
                 date: "2023-12-31",
                 period: "Q4",
-                number_of_analysts: 12,
-                avg_estimate: 120000000000,
-                low_estimate: 115000000000,
-                high_estimate: 125000000000,
-                year_ago_sales: 110000000000,
-                sales_growth: 0.09
+                numberOfAnalysts: 12,
+                avgEstimate: 120000000000,
+                lowEstimate: 115000000000,
+                highEstimate: 125000000000,
+                yearAgoSales: 110000000000,
+                salesGrowth: 0.09
             }]
         };
         const revenueEstimateRequestMockData: RevenueEstimateRequest = {
@@ -96,7 +96,7 @@ describe('Analysis API Endpoint response test', () => {
             epsTrend: [{
                 date: "2023-12-31",
                 period: "Q4",
-                current_estimate: 2.5,
+                currentEstimate: 2.5,
                 sevenDaysAgo: 2.4,
                 thirtyDaysAgo: 2.3,
                 sixtyDaysAgo: 2.2,

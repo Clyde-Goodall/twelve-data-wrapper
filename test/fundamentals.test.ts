@@ -40,6 +40,7 @@ import {
     KeyExecutivesResponse
 } from "../src/endpoints/fundamentals/fundamental.interfaces";
 import { Endpoints } from "../src/endpoints/endpoints";
+import { TimeRange } from "../src/endpoints/shared.interfaces";
 
 describe('Fundamentals API Endpoint response test', () => {
     beforeEach(() => {
@@ -183,7 +184,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const splitsRequestMockData: SplitsRequest = {
             symbol: "AAPL",
-            range: "full"
+            range: TimeRange.Full
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
@@ -454,7 +455,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const incomeStatementRequestMockData: IncomeStatementRequest = {
             symbol: "AAPL",
-            period: "annual"
+            period: "annually",
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
@@ -607,7 +608,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const incomeStatementConsolidatedRequestMockData: IncomeStatementConsolidatedRequest = {
             symbol: "AAPL",
-            period: "annual"
+            period: "annually",
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
@@ -700,7 +701,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const balanceSheetRequestMockData: BalanceSheetRequest = {
             symbol: "AAPL",
-            period: "annual"
+            period: "annually",
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
@@ -764,7 +765,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const cashFlowRequestMockData: CashFlowRequest = {
             symbol: "AAPL",
-            period: "annual"
+            period: "annually",
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
@@ -920,7 +921,7 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const cashFlowConsolidatedRequestMockData: CashFlowConsolidatedRequest = {
             symbol: "AAPL",
-            period: "annual"
+            period: "annually",
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)

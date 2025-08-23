@@ -1,7 +1,7 @@
 /*
     /logo
 */
-import { SecurityType } from "../shared.interfaces";
+import { SecurityType, TimeRange } from "../shared.interfaces";
 
 export interface LogoRequest {
     symbol: string;
@@ -65,7 +65,7 @@ export interface DividendsRequest {
     exchange?: string;
     micCode?: string;
     country?: string;
-    range?: "last" | "next" |  "1m" | "3m" | "6m" | "ytd" | "1y" | "2y" | "5y" | "full";
+    range?: TimeRange;
     startDate?: string;
     endDate?: string;
     adjust: boolean;
@@ -129,7 +129,7 @@ export interface SplitsRequest {
     exchange?: string;
     micCode?: string;
     country?: string;
-    range?: "last" | "1m" | "3m" | "6m" | "ytd" | "1y" | "2y" | "5y" | "full";
+    range?: TimeRange;
     startDate?: string;
     endDate?: string;
 }
@@ -248,6 +248,12 @@ export interface EarningsCalendarResponse {
     }
 }
 
+export enum MarketHours {
+    PreMarket = 'Pre Market',
+    AfterHours = 'After Hours',
+    TimeNotSupplied = 'Time Not Supplied',
+}
+
 export interface EarningsCalendarEntry {
     symbol: string;
     name: string;
@@ -316,7 +322,7 @@ export interface StatisticsValuationMetrics {
     enterpriseToEBITDA: number;
 }
 
-export interface StatisticsFinancialsIncomeStatement {
+export interface    StatisticsFinancialsIncomeStatement {
     revenueTTM: number;
     revenuePerShareTTM: number;
     quarterlyRevenueGrowth: number;
@@ -418,7 +424,7 @@ export interface IncomeStatementRequest {
     exchange?: string;
     micCode?: string;
     country?: string;
-    period?: 'annual' | 'quarterly';
+    period?: 'annually' | 'quarterly';
     startDate?: string;
     endDate?: string;
     outputSize?: number;
@@ -486,7 +492,7 @@ export interface IncomeStatementConsolidatedRequest {
     exchange?: string;
     micCode?: string;
     country?: string;
-    period?: 'annual' | 'quarterly';
+    period?: 'annually' | 'quarterly';
     startDate?: string;
     endDate?: string;
     outputSize?: number;
@@ -681,7 +687,7 @@ export interface BalanceSheetRequest {
     exchange?: string;
     micCode?: string;
     country?: string;
-    period?: 'annual' | 'quarterly';
+    period?: 'annually' | 'quarterly';
     startDate?: string;
     endDate?: string;
     outputSize?: number;
@@ -796,7 +802,7 @@ export interface CashFlowRequest {
     exchange?: string;
     micCode?: string;
     country?: string;
-    period?: 'annual' | 'quarterly';
+    period?: 'annually' | 'quarterly';
     startDate?: string;
     endDate?: string;
     outputSize?: number;
@@ -872,7 +878,7 @@ export interface CashFlowConsolidatedRequest {
     exchange?: string;
     micCode?: string;
     country?: string;
-    period?: 'annual' | 'quarterly';
+    period?: 'annually' | 'quarterly';
     startDate?: string;
     endDate?: string;
     outputSize?: number;

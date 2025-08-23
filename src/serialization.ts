@@ -106,25 +106,6 @@ class TransformationManager {
     // TODO: move these configurations to the actual endpoint function definitions
     // Won't fill out too many so it isn't clogged up
     private registerDefaultConfigurations(): void {
-        // Time Series endpoint configuration
-        this.endpointConfigs.set(Endpoints.TimeSeries, {
-            requestMappings: {
-                outputSize: 'outputsize',
-                prePost: 'prepost',
-                previousClose: 'previous_close'
-            },
-            responseMappings: {
-                datetime: 'dateTime',
-            },
-            dateFields: ['date'],
-            dateTimeFields: ['startDate', 'endDate', 'start_date', 'end_date']
-        });
-
-        // API Usage endpoint configuration
-        this.endpointConfigs.set(Endpoints.APIUsage, {
-            dateTimeFields: ['timestamp']
-        });
-
         // Profile endpoint configuration
         this.endpointConfigs.set(Endpoints.Profile, {
             responseMappings: {

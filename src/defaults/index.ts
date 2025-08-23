@@ -7,7 +7,7 @@ export function getDefaultConfig(): TwelveDataConfig {
         apiKey: 'demo',
         debugMode: false,
         baseUrl: 'https://api.twelvedata.com',
-        timeout: 25,
+        timeout: 30000,
         retryCount: 1,
         retryWaitTime: 1000
     };

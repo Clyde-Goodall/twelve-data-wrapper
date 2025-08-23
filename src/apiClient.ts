@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 import { getDefaultConfig } from "./defaults";
-import { serializeTwelveDataResponse } from "./serialization";
+import { globalTransformationManager, serializeTwelveDataResponse } from "./serialization";
 import { TwelveDataConfig } from "./twelveData.interfaces";
 
 export function buildApiClient(config?: TwelveDataConfig): AxiosInstance {
@@ -20,5 +20,12 @@ export function buildApiClient(config?: TwelveDataConfig): AxiosInstance {
         }
         return request;
     });
+
+    client.interceptors.response.use(async(response) => {
+        const endpoint = response.config.url?.split('?')[0]!;
+        response.data = globalTransformationManager.transformResponseForEndpoint(response.data, endpoint);
+
+        return response;
+    })
     return client;
 }

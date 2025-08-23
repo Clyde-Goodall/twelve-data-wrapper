@@ -35,7 +35,7 @@ function registerTimeSeriesTransformations() {
         responseMappings: {
             datetime: 'dateTime',
         },
-        dateFields: ['date'],
+        dateFields: ['date', 'dateTime'],
         dateTimeFields: ['startDate', 'endDate']
     });
 }

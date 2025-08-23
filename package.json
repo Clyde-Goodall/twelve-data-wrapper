@@ -5,7 +5,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "bundle": "tsup ./src",
-    "test": "node --require ts-node/register --test"
+    "test": "node --require ts-node/register --test",
+    "devstart": "npm run build && node ./dist/localDev/index.js"
   },
   "repository": {
     "type": "git",

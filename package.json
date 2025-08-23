@@ -6,7 +6,8 @@
     "build": "tsc -p tsconfig.json",
     "bundle": "tsup ./src",
     "test": "node --require ts-node/register --test",
-    "devstart": "npm run build && node ./dist/localDev/index.js"
+    "predevstart": "tsc -p tsconfig.json --sourceMap",
+    "devstart": "node ./dist/localDev/index.js"
   },
   "repository": {
     "type": "git",

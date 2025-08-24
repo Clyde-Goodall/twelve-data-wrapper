@@ -195,24 +195,3 @@ export const globalTransformationManager = new TransformationManager();
 export function addEndpointTransformConfig(endpoint: string, config: TransformConfig): void {
     globalTransformationManager.addEndpointConfig(endpoint, config);
 }
-
-// Function to be used in axios transformResponse
-export function serializeTwelveDataResponse(data: any, headers?: any): any {
-    if (!data || typeof data === 'string') {
-        try {
-            data = JSON.parse(data);
-        } catch {
-            return data;
-        }
-    }
-
-    // Try to get endpoint from headers set in the request
-    const endpoint = headers?.['x-endpoint-path'] || headers?.['X-Endpoint-Path'];
-
-    if (endpoint) {
-        return globalTransformationManager.transformResponseForEndpoint(data, endpoint);
-    }
-
-    // Fallback transformation
-    return simpleToCamelCase(data);
-}

@@ -13,7 +13,7 @@ import TechnicalIndicators from "./endpoints/technicalIndicators/technicalIndica
 import { buildApiClient } from "./apiClient";
 
 
-export default class TwelveDataWrapper extends EndpointBase {
+export class TwelveDataWrapper extends EndpointBase {
     private readonly config: TwelveDataConfig;
     public readonly advanced: Advanced;
     public readonly analysis: Analysis;

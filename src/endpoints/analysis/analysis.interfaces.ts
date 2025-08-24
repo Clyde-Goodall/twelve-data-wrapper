@@ -1,16 +1,18 @@
-import { Meta } from "../shared.interfaces";
+import { AtLeastOne, Meta } from "../shared.interfaces";
 
 /*
     /earnings_estimate
  */
-export interface EarningsEstimateRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+interface EarningsEstimateRequestBase {
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
 }
+
+export type EarningsEstimateRequest = AtLeastOne<EarningsEstimateRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface EarningsEstimateResponse {
     meta: Meta;
@@ -30,15 +32,18 @@ export interface EarningsEstimateEntry {
 /*
     /revenue_estimate
 */
-export interface RevenueEstimateRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+interface RevenueEstimateRequestBase {
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
     dp?: string;
 }
+
+export type RevenueEstimateRequest = AtLeastOne<RevenueEstimateRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
+
 
 export interface RevenueEstimateResponse {
     meta: Meta;
@@ -59,14 +64,16 @@ export interface RevenueEstimateEntry {
 /*
     /eps_trend
 */
-export interface EPSTrendRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+interface EPSTrendRequestBase {
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
 }
+
+export type EPSTrendRequest = AtLeastOne<EPSTrendRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface EPSTrendResponse {
     meta: Meta;
@@ -86,14 +93,16 @@ export interface EPSTrendEntry {
 /*
     /eps_revisions
 */
-export interface EPSRevisionsRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+interface EPSRevisionsRequestBase {
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
 }
+
+export type EPSRevisionsRequest = AtLeastOne<EPSRevisionsRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface EPSRevisionsResponse {
     meta: Meta;
@@ -112,14 +121,16 @@ export interface EPSRevisionsEntry {
 /*
     /growth_estimates
 */
-export interface GrowthEstimatesRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+interface GrowthEstimatesRequestBase {
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
 }
+
+export type GrowthEstimatesRequest = AtLeastOne<GrowthEstimatesRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface GrowthEstimatesResponse {
     meta: Meta;
@@ -136,14 +147,16 @@ export interface GrowthEstimatesResponse {
 /*
     /recommendations
 */
-export interface RecommendationsRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+interface RecommendationsRequestBase {
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
 }
+
+export type RecommendationsRequest = AtLeastOne<RecommendationsRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface RecommendationsResponse {
     meta: Meta;
@@ -168,14 +181,16 @@ export interface BuySellRating {
 /*
     /price_target
 */
-export interface PriceTargetRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+interface PriceTargetRequestBase {
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
 }
+
+export type PriceTargetRequest = AtLeastOne<PriceTargetRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface PriceTargetResponse {
     meta: Meta;
@@ -192,14 +207,16 @@ export interface PriceTargetResponse {
 /*
     /analyst_ratings/light
 */
-export interface AnalystRatingsSnapshotRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+interface AnalystRatingsSnapshotRequestBase {
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
 }
+
+export type AnalystRatingsSnapshotRequest = AtLeastOne<AnalystRatingsSnapshotRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface AnalystRatingsSnapshotResponse {
     meta: Meta;
@@ -217,14 +234,17 @@ export interface RatingsSnapshotEntry {
 /*
     /analyst_ratings/us_equities
 */
-export interface AnalystRatingsUSEquitiesRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+interface AnalystRatingsUSEquitiesRequestBase {
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
 }
+
+export type AnalystRatingsUSEquitiesRequest = AtLeastOne<AnalystRatingsUSEquitiesRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
+
 
 export interface AnalystRatingsUSEquitiesResponse {
     meta: Meta;

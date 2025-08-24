@@ -1,13 +1,13 @@
 /*
     /logo
 */
-import { SecurityType, TimeRange } from "../shared.interfaces";
+import { AtLeastOne, SecurityType, TimeRange } from "../shared.interfaces";
 
 export interface LogoRequest {
     symbol: string;
-    exchange: string;
-    micCode: string;
-    country: string;
+    exchange?: string;
+    micCode?: string;
+    country?: string;
 }
 
 export interface LogoResponse {
@@ -23,14 +23,16 @@ export interface LogoResponse {
 /*
     /profile
 */
-export interface ProfileRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+export interface ProfileRequestBase {
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
 }
+
+export type ProfileRequest = AtLeastOne<ProfileRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface ProfileResponse {
     symbol: string;
@@ -56,8 +58,7 @@ export interface ProfileResponse {
 /*
     /dividends
 */
-export interface DividendsRequest {
-    meta: {}
+interface DividendsRequestBase {
     symbol?: string;
     figi?: string;
     isin?: string;
@@ -68,8 +69,11 @@ export interface DividendsRequest {
     range?: TimeRange;
     startDate?: string;
     endDate?: string;
-    adjust: boolean;
+    adjust?: boolean;
 }
+
+export type DividendsRequest = AtLeastOne<DividendsRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
+
 
 export interface DividendsResponse {
     meta: {
@@ -88,11 +92,10 @@ export interface DividendEntry {
     amount: number;
 }
 
-
 /*
     /dividends_calendar
  */
-export interface DividendsCalendarRequest {
+interface DividendsCalendarRequestBase {
     symbol?: string;
     figi?: string;
     isin?: string;
@@ -105,6 +108,9 @@ export interface DividendsCalendarRequest {
     outputSize?: number;
     page?: number;
 }
+
+export type DividendsCalendarRequest = AtLeastOne<DividendsCalendarRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
+
 
 export interface DividendsCalendarResponse {
     dividends: Array<DividendCalendarEntry>
@@ -121,7 +127,7 @@ export interface DividendCalendarEntry {
 /*
     /splits
  */
-export interface SplitsRequest {
+interface SplitsRequestBase {
     symbol?: string;
     figi?: string;
     isin?: string;
@@ -133,6 +139,8 @@ export interface SplitsRequest {
     startDate?: string;
     endDate?: string;
 }
+
+export type SplitsRequest = AtLeastOne<SplitsRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface SplitsResponse {
     meta: {
@@ -157,7 +165,7 @@ export interface SplitEntry {
 /*
     /splits_calendar
  */
-export interface SplitsCalendarRequest {
+interface SplitsCalendarRequestBase {
     symbol?: string;
     figi?: string;
     isin?: string;
@@ -170,6 +178,9 @@ export interface SplitsCalendarRequest {
     outputSize?: number;
     page?: string;
 }
+
+export type SplitsCalendarRequest = AtLeastOne<SplitsCalendarRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
+
 
 export interface SplitsCalendarResponse {
     splits: Array<SplitCalendarEntry>;
@@ -189,7 +200,7 @@ export interface SplitCalendarEntry {
 /*
    /earnings
 */
-export interface EarningsRequest {
+interface EarningsRequestBase {
     symbol?: string;
     figi?: string;
     isin?: string;
@@ -206,6 +217,8 @@ export interface EarningsRequest {
     startDate?: string;
     endDate?: string;
 }
+
+export type EarningsRequest = AtLeastOne<EarningsRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface EarningsResponse {
     meta: {
@@ -273,9 +286,9 @@ export interface EarningsCalendarEntry {
  */
 
 export interface IPOCalendarRequest {
-    exchange?: string;
+    exchange: string;
     micCode?: string;
-    country?: string;
+    country: string;
     startDate?: string;
     endDate?: string;
 }
@@ -300,7 +313,7 @@ export interface IPOCalendarEntry {
     /statistics
     So long lmaoooo
  */
-export interface StatisticsRequest {
+interface StatisticsRequestBase {
     symbol?: string;
     figi?: string;
     isin?: string;
@@ -309,6 +322,8 @@ export interface StatisticsRequest {
     mic_code?: string;
     country?: string;
 }
+
+export type StatisticsRequest = AtLeastOne<StatisticsRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface StatisticsValuationMetrics {
     marketCapitalization: number;
@@ -322,7 +337,7 @@ export interface StatisticsValuationMetrics {
     enterpriseToEBITDA: number;
 }
 
-export interface    StatisticsFinancialsIncomeStatement {
+export interface StatisticsFinancialsIncomeStatement {
     revenueTTM: number;
     revenuePerShareTTM: number;
     quarterlyRevenueGrowth: number;
@@ -416,7 +431,7 @@ export interface StatisticsResponse {
 /*
     /income_statement
  */
-export interface IncomeStatementRequest {
+interface IncomeStatementRequestBase {
     symbol?: string;
     figi?: string;
     isin?: string;
@@ -429,6 +444,8 @@ export interface IncomeStatementRequest {
     endDate?: string;
     outputSize?: number;
 }
+
+export type IncomeStatementRequest = AtLeastOne<IncomeStatementRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface IncomeStatementMeta {
     symbol: string;
@@ -484,7 +501,7 @@ export interface IncomeStatementResponse {
 /*
     /income_statement/consolidated
  */
-export interface IncomeStatementConsolidatedRequest {
+interface IncomeStatementConsolidatedRequestBase {
     symbol?: string;
     figi?: string;
     isin?: string;
@@ -497,6 +514,8 @@ export interface IncomeStatementConsolidatedRequest {
     endDate?: string;
     outputSize?: number;
 }
+
+export type IncomeStatementConsolidatedRequest = AtLeastOne<IncomeStatementConsolidatedRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface Revenue {
     totalRevenue: number;
@@ -674,12 +693,11 @@ export interface IncomeStatementConsolidatedResponse {
     incomeStatement: Array<IncomeStatementConsolidatedEntry>;
 }
 
-
 /*
     /balance_sheet
     oh my god they're so long lmao
  */
-export interface BalanceSheetRequest {
+interface BalanceSheetRequestBase {
     symbol?: string;
     figi?: string;
     isin?: string;
@@ -692,6 +710,8 @@ export interface BalanceSheetRequest {
     endDate?: string;
     outputSize?: number;
 }
+
+export type BalanceSheetRequest = AtLeastOne<BalanceSheetRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface BalanceSheetMeta {
     symbol: string;
@@ -794,7 +814,7 @@ export interface BalanceSheetResponse {
 /*
     /cash_flow
 */
-export interface CashFlowRequest {
+interface CashFlowRequestBase {
     symbol?: string;
     figi?: string;
     isin?: string;
@@ -807,6 +827,8 @@ export interface CashFlowRequest {
     endDate?: string;
     outputSize?: number;
 }
+
+export type CashFlowRequest = AtLeastOne<CashFlowRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface OperatingActivities {
     netIncome: number;
@@ -1046,7 +1068,7 @@ export interface CashFlowConsolidatedResponse {
 /*
     /market_cap
 */
-export interface MarketCapRequest {
+interface MarketCapRequestBase {
     symbol?: string;
     figi?: string;
     isin?: string;
@@ -1059,6 +1081,8 @@ export interface MarketCapRequest {
     page?: number;
     outputsize?: number;
 }
+
+export type MarketCapRequest = AtLeastOne<MarketCapRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface MarketCapEntry {
     date: string;
@@ -1080,7 +1104,7 @@ export interface MarketCapResponse {
 /*
     /key_executives
 */
-export interface KeyExecutivesRequest {
+interface KeyExecutivesRequestBase {
     symbol?: string;
     figi?: string;
     isin?: string;
@@ -1089,6 +1113,8 @@ export interface KeyExecutivesRequest {
     micCode?: string;
     country?: string;
 }
+
+export type KeyExecutivesRequest = AtLeastOne<KeyExecutivesRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface KeyExecutiveEntry {
     name: string;

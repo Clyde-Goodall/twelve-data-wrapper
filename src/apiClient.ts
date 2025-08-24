@@ -1,7 +1,7 @@
-import axios, { AxiosInstance } from "axios";
-import { getDefaultConfig } from "./defaults";
-import { serializeTwelveDataResponse } from "./serialization";
-import { TwelveDataConfig } from "./twelveData.interfaces";
+import axios, { AxiosInstance } from 'axios';
+import { getDefaultConfig } from './defaults';
+import { globalTransformationManager } from './serialization';
+import { TwelveDataConfig } from './twelveData.interfaces';
 
 export function buildApiClient(config?: TwelveDataConfig): AxiosInstance {
     if (!config) {
@@ -10,7 +10,6 @@ export function buildApiClient(config?: TwelveDataConfig): AxiosInstance {
     const client = axios.create({
         baseURL: config.baseUrl,
         timeout: config.timeout,
-        transformResponse: [serializeTwelveDataResponse]
     });
 
     client.interceptors.request.use(async(request) => {
@@ -20,5 +19,12 @@ export function buildApiClient(config?: TwelveDataConfig): AxiosInstance {
         }
         return request;
     });
+
+    client.interceptors.response.use(async(response) => {
+        const endpoint = response.config.url?.split('?')[0]!;
+        response.data = globalTransformationManager.transformResponseForEndpoint(response.data, endpoint);
+
+        return response;
+    })
     return client;
 }

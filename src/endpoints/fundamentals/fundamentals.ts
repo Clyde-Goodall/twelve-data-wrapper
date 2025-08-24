@@ -13,17 +13,14 @@ import {
     DividendsCalendarResponse,
     EarningsRequest,
     EarningsResponse,
-    EarningsCalendarRequest,
     EarningsCalendarResponse,
     IncomeStatementRequest,
     IncomeStatementResponse,
     IncomeStatementConsolidatedRequest,
     IncomeStatementConsolidatedResponse,
-    IPOCalendarRequest,
     IPOCalendarResponse,
     KeyExecutivesRequest,
     KeyExecutivesResponse,
-    LogoRequest,
     LogoResponse,
     MarketCapRequest,
     MarketCapResponse,
@@ -34,7 +31,7 @@ import {
     SplitsCalendarRequest,
     SplitsCalendarResponse,
     StatisticsRequest,
-    StatisticsResponse
+    StatisticsResponse, LogoRequest, EarningsCalendarRequest, IPOCalendarRequest
 } from "./fundamental.interfaces";
 import { globalTransformationManager } from "../../serialization";
 import { Endpoints } from "../endpoints";

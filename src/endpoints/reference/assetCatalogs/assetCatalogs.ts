@@ -46,17 +46,17 @@ export default class AssetCatalogs extends EndpointBase {
         return this.request<CryptocurrencyPairsResponse>(Endpoints.Cryptocurrencies, params);
     }
 
-    async funds(requestConfig: FundsRequest): Promise<FundsResponse> {
+    async funds(requestConfig?: FundsRequest): Promise<FundsResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.Funds);
         return this.request<FundsResponse>(Endpoints.Funds, params);
     }
 
-    async commodities(requestConfig: CommoditiesRequest): Promise<CommoditiesResponse> {
+    async commodities(requestConfig?: CommoditiesRequest): Promise<CommoditiesResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.Commodities);
         return this.request<CommoditiesResponse>(Endpoints.Commodities, params);
     }
 
-    async fixedIncome(requestConfig: FixedIncomeRequest): Promise<FixedIncomeResponse> {
+    async fixedIncome(requestConfig?: FixedIncomeRequest): Promise<FixedIncomeResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.Bonds);
         return this.request<FixedIncomeResponse>(Endpoints.Bonds, params);
     }

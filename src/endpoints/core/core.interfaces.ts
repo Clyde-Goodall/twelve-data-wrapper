@@ -1,8 +1,11 @@
-import { DecimalPlaces, Interval, Meta, ReqSortOrder } from '../shared.interfaces';
+import { AtLeastOne, DecimalPlaces, Interval, Meta, ReqSortOrder } from "../shared.interfaces";
 
-export interface TimeSeriesRequest {
+/**
+ * /time_series endpoint request and response interfaces
+ */
+interface TimeSeriesRequestBase {
     // Required: Symbol of the asset (e.g. "AAPL", "BTC/USD")
-    symbol: string;
+    symbol?: string;
     // Financial Instrument Global Identifier
     figi?: string;
     // International Securities Identification Number
@@ -45,6 +48,8 @@ export interface TimeSeriesRequest {
     adjust?: string;
 }
 
+export type TimeSeriesRequest = AtLeastOne<TimeSeriesRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
+
 export interface TimeSeriesResponse {
     meta: Meta;
     values: TimeSeriesCandle[];
@@ -59,6 +64,9 @@ export interface TimeSeriesCandle {
     volume: string;
 }
 
+/**
+ * /time_series/cross endpoint request and response interfaces
+ */
 type TSCrossInterval = Exclude<Interval, Interval.FiveHour>;
 export interface TimeSeriesCrossRequest {
     // Required: Base currency (e.g. "USD" or "BTC")
@@ -122,3 +130,7 @@ export interface TimeSeriesCrossResponse {
     meta: TimeSeriesCrossMeta;
     values: TimeSeriesCrossValue[];
 }
+
+/**
+ * /quote endpoint request and response interfaces
+ */

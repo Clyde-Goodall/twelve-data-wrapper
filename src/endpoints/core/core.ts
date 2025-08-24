@@ -5,7 +5,7 @@ import {
     TimeSeriesCrossResponse,
     TimeSeriesRequest,
     TimeSeriesResponse
-} from './core.interfaces';
+} from "./core.interfaces";
 import { globalTransformationManager } from "../../serialization";
 import { Endpoints } from "../endpoints";
 

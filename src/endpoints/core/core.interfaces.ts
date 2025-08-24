@@ -1,10 +1,20 @@
-import { AtLeastOne, DecimalPlaces, Interval, Meta, ReqSortOrder } from "../shared.interfaces";
+import {
+    AssetClassType,
+    AtLeastOne,
+    DecimalPlaces,
+    Interval,
+    Meta,
+    ReqSortOrder,
+    ResponseFormat
+} from "../shared.interfaces";
+
+type IntervalNoFiveHour = Exclude<Interval, Interval.FiveHour>;
 
 /**
  * /time_series endpoint request and response interfaces
  */
 interface TimeSeriesRequestBase {
-    // Required: Symbol of the asset (e.g. "AAPL", "BTC/USD")
+    // Symbol of the asset (e.g. "AAPL", "BTC/USD")
     symbol?: string;
     // Financial Instrument Global Identifier
     figi?: string;
@@ -25,7 +35,7 @@ interface TimeSeriesRequestBase {
     // Number of candles to return (default is 30, max is 5000)
     outputSize?: number;
     // Response format, either "JSON" or "CSV" (default is "JSON")
-    format?: 'JSON' | 'CSV';
+    format?: ResponseFormat;
     // Delimiter for CSV format (default is ";")
     delimiter?: string;
     // Include pre/post market data (default is false)
@@ -67,7 +77,6 @@ export interface TimeSeriesCandle {
 /**
  * /time_series/cross endpoint request and response interfaces
  */
-type TSCrossInterval = Exclude<Interval, Interval.FiveHour>;
 export interface TimeSeriesCrossRequest {
     // Required: Base currency (e.g. "USD" or "BTC")
     base: string;
@@ -86,11 +95,11 @@ export interface TimeSeriesCrossRequest {
     // Market Identifier Code for the quote currency (e.g. "XNAS" for NASDAQ)
     quoteMicCode?: string;
     // Required: Interval between two consecutive points in time series
-    interval: TSCrossInterval;
+    interval: IntervalNoFiveHour;
     // Number of candles to return (default is 30, max is 5000)
     outputSize?: number;
     // Response format, either "JSON" or "CSV" (default is "JSON")
-    format?: 'JSON' | 'CSV';
+    format?: ResponseFormat;
     // Delimiter for CSV format (default is ";")
     delimiter?: string;
     // Include pre/post market data (default is false)
@@ -112,7 +121,7 @@ export interface TimeSeriesCrossMeta {
     baseInstrument: string;
     baseCurrency: string;
     baseExchange: string;
-    interval: TSCrossInterval;
+    interval: IntervalNoFiveHour;
     quoteInstrument: string;
     quoteCurrency: string;
     quoteExchange: string;
@@ -134,3 +143,79 @@ export interface TimeSeriesCrossResponse {
 /**
  * /quote endpoint request and response interfaces
  */
+interface QuoteRequestBase {
+    // Symbol of the asset (e.g. "AAPL", "BTC/USD")
+    symbol?: string;
+    // Financial Instrument Global Identifier
+    figi?: string;
+    // International Securities Identification Number
+    isin?: string;
+    // Committee on Uniform Securities Identification Procedures
+    cusip?: string;
+    // Time interval for the candles (e.g. "1min", "1day"). Default: "1day"
+    interval?: IntervalNoFiveHour;
+    // Exchange code (e.g. "NASDAQ", "Binance")
+    exchange?: string;
+    // Market Identifier Code (e.g. "XNAS" for NASDAQ)
+    micCode?: string;
+    // Country code (e.g. "US" or "United States")
+    country?: string;
+    // Number of periods for Average Volume. Default: 9
+    volumeTimePeriod?: number;
+    // The asset class to which the instrument belongs
+    type?: AssetClassType;
+    // Response format, either "JSON" or "CSV" (default is "JSON")
+    format?: ResponseFormat;
+    // Delimiter for CSV format (default is ";")
+    delimiter?: string;
+    // Include pre- / post-market data (default is false) (only for Pro and above plans)
+    prePost?: boolean;
+    // Whether to return data for closed day (default is false)
+    eod?: boolean;
+    // Number of hours for calculate rolling change at period. Default is 24. Supports integers in range [1,168]
+    rollingPeriod?: number;
+    // Number of decimal places for float values. Supports 0-11, default is -1 (API automatically determines precision)
+    dp?: DecimalPlaces;
+    // Timezone for the response (e.g. "America/New_York", "UTC"). Defaults to "Exchange"
+    timezone?: string;
+}
+
+export type QuoteRequest = AtLeastOne<QuoteRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
+
+export interface QuoteResponse {
+    symbol: string;
+    name: string;
+    exchange: string;
+    micCode?: string;
+    currency?: string;
+    dateTime: string;
+    timestamp: number;
+    lastQuoteAt?: number;
+    open: string;
+    high: string;
+    low: string;
+    close: string;
+    volume: string;
+    previousClose?: string;
+    change?: string;
+    percentChange?: string;
+    averageVolume?: string;
+    rollingOneDayChange?: string;
+    rollingSevenDayChange?: string;
+    rollingPeriodChange?: string;
+    isMarketOpen: boolean;
+    fiftyTwoWeek?: {
+        low: string;
+        high: string;
+        lowChange: string;
+        highChange: string;
+        lowChangePercent: string;
+        highChangePercent: string;
+        range: string;
+    };
+    extendedChange?: string;
+    extendedPercentChange?: string;
+    extendedPrice?: string;
+    extendedTimestamp?: string;
+}
+

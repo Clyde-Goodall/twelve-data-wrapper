@@ -1,6 +1,7 @@
 import type { AxiosInstance } from "axios";
 import { EndpointBase } from "../../defaults";
 import {
+    QuoteRequest, QuoteResponse,
     TimeSeriesCrossRequest,
     TimeSeriesCrossResponse,
     TimeSeriesRequest,
@@ -14,13 +15,10 @@ export default class Core extends EndpointBase {
         super(apiClient);
         registerTimeSeriesTransformations();
         registerTimeSeriesCrossTransformations();
+        registerQuoteTransformations();
     }
 
     async getTimeSeries(req: TimeSeriesRequest): Promise<TimeSeriesResponse> {
-        if (!req.symbol) {
-            throw new Error('symbol is required');
-        }
-
         if (!req.interval) {
             throw new Error('interval is required');
         }
@@ -44,6 +42,11 @@ export default class Core extends EndpointBase {
 
         const params: string = this.constructUrlParams(req, Endpoints.TimeSeriesCross);
         return this.request<TimeSeriesCrossResponse>(Endpoints.TimeSeriesCross, params);
+    }
+    
+    async getQuote(req: QuoteRequest): Promise<QuoteResponse> {
+        const params: string = this.constructUrlParams(req, Endpoints.Quote);
+        return this.request<QuoteResponse>(Endpoints.Quote, params);
     }
 }
 
@@ -73,4 +76,19 @@ function registerTimeSeriesCrossTransformations() {
         dateFields: ['date'],
         dateTimeFields: ['startDate', 'endDate', 'dateTime']
     });
+}
+
+function registerQuoteTransformations() {
+    globalTransformationManager.addEndpointConfig(Endpoints.Quote, {
+        requestMappings: {
+            outputSize: 'outputsize',
+            prePost: 'prepost',
+        },
+        responseMappings: {
+            dateTime: 'dateTime',
+            rollingOneDayChange: 'rolling_1day_change',
+            rollingSevenDayChange: 'rolling_7day_change',
+        },
+        dateTimeFields: ['dateTime', 'timestamp', 'lastQuoteAt', 'extendedTimestamp'],
+    })
 }

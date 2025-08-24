@@ -54,7 +54,7 @@ function transformDates<T>(obj: T, config: TransformConfig, direction: Serialize
 
     for (const [key, value] of Object.entries(result)) {
         if (!value) { continue; }
-        if (allDateFields.includes(key) && isDateOrString(value)) {
+        if (allDateFields.includes(key) && isDateOrStringOrNumber(value)) {
             result[key] = transformDateValue(key, value, config, direction);
         } else if (Array.isArray(value)) {
             result[key] = value.map(item => transformDates(item, config, direction));
@@ -66,14 +66,14 @@ function transformDates<T>(obj: T, config: TransformConfig, direction: Serialize
     return result;
 }
 
-type DateOrString<T> = T extends string | Date ? T : never;
-function isDateOrString<T>(value: unknown): value is DateOrString<T> {
-    return typeof value === 'string' || value instanceof Date;
+type DateOrStringOrNumber<T> = T extends string | Date | number ? T : never;
+function isDateOrStringOrNumber<T>(value: unknown): value is DateOrStringOrNumber<T> {
+    return typeof value === 'string' || value instanceof Date || typeof value === 'number';
 }
 
 function transformDateValue(
     key: string,
-    value: string | Date,
+    value: string | Date | number,
     config: TransformConfig,
     direction: SerializeDirection
 ): string | Date {
@@ -90,6 +90,9 @@ function transformDateValue(
             return value.indexOf(' ') === -1
                 ? DateTime.fromISO(value).toJSDate()
                 : DateTime.fromFormat(value, 'yyyy-MM-dd HH:mm:ss').toJSDate();
+        } else if (typeof value === 'number') {
+            // Assume it's a Unix timestamp in seconds
+            return DateTime.fromSeconds(value).toJSDate();
         }
     }
     throw new Error(`Error serializing/deserializing date field ${key} with value ${value}`);

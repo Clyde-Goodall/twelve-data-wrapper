@@ -30,12 +30,11 @@ function registerTimeSeriesTransformations() {
         requestMappings: {
             outputSize: 'outputsize',
             prePost: 'prepost',
-            previousClose: 'previous_close'
         },
         responseMappings: {
             datetime: 'dateTime',
         },
-        dateFields: ['date', 'dateTime'],
-        dateTimeFields: ['startDate', 'endDate']
+        dateFields: ['date'],
+        dateTimeFields: ['startDate', 'endDate', 'dateTime']
     });
 }

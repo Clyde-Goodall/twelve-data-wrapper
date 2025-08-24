@@ -56,7 +56,6 @@ function transformDates<T>(obj: T, config: TransformConfig, direction: Serialize
         if (!value) { continue; }
         if (allDateFields.includes(key) && isDateOrString(value)) {
             result[key] = transformDateValue(key, value, config, direction);
-            console.log();
         } else if (Array.isArray(value)) {
             result[key] = value.map(item => transformDates(item, config, direction));
         } else if (typeof value === 'object') {

@@ -3,7 +3,7 @@
     /symbol_search
  */
 
-import { Interval } from "../../shared.interfaces";
+import { AtLeastOne, Interval } from "../../shared.interfaces";
 
 export interface SymbolSearchRequest {
     symbol: string;
@@ -57,7 +57,7 @@ export interface CrossListingsResponse {
     /earliest_timestamp
  */
 type TimestampInterval = Exclude<Interval, Interval.FiveHour>;
-export interface EarliestTimestampRequest {
+interface EarliestTimestampRequestBase {
     symbol?: string;
     figi?: string;
     isin?: string;
@@ -67,6 +67,8 @@ export interface EarliestTimestampRequest {
     micCode?: string;
     timezone?: string;
 }
+
+export type EarliestTimestampRequest = AtLeastOne<EarliestTimestampRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface EarliestTimestampResponse {
     datetime: string;

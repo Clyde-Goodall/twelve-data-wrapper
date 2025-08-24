@@ -4,10 +4,10 @@ import { Meta } from "../shared.interfaces";
     /earnings_estimate
  */
 export interface EarningsEstimateRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
 }
@@ -31,10 +31,10 @@ export interface EarningsEstimateEntry {
     /revenue_estimate
 */
 export interface RevenueEstimateRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
     dp?: string;
@@ -60,10 +60,10 @@ export interface RevenueEstimateEntry {
     /eps_trend
 */
 export interface EPSTrendRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
 }
@@ -87,10 +87,10 @@ export interface EPSTrendEntry {
     /eps_revisions
 */
 export interface EPSRevisionsRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
 }
@@ -113,10 +113,10 @@ export interface EPSRevisionsEntry {
     /growth_estimates
 */
 export interface GrowthEstimatesRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
 }
@@ -137,10 +137,10 @@ export interface GrowthEstimatesResponse {
     /recommendations
 */
 export interface RecommendationsRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
 }
@@ -169,10 +169,10 @@ export interface BuySellRating {
     /price_target
 */
 export interface PriceTargetRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
 }
@@ -193,10 +193,10 @@ export interface PriceTargetResponse {
     /analyst_ratings/light
 */
 export interface AnalystRatingsSnapshotRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
 }
@@ -218,10 +218,10 @@ export interface RatingsSnapshotEntry {
     /analyst_ratings/us_equities
 */
 export interface AnalystRatingsUSEquitiesRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
 }

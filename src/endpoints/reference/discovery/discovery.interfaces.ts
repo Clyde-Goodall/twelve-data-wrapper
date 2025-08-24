@@ -34,9 +34,9 @@ export interface SymbolSearchResponse {
 
 export interface CrossListingsRequest {
     symbol: string;
-    exchange: string;
-    micCode: string;
-    country: string;
+    exchange?: string;
+    micCode?: string;
+    country?: string;
 }
 
 export interface CrossListingsItem {
@@ -56,7 +56,7 @@ export interface CrossListingsResponse {
 /*
     /earliest_timestamp
  */
-type TimestampInterval = Omit<Interval, "5h">;
+type TimestampInterval = Exclude<Interval, Interval.FiveHour>;
 export interface EarliestTimestampRequest {
     symbol?: string;
     figi?: string;

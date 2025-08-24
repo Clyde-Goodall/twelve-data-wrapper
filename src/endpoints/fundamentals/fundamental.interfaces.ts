@@ -5,9 +5,9 @@ import { SecurityType, TimeRange } from "../shared.interfaces";
 
 export interface LogoRequest {
     symbol: string;
-    exchange: string;
-    micCode: string;
-    country: string;
+    exchange?: string;
+    micCode?: string;
+    country?: string;
 }
 
 export interface LogoResponse {
@@ -24,10 +24,10 @@ export interface LogoResponse {
     /profile
 */
 export interface ProfileRequest {
-    symbol: string;
-    figi: string;
-    isin: string;
-    cusip: string;
+    symbol?: string;
+    figi?: string;
+    isin?: string;
+    cusip?: string;
     exchange?: string;
     country?: string;
 }
@@ -57,7 +57,6 @@ export interface ProfileResponse {
     /dividends
 */
 export interface DividendsRequest {
-    meta: {}
     symbol?: string;
     figi?: string;
     isin?: string;
@@ -68,7 +67,7 @@ export interface DividendsRequest {
     range?: TimeRange;
     startDate?: string;
     endDate?: string;
-    adjust: boolean;
+    adjust?: boolean;
 }
 
 export interface DividendsResponse {

@@ -9,12 +9,16 @@ Contributions welcome!
 ### Support
 - (Partial)     Core
 - (Partial)     Reference Data
+  - (Supported) Asset Catalogs
+  - (Supported) Discovery
+  - (Partial) Markets <sub>Only partial because we currently don't have an enterprise key to test it with</sub>
+  - (Supported) Technical Indicators
 - (Partial)     Fundamental
 - (Supported)   Currencies
 - (Unsupported) ETFs
 - (Unsupported) Mutual Funds
 - (Unsupported) Technical Indicators
-- (Partial)     Analysis
+- (Supported)     Analysis 
 - (Unsupported) Regulatory
 - (Partial)     Advanced
 - (Unsupported) Websocket
@@ -37,3 +41,8 @@ We will document every case of this that we come across simply because it may he
 #### */quote*
 - "rolling_1day/7_day_change" is actually "rolling_1d/7d_change" in the response object
 
+### */commodities*
+- "category" request parameter does not act as a filter
+
+### */exchanges*
+- Only supports "stock, etf, index", not the others in the "type" list. </br><sub>(American Depositary Receipt, Bond, Bond Fund, Closed-end Fund, Common Stock, Depositary Receipt, Digital Currency, ETF, Exchange-Traded Note, Global Depositary Receipt, Limited Partnership, Mutual Fund, Physical Currency, Preferred Stock, REIT, Right, Structured Product, Trust, Unit, Warrant)</sub>

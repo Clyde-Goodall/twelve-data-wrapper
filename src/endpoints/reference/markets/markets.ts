@@ -28,12 +28,12 @@ export default class Markets extends EndpointBase {
         return this.request<ExchangeScheduleResponse>(Endpoints.ExchangeSchedule, params);
     }
 
-    async getCryptocurrencyExchanges(requestConfig: CryptocurrencyExchangesRequest): Promise<CryptocurrencyExchangeeResponse> {
+    async getCryptocurrencyExchanges(requestConfig?: CryptocurrencyExchangesRequest): Promise<CryptocurrencyExchangeeResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.CryptocurrencyExchanges);
         return this.request<CryptocurrencyExchangeeResponse>(Endpoints.CryptocurrencyExchanges, params);
     }
 
-    async getMarketState(requestConfig: MarketStateRequest): Promise<MarketStateResponse> {
+    async getMarketState(requestConfig?: MarketStateRequest): Promise<MarketStateResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.MarketState);
         return this.request<MarketStateResponse>(Endpoints.MarketState, params);
     }

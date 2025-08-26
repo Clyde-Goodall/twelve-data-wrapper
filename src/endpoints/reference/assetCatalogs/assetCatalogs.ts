@@ -26,22 +26,22 @@ export default class AssetCatalogs extends EndpointBase {
     }
 
     // Endpoint fetching functions starts here
-    async getStocks(requestConfig: StocksRequest): Promise<StocksResponse> {
+    async getStocks(requestConfig?: StocksRequest): Promise<StocksResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.Stocks);
         return this.request<StocksResponse>(Endpoints.Stocks, params);
     }
 
-    async getEtfs(requestConfig: ETFsRequest): Promise<ETFsResponse> {
+    async getEtfs(requestConfig?: ETFsRequest): Promise<ETFsResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.ETFs);
         return this.request<ETFsResponse>(Endpoints.ETFs, params);
     }
 
-    async getForexPairs(requestConfig: ForexPairsRequest): Promise<ForexPairResponse> {
+    async getForexPairs(requestConfig?: ForexPairsRequest): Promise<ForexPairResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.ForexPairs);
         return this.request<ForexPairResponse>(Endpoints.ForexPairs, params);
     }
 
-    async getCryptocurrencyPairs(requestConfig: CryptocurrencyPairsRequest): Promise<CryptocurrencyPairsResponse> {
+    async getCryptocurrencyPairs(requestConfig?: CryptocurrencyPairsRequest): Promise<CryptocurrencyPairsResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.Cryptocurrencies);
         return this.request<CryptocurrencyPairsResponse>(Endpoints.Cryptocurrencies, params);
     }

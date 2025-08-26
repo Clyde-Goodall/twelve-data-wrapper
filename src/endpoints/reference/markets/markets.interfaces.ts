@@ -3,9 +3,13 @@
     /exchanges
  */
 import { SecurityType } from "../../shared.interfaces";
-
+export enum ExchangeType {
+    Stock = "stock",
+    Etf = "etf",
+    Index = "index",
+}
 export interface ExchangesRequest {
-    type?: SecurityType;
+    type?: ExchangeType;
     name?: string;
     code?: string;
     country?: string;

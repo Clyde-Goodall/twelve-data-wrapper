@@ -11,7 +11,7 @@ import {
 /**
  * /time_series endpoint request and response interfaces
  */
-interface TimeSeriesRequestBase {
+export interface TimeSeriesRequest {
     // Symbol of the asset (e.g. "AAPL", "BTC/USD")
     symbol?: string;
     // Financial Instrument Global Identifier
@@ -32,8 +32,6 @@ interface TimeSeriesRequestBase {
     type?: string;
     // Number of candles to return (default is 30, max is 5000)
     outputSize?: number;
-    // Response format, either "JSON" or "CSV" (default is "JSON")
-    format?: ResponseFormat;
     // Delimiter for CSV format (default is ";")
     delimiter?: string;
     // Include pre/post market data (default is false)
@@ -55,8 +53,6 @@ interface TimeSeriesRequestBase {
     // Adjusting mode for prices ("none", "dividends", "splits", "all"). Default is "none"
     adjust?: string;
 }
-
-export type TimeSeriesRequest = AtLeastOne<TimeSeriesRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface TimeSeriesResponse {
     meta: Meta;
@@ -96,8 +92,6 @@ export interface TimeSeriesCrossRequest {
     interval: Interval;
     // Number of candles to return (default is 30, max is 5000)
     outputSize?: number;
-    // Response format, either "JSON" or "CSV" (default is "JSON")
-    format?: ResponseFormat;
     // Delimiter for CSV format (default is ";")
     delimiter?: string;
     // Include pre/post market data (default is false)
@@ -162,8 +156,6 @@ interface QuoteRequestBase {
     volumeTimePeriod?: number;
     // The asset class to which the instrument belongs
     type?: AssetClassType;
-    // Response format, either "JSON" or "CSV" (default is "JSON")
-    format?: ResponseFormat;
     // Delimiter for CSV format (default is ";")
     delimiter?: string;
     // Include pre- / post-market data (default is false) (only for Pro and above plans)
@@ -234,8 +226,6 @@ interface LatestPriceRequestBase {
     country?: string;
     // The asset class to which the instrument belongs
     type?: AssetClassType;
-    // Response format, either "JSON" or "CSV" (default is "JSON")
-    format?: ResponseFormat;
     // Delimiter for CSV format (default is ";")
     delimiter?: string;
     // Include pre- / post-market data (default is false) (only for Pro and above plans)

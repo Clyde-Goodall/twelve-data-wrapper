@@ -16,6 +16,7 @@ import { globalTransformationManager } from "../../serialization";
 import { Endpoints } from "../endpoints";
 
 // TODO: Implement /market_movers/{market} endpoint when we have a Pro plan
+//       Get rid of AtLeastOne<> utility type and add runtime checks for required fields (it makes the intellisense HIDEOUS)
 
 export default class Core extends EndpointBase {
     constructor(apiClient: AxiosInstance) {
@@ -27,16 +28,20 @@ export default class Core extends EndpointBase {
         registerEndOfDayPriceTransformations();
     }
 
-    async getTimeSeries(req: TimeSeriesRequest): Promise<TimeSeriesResponse> {
+    async getTimeSeries(req: TimeSeriesRequest, format: 'csv'): Promise<string>;
+    async getTimeSeries(req: TimeSeriesRequest, format?: 'json'): Promise<TimeSeriesResponse>;
+    async getTimeSeries(req: TimeSeriesRequest, format?: 'json' | 'csv'): Promise<TimeSeriesResponse | string> {
         if (!req.interval) {
             throw new Error('interval is required');
         }
 
         const params = this.constructUrlParams(req, Endpoints.TimeSeries);
-        return this.request<TimeSeriesResponse>(Endpoints.TimeSeries, params);
+        return this.requestWithFormat(Endpoints.TimeSeries, params, format);
     }
 
-    async getTimeSeriesCross(req: TimeSeriesCrossRequest): Promise<TimeSeriesCrossResponse> {
+    async getTimeSeriesCross(req: TimeSeriesCrossRequest, format: 'csv'): Promise<string>;
+    async getTimeSeriesCross(req: TimeSeriesCrossRequest, format?: 'json'): Promise<TimeSeriesCrossResponse>;
+    async getTimeSeriesCross(req: TimeSeriesCrossRequest, format?: 'json' | 'csv'): Promise<TimeSeriesCrossResponse | string> {
         if (!req.base) {
             throw new Error('base is required');
         }
@@ -50,19 +55,23 @@ export default class Core extends EndpointBase {
         }
 
         const params: string = this.constructUrlParams(req, Endpoints.TimeSeriesCross);
-        return this.request<TimeSeriesCrossResponse>(Endpoints.TimeSeriesCross, params);
+        return this.requestWithFormat(Endpoints.TimeSeriesCross, params, format);
     }
-    
-    async getQuote(req: QuoteRequest): Promise<QuoteResponse> {
+
+    async getQuote(req: QuoteRequest, format: 'csv'): Promise<string>;
+    async getQuote(req: QuoteRequest, format?: 'json'): Promise<QuoteResponse>;
+    async getQuote(req: QuoteRequest, format?: 'json' | 'csv'): Promise<QuoteResponse | string> {
         const params: string = this.constructUrlParams(req, Endpoints.Quote);
-        return this.request<QuoteResponse>(Endpoints.Quote, params);
+        return this.requestWithFormat(Endpoints.Quote, params, format);
     }
-    
-    async getLatestPrice(req: LatestPriceRequest): Promise<LatestPriceResponse> {
+
+    async getLatestPrice(req: LatestPriceRequest, format: 'csv'): Promise<string>;
+    async getLatestPrice(req: LatestPriceRequest, format?: 'json'): Promise<LatestPriceResponse>;
+    async getLatestPrice(req: LatestPriceRequest, format?: 'json' | 'csv'): Promise<LatestPriceResponse | string> {
         const params: string = this.constructUrlParams(req, Endpoints.LatestPrice);
-        return this.request<LatestPriceResponse>(Endpoints.LatestPrice, params);
+        return this.requestWithFormat(Endpoints.LatestPrice, params, format);
     }
-    
+
     async getEndOfDayPrice(req: EndOfDayPriceRequest): Promise<EndOfDayPriceResponse> {
         const params: string = this.constructUrlParams(req, Endpoints.EndOfDayPrice);
         return this.request<EndOfDayPriceResponse>(Endpoints.EndOfDayPrice, params);

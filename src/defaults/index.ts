@@ -90,4 +90,15 @@ export abstract class EndpointBase {
             throw error;
         }
     }
+
+    protected async requestWithFormat<TResponse>(
+        endpoint: string,
+        params: string,
+        format?: 'json' | 'csv'
+    ): Promise<TResponse | string> {
+        if (format === 'csv') {
+            return this.request<string>(endpoint, params);
+        }
+        return this.request<TResponse>(endpoint, params);
+    }
 }

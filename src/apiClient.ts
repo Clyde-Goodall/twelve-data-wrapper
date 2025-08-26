@@ -21,9 +21,12 @@ export function buildApiClient(config?: TwelveDataConfig): AxiosInstance {
     });
 
     client.interceptors.response.use(async(response) => {
+        if (response.headers['content-type'] && response.headers['content-type'] === 'text/csv') {
+            return response;
+        }
+
         const endpoint = response.config.url?.split('?')[0]!;
         response.data = globalTransformationManager.transformResponseForEndpoint(response.data, endpoint);
-
         return response;
     })
     return client;

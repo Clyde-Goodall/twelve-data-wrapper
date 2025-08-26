@@ -40,7 +40,7 @@ interface TimeSeriesRequestBase {
     delimiter?: string;
     // Include pre/post market data (default is false)
     prePost?: boolean;
-    // Number of decimal places for float values. Supports 0-11, default is -1 (API automatically determines precision)
+    // Number of decimal places for float values. Supports -1-11, default is -1 (API automatically determines precision)
     dp?: DecimalPlaces;
     // Sorting order for the results "asc" and "desc" (default is "desc")
     order?: ReqSortOrder;
@@ -104,7 +104,7 @@ export interface TimeSeriesCrossRequest {
     delimiter?: string;
     // Include pre/post market data (default is false)
     prePost?: boolean;
-    // Number of decimal places for float values. Supports 0-11, default is 5, -1 is API automatically determines precision
+    // Number of decimal places for float values. Supports 0-11, default is 5
     dp?: DecimalPlaces;
     // Timezone for the response (e.g. "America/New_York", "UTC"). Defaults to "Exchange"
     timezone?: string;
@@ -174,7 +174,7 @@ interface QuoteRequestBase {
     eod?: boolean;
     // Number of hours for calculate rolling change at period. Default is 24. Supports integers in range [1,168]
     rollingPeriod?: number;
-    // Number of decimal places for float values. Supports 0-11, default is -1 (API automatically determines precision)
+    // Number of decimal places for float values. Supports 0-11, default is 5
     dp?: DecimalPlaces;
     // Timezone for the response (e.g. "America/New_York", "UTC"). Defaults to "Exchange"
     timezone?: string;
@@ -217,5 +217,75 @@ export interface QuoteResponse {
     extendedPercentChange?: string;
     extendedPrice?: string;
     extendedTimestamp?: string;
+}
+
+interface LatestPriceRequestBase {
+    // Symbol of the asset (e.g. "AAPL", "BTC/USD")
+    symbol?: string;
+    // Financial Instrument Global Identifier
+    figi?: string;
+    // International Securities Identification Number
+    isin?: string;
+    // Committee on Uniform Securities Identification Procedures
+    cusip?: string;
+    // Exchange code (e.g. "NASDAQ", "Binance")
+    exchange?: string;
+    // Market Identifier Code (e.g. "XNAS" for NASDAQ)
+    micCode?: string;
+    // Country code (e.g. "US" or "United States")
+    country?: string;
+    // The asset class to which the instrument belongs
+    type?: AssetClassType;
+    // Response format, either "JSON" or "CSV" (default is "JSON")
+    format?: ResponseFormat;
+    // Delimiter for CSV format (default is ";")
+    delimiter?: string;
+    // Include pre- / post-market data (default is false) (only for Pro and above plans)
+    prePost?: boolean;
+    // Number of decimal places for float values. Supports 0-11, default is 5
+    dp?: DecimalPlaces;
+}
+
+export type LatestPriceRequest = AtLeastOne<LatestPriceRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
+
+export interface LatestPriceResponse {
+    price: string;
+}
+
+interface EndOfDayPriceRequestBase {
+    // Symbol of the asset (e.g. "AAPL", "BTC/USD")
+    symbol?: string;
+    // Financial Instrument Global Identifier
+    figi?: string;
+    // International Securities Identification Number
+    isin?: string;
+    // Committee on Uniform Securities Identification Procedures
+    cusip?: string;
+    // Exchange code (e.g. "NASDAQ", "Binance")
+    exchange?: string;
+    // Market Identifier Code (e.g. "XNAS" for NASDAQ)
+    micCode?: string;
+    // Country code (e.g. "US" or "United States")
+    country?: string;
+    // The asset class to which the instrument belongs
+    type?: AssetClassType;
+    // Specific date to fetch data for (time is ignored)
+    date?: Date;
+    // Include pre- / post-market data (default is false) (only for Pro and above plans)
+    prePost?: boolean;
+    // Number of decimal places for float values. Supports 0-11, default is 5
+    dp?: DecimalPlaces;
+}
+
+export type EndOfDayPriceRequest = AtLeastOne<EndOfDayPriceRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
+
+export interface EndOfDayPriceResponse {
+    symbol: string;
+    exchange: string;
+    micCode?: string;
+    currency?: string;
+    dateTime: Date;
+    timestamp: Date;
+    close: string;
 }
 

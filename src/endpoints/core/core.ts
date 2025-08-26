@@ -1,6 +1,8 @@
 import type { AxiosInstance } from "axios";
 import { EndpointBase } from "../../defaults";
 import {
+    EndOfDayPriceRequest, EndOfDayPriceResponse,
+    LatestPriceRequest, LatestPriceResponse,
     QuoteRequest, QuoteResponse,
     TimeSeriesCrossRequest,
     TimeSeriesCrossResponse,
@@ -10,12 +12,16 @@ import {
 import { globalTransformationManager } from "../../serialization";
 import { Endpoints } from "../endpoints";
 
+// TODO: Implement /market_movers/{market} endpoint when we have a Pro plan
+
 export default class Core extends EndpointBase {
     constructor(apiClient: AxiosInstance) {
         super(apiClient);
         registerTimeSeriesTransformations();
         registerTimeSeriesCrossTransformations();
         registerQuoteTransformations();
+        registerLatestPriceTransformations();
+        registerEndOfDayPriceTransformations();
     }
 
     async getTimeSeries(req: TimeSeriesRequest): Promise<TimeSeriesResponse> {
@@ -47,6 +53,16 @@ export default class Core extends EndpointBase {
     async getQuote(req: QuoteRequest): Promise<QuoteResponse> {
         const params: string = this.constructUrlParams(req, Endpoints.Quote);
         return this.request<QuoteResponse>(Endpoints.Quote, params);
+    }
+    
+    async getLatestPrice(req: LatestPriceRequest): Promise<LatestPriceResponse> {
+        const params: string = this.constructUrlParams(req, Endpoints.LatestPrice);
+        return this.request<LatestPriceResponse>(Endpoints.LatestPrice, params);
+    }
+    
+    async getEndOfDayPrice(req: EndOfDayPriceRequest): Promise<EndOfDayPriceResponse> {
+        const params: string = this.constructUrlParams(req, Endpoints.EndOfDayPrice);
+        return this.request<EndOfDayPriceResponse>(Endpoints.EndOfDayPrice, params);
     }
 }
 
@@ -85,10 +101,29 @@ function registerQuoteTransformations() {
             prePost: 'prepost',
         },
         responseMappings: {
-            dateTime: 'dateTime',
-            rollingOneDayChange: 'rolling_1day_change',
-            rollingSevenDayChange: 'rolling_7day_change',
+            datetime: 'dateTime',
+            rolling_1day_change: 'rollingOneDayChange',
+            rolling_7day_change: 'rollingSevenDayChange'
         },
         dateTimeFields: ['dateTime', 'timestamp', 'lastQuoteAt', 'extendedTimestamp'],
-    })
+    });
+}
+
+function registerLatestPriceTransformations() {
+    globalTransformationManager.addEndpointConfig(Endpoints.LatestPrice, {
+        requestMappings: { prePost: 'prepost' },
+    });
+}
+
+function registerEndOfDayPriceTransformations() {
+    globalTransformationManager.addEndpointConfig(Endpoints.EndOfDayPrice, {
+        requestMappings: {
+            prePost: 'prepost',
+        },
+        responseMappings: {
+            datetime: 'dateTime',
+        },
+        dateFields: ['date'],
+        dateTimeFields: ['dateTime', 'timestamp'],
+    });
 }

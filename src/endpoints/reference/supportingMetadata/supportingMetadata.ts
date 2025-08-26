@@ -16,17 +16,17 @@ export default class SupportingMetadata extends EndpointBase {
     }
 
     // Endpoint fetching functions starts here
-    async countries(requestConfig: CountriesRequest): Promise<CountriesResponse> {
+    async getCountries(requestConfig: CountriesRequest): Promise<CountriesResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.Countries);
         return this.request<CountriesResponse>(Endpoints.Countries, params);
     }
 
-    async instrumentType(requestConfig: InstrumentTypeRequest): Promise<InstrumentTypeResponse> {
+    async getInstrumentType(requestConfig: InstrumentTypeRequest): Promise<InstrumentTypeResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.InstrumentType);
         return this.request<InstrumentTypeResponse>(Endpoints.InstrumentType, params);
     }
 
-    async technicalIndicators(requestConfig: TechnicalIndicatorsRequest): Promise<TechnicalIndicatorsResponse> {
+    async getTechnicalIndicators(requestConfig: TechnicalIndicatorsRequest): Promise<TechnicalIndicatorsResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.TechnicalIndicators);
         return this.request<TechnicalIndicatorsResponse>(Endpoints.TechnicalIndicators, params);
     }

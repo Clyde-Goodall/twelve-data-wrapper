@@ -101,4 +101,5 @@ export enum Endpoints {
     Countries = '/countries',
     InstrumentType = '/instrument_type',
     TechnicalIndicators = '/technical_indicators',
+    Instrument = '/instrument_type',
 }

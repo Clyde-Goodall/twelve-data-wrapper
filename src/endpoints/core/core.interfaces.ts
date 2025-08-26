@@ -8,8 +8,6 @@ import {
     ResponseFormat
 } from "../shared.interfaces";
 
-type IntervalNoFiveHour = Exclude<Interval, Interval.FiveHour>;
-
 /**
  * /time_series endpoint request and response interfaces
  */
@@ -95,7 +93,7 @@ export interface TimeSeriesCrossRequest {
     // Market Identifier Code for the quote currency (e.g. "XNAS" for NASDAQ)
     quoteMicCode?: string;
     // Required: Interval between two consecutive points in time series
-    interval: IntervalNoFiveHour;
+    interval: Interval;
     // Number of candles to return (default is 30, max is 5000)
     outputSize?: number;
     // Response format, either "JSON" or "CSV" (default is "JSON")
@@ -121,7 +119,7 @@ export interface TimeSeriesCrossMeta {
     baseInstrument: string;
     baseCurrency: string;
     baseExchange: string;
-    interval: IntervalNoFiveHour;
+    interval: Interval;
     quoteInstrument: string;
     quoteCurrency: string;
     quoteExchange: string;
@@ -153,7 +151,7 @@ interface QuoteRequestBase {
     // Committee on Uniform Securities Identification Procedures
     cusip?: string;
     // Time interval for the candles (e.g. "1min", "1day"). Default: "1day"
-    interval?: IntervalNoFiveHour;
+    interval?: Interval;
     // Exchange code (e.g. "NASDAQ", "Binance")
     exchange?: string;
     // Market Identifier Code (e.g. "XNAS" for NASDAQ)

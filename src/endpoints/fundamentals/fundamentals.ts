@@ -3,38 +3,39 @@ import { EndpointBase } from "../../defaults";
 import {
     BalanceSheetRequest,
     BalanceSheetResponse,
-    CashFlowRequest,
-    CashFlowResponse,
     CashFlowConsolidatedRequest,
     CashFlowConsolidatedResponse,
-    DividendsRequest,
-    DividendsResponse,
+    CashFlowRequest,
+    CashFlowResponse,
     DividendsCalendarRequest,
     DividendsCalendarResponse,
+    DividendsRequest,
+    DividendsResponse,
+    EarningsCalendarRequest,
+    EarningsCalendarResponse,
     EarningsRequest,
     EarningsResponse,
-    EarningsCalendarResponse,
-    IncomeStatementRequest,
-    IncomeStatementResponse,
     IncomeStatementConsolidatedRequest,
     IncomeStatementConsolidatedResponse,
+    IncomeStatementRequest,
+    IncomeStatementResponse,
+    IPOCalendarRequest,
     IPOCalendarResponse,
     KeyExecutivesRequest,
     KeyExecutivesResponse,
+    LogoRequest,
     LogoResponse,
     MarketCapRequest,
     MarketCapResponse,
     ProfileRequest,
     ProfileResponse,
-    SplitsRequest,
-    SplitsResponse,
     SplitsCalendarRequest,
     SplitsCalendarResponse,
+    SplitsRequest,
+    SplitsResponse,
     StatisticsRequest,
-    StatisticsResponse, LogoRequest, EarningsCalendarRequest, IPOCalendarRequest
+    StatisticsResponse
 } from "./fundamental.interfaces";
-import { globalTransformationManager } from "../../serialization";
-import { Endpoints } from "../endpoints";
 
 export default class Fundamentals extends EndpointBase {
     constructor(apiClient: AxiosInstance) {

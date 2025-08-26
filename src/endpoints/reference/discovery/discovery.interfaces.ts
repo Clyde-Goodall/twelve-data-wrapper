@@ -1,6 +1,5 @@
-
 /*
-    /symbol_search
+ /symbol_search
  */
 
 import { AtLeastOne, Interval } from "../../shared.interfaces";
@@ -56,13 +55,12 @@ export interface CrossListingsResponse {
 /*
     /earliest_timestamp
  */
-type TimestampInterval = Exclude<Interval, Interval.FiveHour>;
 interface EarliestTimestampRequestBase {
     symbol?: string;
     figi?: string;
     isin?: string;
     cusip?: string;
-    interval?: TimestampInterval;
+    interval?: Interval;
     exchange?: string;
     micCode?: string;
     timezone?: string;

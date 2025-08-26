@@ -1,21 +1,20 @@
 import type { AxiosInstance } from "axios";
 import { EndpointBase } from "../../../defaults";
-import { LogoRequest, LogoResponse } from "../../fundamentals/fundamental.interfaces";
-import { 
-    ETFsRequest, 
-    ETFsResponse, 
-    StocksRequest, 
-    StocksResponse, 
-    ForexPairsRequest, 
-    ForexPairResponse, 
+import {
+    CommoditiesRequest,
+    CommoditiesResponse,
     CryptocurrencyPairsRequest,
     CryptocurrencyPairsResponse,
-    FundsRequest, 
-    FundsResponse, 
-    CommoditiesRequest, 
-    CommoditiesResponse, 
-    FixedIncomeRequest, 
-    FixedIncomeResponse 
+    ETFsRequest,
+    ETFsResponse,
+    FixedIncomeRequest,
+    FixedIncomeResponse,
+    ForexPairResponse,
+    ForexPairsRequest,
+    FundsRequest,
+    FundsResponse,
+    StocksRequest,
+    StocksResponse
 } from "./assetCatalogs.interfaces";
 import { Endpoints } from "../../endpoints";
 

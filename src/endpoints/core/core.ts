@@ -1,9 +1,12 @@
 import type { AxiosInstance } from "axios";
 import { EndpointBase } from "../../defaults";
 import {
-    EndOfDayPriceRequest, EndOfDayPriceResponse,
-    LatestPriceRequest, LatestPriceResponse,
-    QuoteRequest, QuoteResponse,
+    EndOfDayPriceRequest,
+    EndOfDayPriceResponse,
+    LatestPriceRequest,
+    LatestPriceResponse,
+    QuoteRequest,
+    QuoteResponse,
     TimeSeriesCrossRequest,
     TimeSeriesCrossResponse,
     TimeSeriesRequest,
@@ -102,8 +105,8 @@ function registerQuoteTransformations() {
         },
         responseMappings: {
             datetime: 'dateTime',
-            rolling_1day_change: 'rollingOneDayChange',
-            rolling_7day_change: 'rollingSevenDayChange'
+            rolling_1d_change: 'rollingOneDayChange',
+            rolling_7d_change: 'rollingSevenDayChange'
         },
         dateTimeFields: ['dateTime', 'timestamp', 'lastQuoteAt', 'extendedTimestamp'],
     });

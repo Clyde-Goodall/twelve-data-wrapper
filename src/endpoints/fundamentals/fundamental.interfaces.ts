@@ -1,6 +1,6 @@
 /*
-    /logo
-*/
+ /logo
+ */
 import { AtLeastOne, SecurityType, TimeRange } from "../shared.interfaces";
 
 export interface LogoRequest {

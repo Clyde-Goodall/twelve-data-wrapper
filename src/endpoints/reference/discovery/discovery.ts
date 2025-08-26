@@ -1,13 +1,13 @@
 import { EndpointBase } from "../../../defaults";
 import type { AxiosInstance } from "axios";
 import { Endpoints } from "../../endpoints";
-import { 
-    SymbolSearchRequest, 
-    SymbolSearchResponse, 
-    CrossListingsRequest, 
-    CrossListingsResponse, 
-    EarliestTimestampRequest, 
-    EarliestTimestampResponse 
+import {
+    CrossListingsRequest,
+    CrossListingsResponse,
+    EarliestTimestampRequest,
+    EarliestTimestampResponse,
+    SymbolSearchRequest,
+    SymbolSearchResponse
 } from "./discovery.interfaces";
 
 export default class Discovery extends EndpointBase {

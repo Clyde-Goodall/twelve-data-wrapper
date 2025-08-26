@@ -21,7 +21,6 @@ export const enum Interval {
     OneHour = "1h",
     TwoHour = "2h",
     FourHour = "4h",
-    FiveHour = "5h",
     OneDay = "1day",
     OneWeek = "1week",
     OneMonth = "1month"

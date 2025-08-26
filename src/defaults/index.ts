@@ -1,4 +1,4 @@
-import { AxiosInstance, AxiosError } from "axios";
+import { AxiosError, AxiosInstance } from "axios";
 import { globalTransformationManager } from "../serialization";
 import { TwelveDataConfig } from "../twelveData.interfaces";
 

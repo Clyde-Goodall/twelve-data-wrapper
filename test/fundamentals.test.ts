@@ -90,7 +90,7 @@ describe('Fundamentals API Endpoint response test', () => {
             type: "Common Stock",
             CEO: "Tim Cook",
             address: "One Apple Park Way",
-            address2: "",
+            addressTwo: "",
             city: "Cupertino",
             zip: "95014",
             state: "CA",

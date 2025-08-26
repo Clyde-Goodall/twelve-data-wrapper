@@ -47,7 +47,7 @@ export interface ProfileResponse {
     type: string;
     CEO: string;
     address: string;
-    address2: string;
+    addressTwo: string;
     city: string;
     zip: string;
     state: string;

@@ -218,4 +218,3 @@ export interface QuoteResponse {
     extendedPrice?: string;
     extendedTimestamp?: string;
 }
-

@@ -16,7 +16,6 @@ import { globalTransformationManager } from "../../serialization";
 import { Endpoints } from "../endpoints";
 
 // TODO: Implement /market_movers/{market} endpoint when we have a Pro plan
-//       Get rid of AtLeastOne<> utility type and add runtime checks for required fields (it makes the intellisense HIDEOUS)
 
 export default class Core extends EndpointBase {
     constructor(apiClient: AxiosInstance) {
@@ -28,10 +27,13 @@ export default class Core extends EndpointBase {
         registerEndOfDayPriceTransformations();
     }
 
-    // todo: runtime atleastone for 'symbol' | 'figi' | 'isin' | 'cusip'
     async getTimeSeries(req: TimeSeriesRequest, format: 'csv'): Promise<string>;
     async getTimeSeries(req: TimeSeriesRequest, format?: 'json'): Promise<TimeSeriesResponse>;
     async getTimeSeries(req: TimeSeriesRequest, format?: 'json' | 'csv'): Promise<TimeSeriesResponse | string> {
+        if (!this.atLeastOneOf(req, ["symbol", "figi", "isin", "cusip"])) {
+            throw new Error('At least one of symbol, figi, isin or cusip is required');
+        }
+
         if (!req.interval) {
             throw new Error('interval is required');
         }
@@ -59,24 +61,33 @@ export default class Core extends EndpointBase {
         return this.requestWithFormat(Endpoints.TimeSeriesCross, params, format);
     }
 
-    // TODO: runtime atleastone for 'symbol' | 'figi' | 'isin' | 'cusip'
     async getQuote(req: QuoteRequest, format: 'csv'): Promise<string>;
     async getQuote(req: QuoteRequest, format?: 'json'): Promise<QuoteResponse>;
     async getQuote(req: QuoteRequest, format?: 'json' | 'csv'): Promise<QuoteResponse | string> {
+        if (!this.atLeastOneOf(req, ["symbol", "figi", "isin", "cusip"])) {
+            throw new Error('At least one of symbol, figi, isin or cusip is required');
+        }
+
         const params: string = this.constructUrlParams(req, Endpoints.Quote);
         return this.requestWithFormat(Endpoints.Quote, params, format);
     }
 
-    // TODO: runtime atleastone for 'symbol' | 'figi' | 'isin' | 'cusip'
     async getLatestPrice(req: LatestPriceRequest, format: 'csv'): Promise<string>;
     async getLatestPrice(req: LatestPriceRequest, format?: 'json'): Promise<LatestPriceResponse>;
     async getLatestPrice(req: LatestPriceRequest, format?: 'json' | 'csv'): Promise<LatestPriceResponse | string> {
+        if (!this.atLeastOneOf(req, ["symbol", "figi", "isin", "cusip"])) {
+            throw new Error('At least one of symbol, figi, isin or cusip is required');
+        }
+
         const params: string = this.constructUrlParams(req, Endpoints.LatestPrice);
         return this.requestWithFormat(Endpoints.LatestPrice, params, format);
     }
 
-    // TODO: runtime atleastone for 'symbol' | 'figi' | 'isin' | 'cusip'
     async getEndOfDayPrice(req: EndOfDayPriceRequest): Promise<EndOfDayPriceResponse> {
+        if (!this.atLeastOneOf(req, ["symbol", "figi", "isin", "cusip"])) {
+            throw new Error('At least one of symbol, figi, isin or cusip is required');
+        }
+
         const params: string = this.constructUrlParams(req, Endpoints.EndOfDayPrice);
         return this.request<EndOfDayPriceResponse>(Endpoints.EndOfDayPrice, params);
     }

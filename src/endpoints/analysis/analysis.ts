@@ -36,57 +36,83 @@ export default class Analysis extends EndpointBase {
     }
 
     // Endpoint fetching functions starts here
-    // TODO: runtime atleastone for 'symbol' | 'figi' | 'isin' | 'cusip'
     async getEarningsEstimate(requestConfig: EarningsEstimateRequest): Promise<EarningsEstimateResponse> {
+        if (!this.atLeastOneOf(requestConfig, ["symbol", "figi", "isin", "cusip"])) {
+            throw new Error('At least one of symbol, figi, isin or cusip is required');
+        }
+
         const params = this.constructUrlParams(requestConfig, Endpoints.EarningsEstimate);
         return this.request<EarningsEstimateResponse>(Endpoints.EarningsEstimate, params);
     }
 
-    // TODO: runtime atleastone for 'symbol' | 'figi' | 'isin' | 'cusip'
     async getRevenueEstimate(requestConfig: RevenueEstimateRequest): Promise<RevenueEstimateResponse> {
-        const params = this.constructUrlParams(requestConfig, Endpoints.RevenueEstimate);
+        if (!this.atLeastOneOf(requestConfig, ["symbol", "figi", "isin", "cusip"])) {
+            throw new Error('At least one of symbol, figi, isin or cusip is required');
+        }
 
+        const params = this.constructUrlParams(requestConfig, Endpoints.RevenueEstimate);
         return this.request<RevenueEstimateResponse>(Endpoints.RevenueEstimate, params);
     }
 
-    // TODO: runtime atleastone for 'symbol' | 'figi' | 'isin' | 'cusip'
     async getEpsTrend(requestConfig: EPSTrendRequest): Promise<EPSTrendResponse> {
+        if (!this.atLeastOneOf(requestConfig, ["symbol", "figi", "isin", "cusip"])) {
+            throw new Error('At least one of symbol, figi, isin or cusip is required');
+        }
+
         const params = this.constructUrlParams(requestConfig, Endpoints.EpsTrend);
         return this.request<EPSTrendResponse>(Endpoints.EpsTrend, params);
     }
 
-    // TODO: runtime atleastone for 'symbol' | 'figi' | 'isin' | 'cusip'
     async getEpsRevisions(requestConfig: EPSRevisionsRequest): Promise<EPSRevisionsResponse> {
+        if (!this.atLeastOneOf(requestConfig, ["symbol", "figi", "isin", "cusip"])) {
+            throw new Error('At least one of symbol, figi, isin or cusip is required');
+        }
+
         const params = this.constructUrlParams(requestConfig, Endpoints.EpsRevisions);
         return this.request<EPSRevisionsResponse>(Endpoints.EpsRevisions, params);
     }
 
-    // TODO: runtime atleastone for 'symbol' | 'figi' | 'isin' | 'cusip'
     async getGrowthEstimates(requestConfig: GrowthEstimatesRequest): Promise<GrowthEstimatesResponse> {
+        if (!this.atLeastOneOf(requestConfig, ["symbol", "figi", "isin", "cusip"])) {
+            throw new Error('At least one of symbol, figi, isin or cusip is required');
+        }
+
         const params = this.constructUrlParams(requestConfig, Endpoints.GrowthEstimates);
         return this.request<GrowthEstimatesResponse>(Endpoints.GrowthEstimates, params);
     }
 
-    // TODO: runtime atleastone for 'symbol' | 'figi' | 'isin' | 'cusip'
     async getRecommendations(requestConfig: RecommendationsRequest): Promise<RecommendationsResponse> {
+        if (!this.atLeastOneOf(requestConfig, ["symbol", "figi", "isin", "cusip"])) {
+            throw new Error('At least one of symbol, figi, isin or cusip is required');
+        }
+
         const params = this.constructUrlParams(requestConfig, Endpoints.Recommendations);
         return this.request<RecommendationsResponse>(Endpoints.Recommendations, params);
     }
     
-    // TODO: runtime atleastone for 'symbol' | 'figi' | 'isin' | 'cusip'
     async getPriceTarget(requestConfig: PriceTargetRequest): Promise<PriceTargetResponse> {
+        if (!this.atLeastOneOf(requestConfig, ["symbol", "figi", "isin", "cusip"])) {
+            throw new Error('At least one of symbol, figi, isin or cusip is required');
+        }
+
         const params = this.constructUrlParams(requestConfig, Endpoints.PriceTarget);
         return this.request<PriceTargetResponse>(Endpoints.PriceTarget, params);
     }
     
-    // TODO: runtime atleastone for 'symbol' | 'figi' | 'isin' | 'cusip'
     async getAnalystRatingsSnapshot(requestConfig: AnalystRatingsSnapshotRequest): Promise<AnalystRatingsSnapshotResponse> {
+        if (!this.atLeastOneOf(requestConfig, ["symbol", "figi", "isin", "cusip"])) {
+            throw new Error('At least one of symbol, figi, isin or cusip is required');
+        }
+
         const params = this.constructUrlParams(requestConfig, Endpoints.AnalystRatingsSnapshot);
         return this.request<AnalystRatingsSnapshotResponse>(Endpoints.AnalystRatingsSnapshot, params);
     }
     
-    // TODO: runtime atleastone for 'symbol' | 'figi' | 'isin' | 'cusip'
     async getAnalystRatingsUsEquities(requestConfig: AnalystRatingsUSEquitiesRequest): Promise<AnalystRatingsUSEquitiesResponse> {
+        if (!this.atLeastOneOf(requestConfig, ["symbol", "figi", "isin", "cusip"])) {
+            throw new Error('At least one of symbol, figi, isin or cusip is required');
+        }
+
         const params = this.constructUrlParams(requestConfig, Endpoints.AnalystRatingsUsEquities);
         return this.request<AnalystRatingsUSEquitiesResponse>(Endpoints.AnalystRatingsUsEquities, params);
     }

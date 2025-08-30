@@ -101,4 +101,8 @@ export abstract class EndpointBase {
         }
         return this.request<TResponse>(endpoint, params);
     }
+
+    protected atLeastOneOf<Type>(obj: Type, keys: (keyof Type)[]): boolean {
+        return keys.some(key => obj[key] !== undefined);
+    }
 }

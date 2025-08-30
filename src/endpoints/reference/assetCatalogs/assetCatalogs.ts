@@ -30,8 +30,11 @@ export default class AssetCatalogs extends EndpointBase {
         return this.request<StocksResponse>(Endpoints.Stocks, params);
     }
 
-    // TODO: runtime atleastone for 'symbol' | 'figi' | 'isin' | 'cusip'
     async getEtfs(requestConfig?: ETFsRequest): Promise<ETFsResponse> {
+        if (requestConfig && !this.atLeastOneOf(requestConfig, ["symbol", "figi", "isin", "cusip"])) {
+            throw new Error('At least one of symbol, figi, isin or cusip is required');
+        }
+
         const params = this.constructUrlParams(requestConfig, Endpoints.ETFs);
         return this.request<ETFsResponse>(Endpoints.ETFs, params);
     }

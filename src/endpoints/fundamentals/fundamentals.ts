@@ -141,13 +141,13 @@ export default class Fundamentals extends EndpointBase {
 }
 
 function registerStatisticsTransformations() {
-    globalTransformationManager.addEndpointConfig(Endpoints.Recommendations, {
+    globalTransformationManager.addEndpointConfig(Endpoints.Statistics, {
         responseMappings: {
-            avgTenVolume: 'avg_10_volume',
-            avgNinetyVolume: 'avg_90_volume',
-            dayFiftyMa: 'day_50_ma',
-            dayTwoHundredMa: 'day_200_ma',
-            fiveYearAverageDividendYield: '5_year_average_dividend_yield'
+            'avg_10_volume': 'avgTenVolume',
+            'avg_90_volume': 'avgNinetyVolume',
+            'day_50_ma': 'dayFiftyMa',
+            'day_200_ma': 'dayTwoHundredMa',
+            '5_year_average_dividend_yield': 'fiveYearAverageDividendYield'
         },
     });
 }

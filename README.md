@@ -13,7 +13,7 @@ Contributions welcome!
   - (Supported) Discovery
   - (Partial)   Markets <sub>Only partial because we currently don't have an enterprise key to test it with</sub>
   - (Supported) Technical Indicators
-- (Partial)     Fundamental <sub>Only still partial because of some number-to-word formatting issues</sub>
+- (Supported)   Fundamental 
 - (Supported)   Currencies
 - (Unsupported) ETFs
 - (Unsupported) Mutual Funds

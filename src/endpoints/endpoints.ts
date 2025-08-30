@@ -61,4 +61,5 @@ export enum Endpoints {
     EtfsComposition = "/etfs/world/composition",
     EtfsFamilies = "/etfs/family",
     EtfsTypes = "/etfs/type",
+    Batch = "/batch",
 }

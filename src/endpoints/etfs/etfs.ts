@@ -75,5 +75,4 @@ export default class ETFs extends EndpointBase {
         const params = this.constructUrlParams(requestConfig, Endpoints.EtfsTypes);
         return this.request<EtfsTypeResponse>(Endpoints.EtfsTypes, params);
     }
-
 }

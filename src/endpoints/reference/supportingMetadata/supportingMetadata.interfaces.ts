@@ -1,9 +1,6 @@
 /*
  /countries
  */
-export interface CountriesRequest {
-} // no parameters
-
 export interface CountryData {
     isoTwo: string;
     isoThree: string;
@@ -21,9 +18,6 @@ export interface CountriesResponse {
 /*
  /instrument_type
  */
-export interface InstrumentTypeRequest {
-} // no parameters
-
 export interface InstrumentTypeResponse {
     result: Array<string>;
 }
@@ -31,9 +25,6 @@ export interface InstrumentTypeResponse {
 /*
  /technical_indicators
  */
-export interface TechnicalIndicatorsRequest {
-} // no parameters
-
 export interface OutputValue {
     defaultColor: string;
     display: string;

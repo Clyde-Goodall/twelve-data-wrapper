@@ -1,5 +1,4 @@
 export interface APIUsageRequest {
-    format?: "JSON" | "CSV";
     delimiter?: string;
     timezone?: string;
 }

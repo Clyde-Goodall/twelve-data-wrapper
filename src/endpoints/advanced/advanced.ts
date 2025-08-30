@@ -9,9 +9,11 @@ export default class Advanced extends EndpointBase {
     }
 
     // Endpoint fetching functions starts here
-    async APIUsage(requestConfig?: APIUsageRequest): Promise<APIUsageResponse> {
+    async APIUsage(requestConfig: APIUsageRequest, format: "csv"): Promise<string>;
+    async APIUsage(requestConfig?: APIUsageRequest, format?: "json"): Promise<APIUsageResponse>;
+    async APIUsage(requestConfig?: APIUsageRequest, format?: "json" | "csv"): Promise<APIUsageResponse | string> {
 
         const params = this.constructUrlParams(requestConfig, Endpoints.APIUsage);
-        return await this.request<APIUsageResponse>(Endpoints.APIUsage, params);
+        return await this.requestWithFormat(Endpoints.APIUsage, params, format);
     }
 }

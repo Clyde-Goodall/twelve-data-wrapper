@@ -71,11 +71,13 @@ export default class Core extends EndpointBase {
         return this.requestWithFormat(Endpoints.LatestPrice, params, format);
     }
 
-    async getEndOfDayPrice(req: EndOfDayPriceRequest): Promise<EndOfDayPriceResponse> {
+    async getEndOfDayPrice(req: EndOfDayPriceRequest, format: "csv"): Promise<string>;
+    async getEndOfDayPrice(req: EndOfDayPriceRequest, format?: "json"): Promise<EndOfDayPriceResponse>;
+    async getEndOfDayPrice(req: EndOfDayPriceRequest, format?: "json" | "csv"): Promise<EndOfDayPriceResponse | string> {
         this.validateRequiredIdentifiers(req);
 
         const params: string = this.constructUrlParams(req, Endpoints.EndOfDayPrice);
-        return this.request<EndOfDayPriceResponse>(Endpoints.EndOfDayPrice, params);
+        return this.requestWithFormat(Endpoints.EndOfDayPrice, params, format);
     }
 }
 

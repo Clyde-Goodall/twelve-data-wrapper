@@ -199,7 +199,6 @@ export interface EarningsRequest {
     type?: SecurityType;
     period?: "latest" | "next";
     outputSize?: number;
-    format?: "JSON" | "CSV";
     delimiter?: string;
     dp?: number;
     startDate?: string;
@@ -234,7 +233,6 @@ export interface EarningsCalendarRequest {
     exchange?: string;
     micCode?: string;
     country?: string;
-    format?: "JSON" | "CSV";
     delimiter?: string;
     dp?: number;
     startDate?: string;

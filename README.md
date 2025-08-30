@@ -15,7 +15,7 @@ Contributions welcome!
   - (Supported) Technical Indicators
 - (Supported)   Fundamental 
 - (Supported)   Currencies
-- (Unsupported) ETFs
+- (Unsupported) ETFs <sub>Only partial because we currently don't have an enterprise/ultra key to test it with</sub>
 - (Unsupported) Mutual Funds
 - (Unsupported) Technical Indicators
 - (Supported)   Analysis 
@@ -45,4 +45,7 @@ We will document every case of this that we come across simply because it may he
 - "category" request parameter does not act as a filter
 
 ### */exchanges*
-- Only supports "stock, etf, index", not the others in the "type" list. </br><sub>(American Depositary Receipt, Bond, Bond Fund, Closed-end Fund, Common Stock, Depositary Receipt, Digital Currency, ETF, Exchange-Traded Note, Global Depositary Receipt, Limited Partnership, Mutual Fund, Physical Currency, Preferred Stock, REIT, Right, Structured Product, Trust, Unit, Warrant)</sub>
+- Only supports "stock, etf, index," not the others in the "type" list. </br><sub>(American Depositary Receipt, Bond, Bond Fund, Closed-end Fund, Common Stock, Depositary Receipt, Digital Currency, ETF, Exchange-Traded Note, Global Depositary Receipt, Limited Partnership, Mutual Fund, Physical Currency, Preferred Stock, REIT, Right, Structured Product, Trust, Unit, Warrant)</sub>
+
+### */etfs/list*
+- "count" property is actually "length" in the response

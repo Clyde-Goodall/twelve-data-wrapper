@@ -11,6 +11,7 @@ import Reference from "./endpoints/reference/reference";
 import Regulatory from "./endpoints/regulatory/regulatory";
 import TechnicalIndicators from "./endpoints/technicalIndicators/technicalIndicators";
 import { buildApiClient } from "./apiClient";
+import { Batches } from "./endpoints/batches/batches";
 
 
 export class TwelveDataWrapper extends EndpointBase {
@@ -25,6 +26,7 @@ export class TwelveDataWrapper extends EndpointBase {
     public readonly regulatory: Regulatory;
     public readonly technicalIndicators: TechnicalIndicators;
     private readonly config: TwelveDataConfig;
+    public readonly batches: Batches;
 
     constructor(config?: TwelveDataConfig) {
 
@@ -46,6 +48,7 @@ export class TwelveDataWrapper extends EndpointBase {
         // endpoint class binding
         this.advanced = new Advanced(apiClient);
         this.analysis = new Analysis(apiClient);
+        this.batches = new Batches(apiClient);
         this.core = new Core(apiClient);
         this.currencies = new Currencies(apiClient);
         this.etfs = new ETFs(apiClient);

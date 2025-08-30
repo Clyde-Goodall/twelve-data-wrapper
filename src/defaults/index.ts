@@ -2,6 +2,7 @@ import { AxiosError, AxiosInstance } from "axios";
 import { globalTransformationManager } from "../serialization";
 import { TwelveDataConfig } from "../twelveData.interfaces";
 import { ERROR_MESSAGES } from "../endpoints/shared.interfaces";
+import * as url from "node:url";
 
 export function getDefaultConfig(): TwelveDataConfig {
     return {
@@ -61,11 +62,16 @@ export abstract class EndpointBase {
         return paramString ? `?${paramString}` : "";
     }
 
-    protected async request<T>(endpoint: string, params: string): Promise<T> {
-        try {
-            const url = `${endpoint}${params}`;
 
-            const response = await this.apiClient.get<T>(url);
+    protected async request<T>(endpoint: string, params: string, body?: any): Promise<T> {
+        try {
+            let response;
+            if(!body) {
+                const url = `${endpoint}${params}`;
+                response = await this.apiClient.get<T>(url);
+            } else {
+                response = await this.apiClient.post<T>(endpoint, body);
+            }
 
             // Check if the response is an API error (even with 200 status)
             const data = response.data as any;

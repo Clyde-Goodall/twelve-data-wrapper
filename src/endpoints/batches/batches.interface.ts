@@ -278,17 +278,19 @@ export type AllEndpointResponses =
   | CryptocurrencyExchangesResponse
   | MarketStateResponse;
 
-export interface BatchRequest {
+export interface BatchesRequest {
   endpoint: Endpoints;
   request:AllEndpointRequests; // Each key is request ID, value is the endpoint URL
 }
 
-export interface BatchRequestConfig {
+export interface BatchesRequestConfig {
   [key: string]: {
     url: string;
   }
 }
 
-export interface BatchResponse {
-  [requestId: string]: AllEndpointResponses | { error: string; code?: string };
+export interface BatchesResponse {
+  data: {
+    [requestId: string]: AllEndpointResponses | { error: string; };
+  }
 }

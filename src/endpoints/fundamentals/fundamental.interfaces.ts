@@ -1,7 +1,7 @@
 /*
  /logo
  */
-import { AtLeastOne, SecurityType, TimeRange } from "../shared.interfaces";
+import { SecurityType, TimeRange } from "../shared.interfaces";
 
 export interface LogoRequest {
     symbol: string;

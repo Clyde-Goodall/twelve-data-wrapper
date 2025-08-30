@@ -1,47 +1,24 @@
-import type { AxiosInstance } from "axios";
-import { EndpointBase } from "../../defaults";
 import {
-    BalanceSheetRequest,
-    BalanceSheetResponse,
-    CashFlowConsolidatedRequest,
-    CashFlowConsolidatedResponse,
-    CashFlowRequest,
-    CashFlowResponse,
-    DividendsCalendarRequest,
-    DividendsCalendarResponse,
+    BalanceSheetRequest, BalanceSheetResponse, CashFlowConsolidatedRequest,
+    CashFlowConsolidatedResponse, CashFlowRequest, CashFlowResponse,
+    DividendsCalendarRequest, DividendsCalendarResponse,
     DividendsRequest,
-    DividendsResponse,
-    EarningsCalendarRequest,
-    EarningsCalendarResponse,
-    EarningsRequest,
-    EarningsResponse,
-    IncomeStatementConsolidatedRequest,
-    IncomeStatementConsolidatedResponse,
-    IncomeStatementRequest,
-    IncomeStatementResponse,
-    IPOCalendarRequest,
-    IPOCalendarResponse,
-    KeyExecutivesRequest,
-    KeyExecutivesResponse,
+    DividendsResponse, EarningsCalendarRequest, EarningsCalendarResponse, EarningsRequest, EarningsResponse,
+    IncomeStatementConsolidatedRequest, IncomeStatementConsolidatedResponse,
+    IncomeStatementRequest, IncomeStatementResponse,
+    IPOCalendarRequest, IPOCalendarResponse, KeyExecutivesRequest, KeyExecutivesResponse, LastChangeRequest,
+    LastChangeResponse,
     LogoRequest,
-    LogoResponse,
-    MarketCapRequest,
-    MarketCapResponse,
+    LogoResponse, MarketCapRequest, MarketCapResponse,
     ProfileRequest,
-    ProfileResponse,
-    SplitsCalendarRequest,
-    SplitsCalendarResponse,
-    SplitsRequest,
-    SplitsResponse,
-    StatisticsRequest,
-    StatisticsResponse,
-    LogoRequest,
-    EarningsCalendarRequest,
-    IPOCalendarRequest,
-    LastChangeRequest,
-    LastChangeEndpoint, LastChangeResponse
+    ProfileResponse, SplitsCalendarRequest, SplitsCalendarResponse, SplitsRequest, SplitsResponse, StatisticsRequest,
     StatisticsResponse
 } from "./fundamental.interfaces";
+import { EndpointBase } from "../../defaults";
+import { AxiosInstance } from "axios";
+import { Endpoints } from "../endpoints";
+import { globalTransformationManager } from "../../serialization";
+
 
 export default class Fundamentals extends EndpointBase {
     constructor(apiClient: AxiosInstance) {

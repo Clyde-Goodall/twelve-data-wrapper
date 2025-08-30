@@ -2,7 +2,7 @@
  /stocks
  */
 
-import { AtLeastOne, SecurityType } from "../../shared.interfaces";
+import { SecurityType } from "../../shared.interfaces";
 
 export interface StocksRequest {
     symbol?: string;
@@ -13,7 +13,7 @@ export interface StocksRequest {
     micCode?: string;
     country?: string;
     type?: SecurityType;
-    format?: 'JSON' | 'CSV';
+    format?: "JSON" | "CSV";
     delimiter?: string;
     showPlan?: boolean;
     includeDelisted?: boolean;
@@ -43,13 +43,13 @@ export interface StocksResponse {
 }
 
 /*
-    /forex_pairs
+ /forex_pairs
  */
 export interface ForexPairsRequest {
     symbol?: string;
     currencyBase?: string;
     currencyQuote?: string;
-    format?: 'JSON' | 'CSV';
+    format?: "JSON" | "CSV";
     delimiter?: string;
 }
 
@@ -65,14 +65,14 @@ export interface ForexPairResponse {
 }
 
 /*
-    /cryptocurrencies
+ /cryptocurrencies
  */
 export interface CryptocurrencyPairsRequest {
     symbol?: string;
     exchange?: string;
     currencyBase?: string;
     currencyQuote?: string;
-    format?: 'JSON' | 'CSV';
+    format?: "JSON" | "CSV";
     delimiter?: string;
 }
 
@@ -88,9 +88,9 @@ export interface CryptocurrencyPairsResponse {
 }
 
 /*
-    /etfs
+ /etfs
  */
-interface ETFsRequestBase {
+export interface ETFsRequest {
     symbol?: string;
     figi?: string;
     isin?: string;
@@ -98,13 +98,11 @@ interface ETFsRequestBase {
     exchange?: string;
     micCode?: string;
     country?: string;
-    format?: 'JSON' | 'CSV';
+    format?: "JSON" | "CSV";
     delimiter?: string;
     showPlan?: boolean;
     includeDelisted?: boolean;
 }
-
-export type ETFsRequest = AtLeastOne<ETFsRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface ETFEntry {
     symbol: string;
@@ -128,7 +126,7 @@ export interface ETFsResponse {
 }
 
 /*
-    /funds
+ /funds
  */
 export interface FundsRequest {
     symbol?: string;
@@ -137,7 +135,7 @@ export interface FundsRequest {
     cusip?: string;
     exchange?: string;
     country?: string;
-    format?: 'JSON' | 'CSV';
+    format?: "JSON" | "CSV";
     delimiter?: string;
     showPlan?: boolean;
     page?: number;
@@ -170,12 +168,12 @@ export interface FundsResponse {
 }
 
 /*
-    /commodities
+ /commodities
  */
 export interface CommoditiesRequest {
     symbol?: string;
     category?: string;
-    format?: 'JSON' | 'CSV';
+    format?: "JSON" | "CSV";
     delimiter?: string;
 }
 
@@ -191,13 +189,13 @@ export interface CommoditiesResponse {
 }
 
 /*
-    /bonds
+ /bonds
  */
 export interface FixedIncomeRequest {
     symbol?: string;
     exchange?: string;
     country?: string;
-    format?: 'JSON' | 'CSV';
+    format?: "JSON" | "CSV";
     delimiter?: string;
     showPlan?: boolean;
     page?: number;

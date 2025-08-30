@@ -20,6 +20,6 @@ export default class Advanced extends EndpointBase {
 
 function registerAPIUsageTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.APIUsage, {
-        dateTimeFields: ['timestamp']
+        dateTimeFields: ["timestamp"]
     });
 }

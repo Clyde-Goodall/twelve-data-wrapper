@@ -88,11 +88,12 @@ export const enum AssetClassType {
 
 export type DecimalPlaces = -1 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 
-export type ReqSortOrder = 'asc' | 'desc';
+export type ReqSortOrder = "asc" | "desc";
 
-export type ResponseFormat = 'json' | 'csv';
+export type ResponseFormat = "json" | "csv";
 
-// Utility type that makes at least one of the specified keys required
-export type AtLeastOne<T, Keys extends keyof T> = Omit<T, Keys> & {
-    [K in Keys]: Required<Pick<T, K>> & Partial<Pick<T, Exclude<Keys, K>>>;
-}[Keys];
+export const ERROR_MESSAGES = {
+    AT_LEAST_ONE_IDENTIFIER_REQUIRED: "At least one of symbol, figi, isin or cusip is required",
+    INTERVAL_REQUIRED: "interval is required",
+    BASE_REQUIRED: "base is required"
+} as const;

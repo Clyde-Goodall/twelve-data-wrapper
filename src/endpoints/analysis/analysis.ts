@@ -28,7 +28,7 @@ export default class Analysis extends EndpointBase {
         super(apiClient);
         registerEPSTrendEstimateTransformations();
         registerEPSRevisionsEstimateTransformations();
-        registerRecommendationsTransformations()
+        registerRecommendationsTransformations();
         registerRevenueEstimateTransformations();
         registerEarningsEstimateTransformations();
         registerAnalystRatingsSnapshotTransformations();
@@ -37,44 +37,64 @@ export default class Analysis extends EndpointBase {
 
     // Endpoint fetching functions starts here
     async getEarningsEstimate(requestConfig: EarningsEstimateRequest): Promise<EarningsEstimateResponse> {
+        this.validateRequiredIdentifiers(requestConfig);
+
         const params = this.constructUrlParams(requestConfig, Endpoints.EarningsEstimate);
         return this.request<EarningsEstimateResponse>(Endpoints.EarningsEstimate, params);
     }
 
     async getRevenueEstimate(requestConfig: RevenueEstimateRequest): Promise<RevenueEstimateResponse> {
-        const params = this.constructUrlParams(requestConfig, Endpoints.RevenueEstimate);
+        this.validateRequiredIdentifiers(requestConfig);
 
+        const params = this.constructUrlParams(requestConfig, Endpoints.RevenueEstimate);
         return this.request<RevenueEstimateResponse>(Endpoints.RevenueEstimate, params);
     }
 
     async getEpsTrend(requestConfig: EPSTrendRequest): Promise<EPSTrendResponse> {
+        this.validateRequiredIdentifiers(requestConfig);
+
         const params = this.constructUrlParams(requestConfig, Endpoints.EpsTrend);
         return this.request<EPSTrendResponse>(Endpoints.EpsTrend, params);
     }
 
     async getEpsRevisions(requestConfig: EPSRevisionsRequest): Promise<EPSRevisionsResponse> {
+        this.validateRequiredIdentifiers(requestConfig);
+
         const params = this.constructUrlParams(requestConfig, Endpoints.EpsRevisions);
         return this.request<EPSRevisionsResponse>(Endpoints.EpsRevisions, params);
     }
 
     async getGrowthEstimates(requestConfig: GrowthEstimatesRequest): Promise<GrowthEstimatesResponse> {
+        this.validateRequiredIdentifiers(requestConfig);
+
         const params = this.constructUrlParams(requestConfig, Endpoints.GrowthEstimates);
         return this.request<GrowthEstimatesResponse>(Endpoints.GrowthEstimates, params);
     }
 
     async getRecommendations(requestConfig: RecommendationsRequest): Promise<RecommendationsResponse> {
+        this.validateRequiredIdentifiers(requestConfig);
+
         const params = this.constructUrlParams(requestConfig, Endpoints.Recommendations);
         return this.request<RecommendationsResponse>(Endpoints.Recommendations, params);
     }
+
     async getPriceTarget(requestConfig: PriceTargetRequest): Promise<PriceTargetResponse> {
+        this.validateRequiredIdentifiers(requestConfig);
+
         const params = this.constructUrlParams(requestConfig, Endpoints.PriceTarget);
         return this.request<PriceTargetResponse>(Endpoints.PriceTarget, params);
     }
+
     async getAnalystRatingsSnapshot(requestConfig: AnalystRatingsSnapshotRequest): Promise<AnalystRatingsSnapshotResponse> {
+        this.validateRequiredIdentifiers(requestConfig);
+
         const params = this.constructUrlParams(requestConfig, Endpoints.AnalystRatingsSnapshot);
         return this.request<AnalystRatingsSnapshotResponse>(Endpoints.AnalystRatingsSnapshot, params);
     }
+
     async getAnalystRatingsUsEquities(requestConfig: AnalystRatingsUSEquitiesRequest): Promise<AnalystRatingsUSEquitiesResponse> {
+        this.validateRequiredIdentifiers(requestConfig);
+
         const params = this.constructUrlParams(requestConfig, Endpoints.AnalystRatingsUsEquities);
         return this.request<AnalystRatingsUSEquitiesResponse>(Endpoints.AnalystRatingsUsEquities, params);
     }
@@ -82,46 +102,46 @@ export default class Analysis extends EndpointBase {
 
 function registerEarningsEstimateTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.EarningsEstimate, {
-        dateFields: ['date'],
+        dateFields: ["date"],
     });
 }
 
 function registerRevenueEstimateTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.RevenueEstimate, {
-        dateFields: ['date'],
+        dateFields: ["date"],
     });
 }
 
 function registerRecommendationsTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.Recommendations, {
         responseMappings: {
-            '2_months_ago': 'twoMonthsAgo',
-            '3_months_ago': 'threeMonthsAgo',
+            "2_months_ago": "twoMonthsAgo",
+            "3_months_ago": "threeMonthsAgo",
         },
-        dateFields: ['date'],
+        dateFields: ["date"],
     });
 }
 
 function registerEPSTrendEstimateTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.EpsTrend, {
-        dateFields: ['date'],
+        dateFields: ["date"],
     });
 }
 
 function registerEPSRevisionsEstimateTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.EpsRevisions, {
-        dateFields: ['date'],
+        dateFields: ["date"],
     });
 }
 
 function registerAnalystRatingsSnapshotTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.AnalystRatingsSnapshot, {
-        dateFields: ['date'],
+        dateFields: ["date"],
     });
 }
 
 function registerAnalystRatingsUSEquitiesTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.AnalystRatingsUsEquities, {
-        dateFields: ['date'],
+        dateFields: ["date"],
     });
 }

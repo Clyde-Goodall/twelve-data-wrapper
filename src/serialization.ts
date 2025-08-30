@@ -27,7 +27,7 @@ function transformKeysWithMapping<T>(
     keyTransformer: (key: string) => string,
     fieldMappings: FieldMappings = {}
 ): T {
-    if (obj === null || typeof obj !== 'object') {
+    if (obj === null || typeof obj !== "object") {
         return obj;
     }
 
@@ -44,7 +44,7 @@ function transformKeysWithMapping<T>(
     return result;
 }
 
-type SerializeDirection = 'serialize' | 'deserialize';
+type SerializeDirection = "serialize" | "deserialize";
 
 // Date transformation function
 function transformDates<T>(obj: T, config: TransformConfig, direction: SerializeDirection): T {
@@ -53,12 +53,14 @@ function transformDates<T>(obj: T, config: TransformConfig, direction: Serialize
     const allDateFields: string[] = [...dateFields, ...dateTimeFields];
 
     for (const [key, value] of Object.entries(result)) {
-        if (!value) { continue; }
+        if (!value) {
+            continue;
+        }
         if (allDateFields.includes(key) && isDateOrStringOrNumber(value)) {
             result[key] = transformDateValue(key, value, config, direction);
         } else if (Array.isArray(value)) {
             result[key] = value.map(item => transformDates(item, config, direction));
-        } else if (typeof value === 'object') {
+        } else if (typeof value === "object") {
             result[key] = transformDates(value, config, direction);
         }
     }
@@ -67,8 +69,9 @@ function transformDates<T>(obj: T, config: TransformConfig, direction: Serialize
 }
 
 type DateOrStringOrNumber<T> = T extends string | Date | number ? T : never;
+
 function isDateOrStringOrNumber<T>(value: unknown): value is DateOrStringOrNumber<T> {
-    return typeof value === 'string' || value instanceof Date || typeof value === 'number';
+    return typeof value === "string" || value instanceof Date || typeof value === "number";
 }
 
 function transformDateValue(
@@ -78,19 +81,19 @@ function transformDateValue(
     direction: SerializeDirection
 ): string | Date {
     const { dateFields = [] } = config;
-    if (direction === 'serialize') {
+    if (direction === "serialize") {
         if (value instanceof Date) {
             return dateFields.includes(key)
                 ? DateTime.fromJSDate(value).toISODate()! // YYYY-MM-DD for date fields
-                : DateTime.fromJSDate(value).toFormat('yyyy-MM-dd HH:mm:ss'); // Custom format for datetime
+                : DateTime.fromJSDate(value).toFormat("yyyy-MM-dd HH:mm:ss"); // Custom format for datetime
         }
     } else {
-        if (typeof value === 'string') {
+        if (typeof value === "string") {
             // Check for a space because the API will return dates or date-times in the same field depending on context
-            return value.indexOf(' ') === -1
+            return value.indexOf(" ") === -1
                 ? DateTime.fromISO(value).toJSDate()
-                : DateTime.fromFormat(value, 'yyyy-MM-dd HH:mm:ss').toJSDate();
-        } else if (typeof value === 'number') {
+                : DateTime.fromFormat(value, "yyyy-MM-dd HH:mm:ss").toJSDate();
+        } else if (typeof value === "number") {
             // Assume it's a Unix timestamp in seconds
             return DateTime.fromSeconds(value).toJSDate();
         }
@@ -128,38 +131,6 @@ class TransformationManager {
     }
 
     // TODO: move these configurations to the actual endpoint function definitions
-    // Won't fill out too many so it isn't clogged up
-    private registerDefaultConfigurations(): void {
-        // Profile endpoint configuration
-        this.endpointConfigs.set(Endpoints.Profile, {
-            responseMappings: {
-                addressTwo: 'address2',
-            }
-        });
-
-        // Lots of redundant outputsize
-
-        // Splits Calendar Consolidated endpoint configuration
-        this.endpointConfigs.set(Endpoints.SplitsCalendar, {
-            requestMappings: {
-                outputSize: 'outputsize',
-            },
-        });
-
-        // Cash Flow Consolidated endpoint configuration
-        this.endpointConfigs.set(Endpoints.CashFlow, {
-            requestMappings: {
-                outputSize: 'outputsize',
-            },
-        });
-
-        // Cash Flow Consolidated endpoint configuration
-        this.endpointConfigs.set(Endpoints.CashFlowConsolidated, {
-            requestMappings: {
-                outputSize: 'outputsize',
-            },
-        });
-    }
 
     // Add new endpoint configuration
     addEndpointConfig(endpoint: string, config: TransformConfig): void {
@@ -174,7 +145,7 @@ class TransformationManager {
             return simpleToSnakeCase(data);
         }
 
-        const dateTransformed = transformDates(data, config, 'serialize');
+        const dateTransformed = transformDates(data, config, "serialize");
         return objectToSnakeCaseWithMappings(dateTransformed, config.requestMappings);
     }
 
@@ -187,7 +158,40 @@ class TransformationManager {
         }
 
         const camelCased = objectToCamelCaseWithMappings(data, config.responseMappings);
-        return transformDates(camelCased, config, 'deserialize');
+        return transformDates(camelCased, config, "deserialize");
+    }
+
+    // Won't fill out too many so it isn't clogged up
+    private registerDefaultConfigurations(): void {
+        // Profile endpoint configuration
+        this.endpointConfigs.set(Endpoints.Profile, {
+            responseMappings: {
+                addressTwo: "address2",
+            }
+        });
+
+        // Lots of redundant outputsize
+
+        // Splits Calendar Consolidated endpoint configuration
+        this.endpointConfigs.set(Endpoints.SplitsCalendar, {
+            requestMappings: {
+                outputSize: "outputsize",
+            },
+        });
+
+        // Cash Flow Consolidated endpoint configuration
+        this.endpointConfigs.set(Endpoints.CashFlow, {
+            requestMappings: {
+                outputSize: "outputsize",
+            },
+        });
+
+        // Cash Flow Consolidated endpoint configuration
+        this.endpointConfigs.set(Endpoints.CashFlowConsolidated, {
+            requestMappings: {
+                outputSize: "outputsize",
+            },
+        });
     }
 }
 

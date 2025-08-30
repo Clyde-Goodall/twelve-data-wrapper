@@ -2,8 +2,8 @@ import { EndpointBase } from "../../../defaults";
 import type { AxiosInstance } from "axios";
 import { Endpoints } from "../../endpoints";
 import {
-    CryptocurrencyExchangeeResponse,
     CryptocurrencyExchangesRequest,
+    CryptocurrencyExchangesResponse,
     ExchangeScheduleRequest,
     ExchangeScheduleResponse,
     ExchangesRequest,
@@ -28,9 +28,9 @@ export default class Markets extends EndpointBase {
         return this.request<ExchangeScheduleResponse>(Endpoints.ExchangeSchedule, params);
     }
 
-    async getCryptocurrencyExchanges(requestConfig?: CryptocurrencyExchangesRequest): Promise<CryptocurrencyExchangeeResponse> {
+    async getCryptocurrencyExchanges(requestConfig?: CryptocurrencyExchangesRequest): Promise<CryptocurrencyExchangesResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.CryptocurrencyExchanges);
-        return this.request<CryptocurrencyExchangeeResponse>(Endpoints.CryptocurrencyExchanges, params);
+        return this.request<CryptocurrencyExchangesResponse>(Endpoints.CryptocurrencyExchanges, params);
     }
 
     async getMarketState(requestConfig?: MarketStateRequest): Promise<MarketStateResponse> {

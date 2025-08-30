@@ -12,22 +12,22 @@ export function buildApiClient(config?: TwelveDataConfig): AxiosInstance {
         timeout: config.timeout,
     });
 
-    client.interceptors.request.use(async(request) => {
-        if (request.method?.toLowerCase() === 'get')  {
+    client.interceptors.request.use(async (request) => {
+        if (request.method?.toLowerCase() === "get") {
             request.params = request.params || {};
-            request.params['apikey'] = config.apiKey;
+            request.params["apikey"] = config.apiKey;
         }
         return request;
     });
 
-    client.interceptors.response.use(async(response) => {
-        if (response.headers['content-type'] && response.headers['content-type'] === 'text/csv') {
+    client.interceptors.response.use(async (response) => {
+        if (response.headers["content-type"] && response.headers["content-type"] === "text/csv") {
             return response;
         }
 
-        const endpoint = response.config.url?.split('?')[0]!;
+        const endpoint = response.config.url?.split("?")[0]!;
         response.data = globalTransformationManager.transformResponseForEndpoint(response.data, endpoint);
         return response;
-    })
+    });
     return client;
 }

@@ -1,10 +1,5 @@
 import type { AxiosInstance } from "axios";
 import { EndpointBase } from "../../defaults";
-import {
-    EarningsEstimateRequest,
-    EarningsEstimateResponse,
-    RevenueEstimateRequest, RevenueEstimateResponse
-} from "../analysis/analysis.interfaces";
 import { Endpoints } from "../endpoints";
 import {
     CurrencyConversionRequest,
@@ -35,14 +30,14 @@ export default class Currencies extends EndpointBase {
 
 function registerCurrencyConversionTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.CurrencyConversion, {
-        dateTimeFields: ['timestamp'],
-        dateFields: ['date'],
+        dateTimeFields: ["timestamp"],
+        dateFields: ["date"],
     });
 }
 
 function registerExchangeRateTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.ExchangeRate, {
-        dateTimeFields: ['timestamp'],
-        dateFields: ['date'],
+        dateTimeFields: ["timestamp"],
+        dateFields: ["date"],
     });
 }

@@ -1,14 +1,11 @@
-import {afterEach, beforeEach, describe, it} from "node:test";
+import { afterEach, beforeEach, describe, it } from "node:test";
 import assert from "node:assert";
 import nock from "nock";
 import { TwelveDataWrapper } from "../../src/twelveData";
-import {getDefaultConfig} from "../../src/defaults";
-import { 
-    CountriesRequest, 
+import { getDefaultConfig } from "../../src/defaults";
+import {
     CountriesResponse,
-    InstrumentTypeRequest,
     InstrumentTypeResponse,
-    TechnicalIndicatorsRequest,
     TechnicalIndicatorsResponse
 } from "../../src/endpoints/reference/supportingMetadata/supportingMetadata.interfaces";
 import { Endpoints } from "../../src/endpoints/endpoints";
@@ -33,13 +30,12 @@ describe('Supporting Metadata API Endpoint response test', () => {
                 currency: "US Dollar"
             }]
         };
-        const countriesRequestMockData: CountriesRequest = {};
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.Countries}?apikey=demo`)
             .reply(200, countriesResponseMockData);
 
-        const result = await client.reference.supportingMetadata.getCountries(countriesRequestMockData);
+        const result = await client.reference.supportingMetadata.getCountries();
         assert.deepEqual(result, countriesResponseMockData)
     });
 
@@ -53,13 +49,12 @@ describe('Supporting Metadata API Endpoint response test', () => {
                 "REIT"
             ]
         };
-        const instrumentTypeRequestMockData: InstrumentTypeRequest = {};
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.InstrumentType}?apikey=demo`)
             .reply(200, instrumentTypeResponseMockData);
 
-        const result = await client.reference.supportingMetadata.getInstrumentType(instrumentTypeRequestMockData);
+        const result = await client.reference.supportingMetadata.getInstrumentType();
         assert.deepEqual(result, instrumentTypeResponseMockData)
     });
 
@@ -99,13 +94,12 @@ describe('Supporting Metadata API Endpoint response test', () => {
                 }
             }
         };
-        const technicalIndicatorsRequestMockData: TechnicalIndicatorsRequest = {};
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.TechnicalIndicators}?apikey=demo`)
             .reply(200, technicalIndicatorsResponseMockData);
 
-        const result = await client.reference.supportingMetadata.getTechnicalIndicators(technicalIndicatorsRequestMockData);
+        const result = await client.reference.supportingMetadata.getTechnicalIndicators();
         assert.deepEqual(result, technicalIndicatorsResponseMockData)
     });
 

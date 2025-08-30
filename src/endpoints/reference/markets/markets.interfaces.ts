@@ -1,12 +1,12 @@
 /*
  /exchanges
  */
-import { SecurityType } from "../../shared.interfaces";
 export enum ExchangeType {
     Stock = "stock",
     Etf = "etf",
     Index = "index",
 }
+
 export interface ExchangesRequest {
     type?: ExchangeType;
     name?: string;
@@ -34,7 +34,7 @@ export interface ExchangesResponse {
 }
 
 /*
-    /exchange_schedule
+ /exchange_schedule
  */
 
 export interface ExchangeScheduleRequest {
@@ -65,21 +65,21 @@ export interface ExchangeScheduleResponse {
 }
 
 /*
-    /cryptocurrency_exchanges
+ /cryptocurrency_exchanges
  */
 export interface CryptocurrencyExchangesRequest {
     format?: "JSON" | "CSV";
     delimiter?: string;
 }
 
-export interface CryptocurrencyExchangeeResponse {
+export interface CryptocurrencyExchangesResponse {
     data: Array<{
         name: string;
     }>;
 }
 
 /*
-    /market_state
+ /market_state
  */
 export interface MarketStateRequest {
     exchange?: string;
@@ -97,4 +97,5 @@ export interface MarketStateData {
     timeToClose: string;
 }
 
-export interface MarketStateResponse extends Array<MarketStateData> { }
+export interface MarketStateResponse extends Array<MarketStateData> {
+}

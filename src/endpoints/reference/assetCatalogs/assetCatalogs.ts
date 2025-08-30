@@ -31,6 +31,10 @@ export default class AssetCatalogs extends EndpointBase {
     }
 
     async getEtfs(requestConfig?: ETFsRequest): Promise<ETFsResponse> {
+        if (requestConfig) {
+            this.validateRequiredIdentifiers(requestConfig);
+        }
+
         const params = this.constructUrlParams(requestConfig, Endpoints.ETFs);
         return this.request<ETFsResponse>(Endpoints.ETFs, params);
     }

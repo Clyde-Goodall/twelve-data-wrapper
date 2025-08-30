@@ -20,7 +20,7 @@ import {
     RevenueEstimateRequest,
     RevenueEstimateResponse
 } from "./analysis.interfaces";
-import { Endpoints } from '../endpoints'
+import { Endpoints } from "../endpoints";
 import { globalTransformationManager } from "../../serialization";
 
 export default class Analysis extends EndpointBase {

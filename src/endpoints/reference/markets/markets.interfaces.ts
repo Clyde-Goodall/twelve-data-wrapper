@@ -1,6 +1,5 @@
-
 /*
-    /exchanges
+ /exchanges
  */
 import { SecurityType } from "../../shared.interfaces";
 export enum ExchangeType {

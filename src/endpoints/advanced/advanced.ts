@@ -2,7 +2,7 @@ import type { AxiosInstance } from "axios";
 import { EndpointBase } from "../../defaults";
 import { APIUsageRequest, APIUsageResponse } from "./advanced.interfaces";
 import { Endpoints } from "../endpoints";
-import { globalTransformationManager, TransformConfig } from "../../serialization";
+import { globalTransformationManager } from "../../serialization";
 
 export default class Advanced extends EndpointBase {
     constructor(apiClient: AxiosInstance) {

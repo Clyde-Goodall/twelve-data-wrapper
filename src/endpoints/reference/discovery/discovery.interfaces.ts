@@ -1,6 +1,5 @@
-
 /*
-    /symbol_search
+ /symbol_search
  */
 
 import { AtLeastOne, Interval } from "../../shared.interfaces";

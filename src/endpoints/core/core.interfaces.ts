@@ -8,12 +8,10 @@ import {
     ResponseFormat
 } from "../shared.interfaces";
 
-type IntervalNoFiveHour = Exclude<Interval, Interval.FiveHour>;
-
 /**
  * /time_series endpoint request and response interfaces
  */
-interface TimeSeriesRequestBase {
+export interface TimeSeriesRequest {
     // Symbol of the asset (e.g. "AAPL", "BTC/USD")
     symbol?: string;
     // Financial Instrument Global Identifier
@@ -34,13 +32,11 @@ interface TimeSeriesRequestBase {
     type?: string;
     // Number of candles to return (default is 30, max is 5000)
     outputSize?: number;
-    // Response format, either "JSON" or "CSV" (default is "JSON")
-    format?: ResponseFormat;
     // Delimiter for CSV format (default is ";")
     delimiter?: string;
     // Include pre/post market data (default is false)
     prePost?: boolean;
-    // Number of decimal places for float values. Supports 0-11, default is -1 (API automatically determines precision)
+    // Number of decimal places for float values. Supports -1-11, default is -1 (API automatically determines precision)
     dp?: DecimalPlaces;
     // Sorting order for the results "asc" and "desc" (default is "desc")
     order?: ReqSortOrder;
@@ -57,8 +53,6 @@ interface TimeSeriesRequestBase {
     // Adjusting mode for prices ("none", "dividends", "splits", "all"). Default is "none"
     adjust?: string;
 }
-
-export type TimeSeriesRequest = AtLeastOne<TimeSeriesRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface TimeSeriesResponse {
     meta: Meta;
@@ -95,16 +89,14 @@ export interface TimeSeriesCrossRequest {
     // Market Identifier Code for the quote currency (e.g. "XNAS" for NASDAQ)
     quoteMicCode?: string;
     // Required: Interval between two consecutive points in time series
-    interval: IntervalNoFiveHour;
+    interval: Interval;
     // Number of candles to return (default is 30, max is 5000)
     outputSize?: number;
-    // Response format, either "JSON" or "CSV" (default is "JSON")
-    format?: ResponseFormat;
     // Delimiter for CSV format (default is ";")
     delimiter?: string;
     // Include pre/post market data (default is false)
     prePost?: boolean;
-    // Number of decimal places for float values. Supports 0-11, default is 5, -1 is API automatically determines precision
+    // Number of decimal places for float values. Supports 0-11, default is 5
     dp?: DecimalPlaces;
     // Timezone for the response (e.g. "America/New_York", "UTC"). Defaults to "Exchange"
     timezone?: string;
@@ -121,7 +113,7 @@ export interface TimeSeriesCrossMeta {
     baseInstrument: string;
     baseCurrency: string;
     baseExchange: string;
-    interval: IntervalNoFiveHour;
+    interval: Interval;
     quoteInstrument: string;
     quoteCurrency: string;
     quoteExchange: string;
@@ -153,7 +145,7 @@ interface QuoteRequestBase {
     // Committee on Uniform Securities Identification Procedures
     cusip?: string;
     // Time interval for the candles (e.g. "1min", "1day"). Default: "1day"
-    interval?: IntervalNoFiveHour;
+    interval?: Interval;
     // Exchange code (e.g. "NASDAQ", "Binance")
     exchange?: string;
     // Market Identifier Code (e.g. "XNAS" for NASDAQ)
@@ -164,8 +156,6 @@ interface QuoteRequestBase {
     volumeTimePeriod?: number;
     // The asset class to which the instrument belongs
     type?: AssetClassType;
-    // Response format, either "JSON" or "CSV" (default is "JSON")
-    format?: ResponseFormat;
     // Delimiter for CSV format (default is ";")
     delimiter?: string;
     // Include pre- / post-market data (default is false) (only for Pro and above plans)
@@ -174,7 +164,7 @@ interface QuoteRequestBase {
     eod?: boolean;
     // Number of hours for calculate rolling change at period. Default is 24. Supports integers in range [1,168]
     rollingPeriod?: number;
-    // Number of decimal places for float values. Supports 0-11, default is -1 (API automatically determines precision)
+    // Number of decimal places for float values. Supports 0-11, default is 5
     dp?: DecimalPlaces;
     // Timezone for the response (e.g. "America/New_York", "UTC"). Defaults to "Exchange"
     timezone?: string;
@@ -218,3 +208,72 @@ export interface QuoteResponse {
     extendedPrice?: string;
     extendedTimestamp?: string;
 }
+
+interface LatestPriceRequestBase {
+    // Symbol of the asset (e.g. "AAPL", "BTC/USD")
+    symbol?: string;
+    // Financial Instrument Global Identifier
+    figi?: string;
+    // International Securities Identification Number
+    isin?: string;
+    // Committee on Uniform Securities Identification Procedures
+    cusip?: string;
+    // Exchange code (e.g. "NASDAQ", "Binance")
+    exchange?: string;
+    // Market Identifier Code (e.g. "XNAS" for NASDAQ)
+    micCode?: string;
+    // Country code (e.g. "US" or "United States")
+    country?: string;
+    // The asset class to which the instrument belongs
+    type?: AssetClassType;
+    // Delimiter for CSV format (default is ";")
+    delimiter?: string;
+    // Include pre- / post-market data (default is false) (only for Pro and above plans)
+    prePost?: boolean;
+    // Number of decimal places for float values. Supports 0-11, default is 5
+    dp?: DecimalPlaces;
+}
+
+export type LatestPriceRequest = AtLeastOne<LatestPriceRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
+
+export interface LatestPriceResponse {
+    price: string;
+}
+
+interface EndOfDayPriceRequestBase {
+    // Symbol of the asset (e.g. "AAPL", "BTC/USD")
+    symbol?: string;
+    // Financial Instrument Global Identifier
+    figi?: string;
+    // International Securities Identification Number
+    isin?: string;
+    // Committee on Uniform Securities Identification Procedures
+    cusip?: string;
+    // Exchange code (e.g. "NASDAQ", "Binance")
+    exchange?: string;
+    // Market Identifier Code (e.g. "XNAS" for NASDAQ)
+    micCode?: string;
+    // Country code (e.g. "US" or "United States")
+    country?: string;
+    // The asset class to which the instrument belongs
+    type?: AssetClassType;
+    // Specific date to fetch data for (time is ignored)
+    date?: Date;
+    // Include pre- / post-market data (default is false) (only for Pro and above plans)
+    prePost?: boolean;
+    // Number of decimal places for float values. Supports 0-11, default is 5
+    dp?: DecimalPlaces;
+}
+
+export type EndOfDayPriceRequest = AtLeastOne<EndOfDayPriceRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
+
+export interface EndOfDayPriceResponse {
+    symbol: string;
+    exchange: string;
+    micCode?: string;
+    currency?: string;
+    dateTime: Date;
+    timestamp: Date;
+    close: string;
+}
+

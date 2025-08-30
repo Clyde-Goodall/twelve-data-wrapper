@@ -2,12 +2,12 @@ import { EndpointBase } from "../../../defaults";
 import type { AxiosInstance } from "axios";
 import { Endpoints } from "../../endpoints";
 import {
-    ExchangesRequest,
-    ExchangesResponse,
+    CryptocurrencyExchangeeResponse,
+    CryptocurrencyExchangesRequest,
     ExchangeScheduleRequest,
     ExchangeScheduleResponse,
-    CryptocurrencyExchangesRequest,
-    CryptocurrencyExchangeeResponse,
+    ExchangesRequest,
+    ExchangesResponse,
     MarketStateRequest,
     MarketStateResponse
 } from "./markets.interfaces";

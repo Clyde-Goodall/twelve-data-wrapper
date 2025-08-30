@@ -1,4 +1,3 @@
-import { DateTime } from "luxon";
 import { Endpoints } from "./endpoints/endpoints";
 
 export interface FieldMappings {
@@ -8,8 +7,6 @@ export interface FieldMappings {
 export interface TransformConfig {
     requestMappings?: FieldMappings;   // camelCase -> API format
     responseMappings?: FieldMappings;  // API format -> camelCase
-    dateFields?: string[];             // Fields that should be YYYY-MM-DD
-    dateTimeFields?: string[];         // Fields that should be full ISO strings
 }
 
 // Basic case conversion functions
@@ -42,63 +39,6 @@ function transformKeysWithMapping<T>(
         result[transformedKey] = transformKeysWithMapping(value, keyTransformer, fieldMappings);
     }
     return result;
-}
-
-type SerializeDirection = "serialize" | "deserialize";
-
-// Date transformation function
-function transformDates<T>(obj: T, config: TransformConfig, direction: SerializeDirection): T {
-    const result = { ...obj } as any;
-    const { dateFields = [], dateTimeFields = [] } = config;
-    const allDateFields: string[] = [...dateFields, ...dateTimeFields];
-
-    for (const [key, value] of Object.entries(result)) {
-        if (!value) {
-            continue;
-        }
-        if (allDateFields.includes(key) && isDateOrStringOrNumber(value)) {
-            result[key] = transformDateValue(key, value, config, direction);
-        } else if (Array.isArray(value)) {
-            result[key] = value.map(item => transformDates(item, config, direction));
-        } else if (typeof value === "object") {
-            result[key] = transformDates(value, config, direction);
-        }
-    }
-
-    return result;
-}
-
-type DateOrStringOrNumber<T> = T extends string | Date | number ? T : never;
-
-function isDateOrStringOrNumber<T>(value: unknown): value is DateOrStringOrNumber<T> {
-    return typeof value === "string" || value instanceof Date || typeof value === "number";
-}
-
-function transformDateValue(
-    key: string,
-    value: string | Date | number,
-    config: TransformConfig,
-    direction: SerializeDirection
-): string | Date {
-    const { dateFields = [] } = config;
-    if (direction === "serialize") {
-        if (value instanceof Date) {
-            return dateFields.includes(key)
-                ? DateTime.fromJSDate(value).toISODate()! // YYYY-MM-DD for date fields
-                : DateTime.fromJSDate(value).toFormat("yyyy-MM-dd HH:mm:ss"); // Custom format for datetime
-        }
-    } else {
-        if (typeof value === "string") {
-            // Check for a space because the API will return dates or date-times in the same field depending on context
-            return value.indexOf(" ") === -1
-                ? DateTime.fromISO(value).toJSDate()
-                : DateTime.fromFormat(value, "yyyy-MM-dd HH:mm:ss").toJSDate();
-        } else if (typeof value === "number") {
-            // Assume it's a Unix timestamp in seconds
-            return DateTime.fromSeconds(value).toJSDate();
-        }
-    }
-    throw new Error(`Error serializing/deserializing date field ${key} with value ${value}`);
 }
 
 // Public transformation functions
@@ -145,8 +85,7 @@ class TransformationManager {
             return simpleToSnakeCase(data);
         }
 
-        const dateTransformed = transformDates(data, config, "serialize");
-        return objectToSnakeCaseWithMappings(dateTransformed, config.requestMappings);
+        return objectToSnakeCaseWithMappings(data, config.requestMappings);
     }
 
     // Transform response data for a specific endpoint
@@ -157,8 +96,7 @@ class TransformationManager {
             return simpleToCamelCase(data);
         }
 
-        const camelCased = objectToCamelCaseWithMappings(data, config.responseMappings);
-        return transformDates(camelCased, config, "deserialize");
+        return objectToCamelCaseWithMappings(data, config.responseMappings);
     }
 
     // Won't fill out too many so it isn't clogged up

@@ -35,11 +35,11 @@ export interface TimeSeriesRequest {
     // Timezone for the response (e.g. "America/New_York", "UTC"). Defaults to "Exchange"
     timezone?: string;
     // Specific day to fetch data for (time is ignored)
-    date?: Date;
+    date?: string;
     // Time when the series starts
-    startDate?: Date;
+    startDate?: string;
     // Time when the series ends
-    endDate?: Date;
+    endDate?: string;
     // Include previous close price in the response (default is false)
     previousClose?: boolean;
     // Adjusting mode for prices ("none", "dividends", "splits", "all"). Default is "none"
@@ -52,7 +52,7 @@ export interface TimeSeriesResponse {
 }
 
 export interface TimeSeriesCandle {
-    dateTime: Date;
+    dateTime: string;
     open: string;
     close: string;
     high: string;
@@ -93,9 +93,9 @@ export interface TimeSeriesCrossRequest {
     // Timezone for the response (e.g. "America/New_York", "UTC"). Defaults to "Exchange"
     timezone?: string;
     // Time when the series starts
-    startDate?: Date;
+    startDate?: string;
     // Time when the series ends
-    endDate?: Date;
+    endDate?: string;
     // Specifies if there should be an adjustment (default is true)
     adjust?: boolean;
 
@@ -112,7 +112,7 @@ export interface TimeSeriesCrossMeta {
 }
 
 export interface TimeSeriesCrossValue {
-    dateTime: Date;
+    dateTime: string;
     open: string;
     close: string;
     high: string;
@@ -246,7 +246,7 @@ export interface EndOfDayPriceRequest {
     // The asset class to which the instrument belongs
     type?: AssetClassType;
     // Specific date to fetch data for (time is ignored)
-    date?: Date;
+    date?: string;
     // Include pre- / post-market data (default is false) (only for Pro and above plans)
     prePost?: boolean;
     // Number of decimal places for float values. Supports 0-11, default is 5
@@ -258,8 +258,8 @@ export interface EndOfDayPriceResponse {
     exchange: string;
     micCode?: string;
     currency?: string;
-    dateTime: Date;
-    timestamp: Date;
+    dateTime: string;
+    timestamp: number;
     close: string;
 }
 

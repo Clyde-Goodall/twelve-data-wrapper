@@ -26,13 +26,7 @@ import { globalTransformationManager } from "../../serialization";
 export default class Analysis extends EndpointBase {
     constructor(apiClient: AxiosInstance) {
         super(apiClient);
-        registerEPSTrendEstimateTransformations();
-        registerEPSRevisionsEstimateTransformations();
         registerRecommendationsTransformations();
-        registerRevenueEstimateTransformations();
-        registerEarningsEstimateTransformations();
-        registerAnalystRatingsSnapshotTransformations();
-        registerAnalystRatingsUSEquitiesTransformations();
     }
 
     // Endpoint fetching functions starts here
@@ -100,48 +94,11 @@ export default class Analysis extends EndpointBase {
     }
 }
 
-function registerEarningsEstimateTransformations() {
-    globalTransformationManager.addEndpointConfig(Endpoints.EarningsEstimate, {
-        dateFields: ["date"],
-    });
-}
-
-function registerRevenueEstimateTransformations() {
-    globalTransformationManager.addEndpointConfig(Endpoints.RevenueEstimate, {
-        dateFields: ["date"],
-    });
-}
-
 function registerRecommendationsTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.Recommendations, {
         responseMappings: {
             "2_months_ago": "twoMonthsAgo",
             "3_months_ago": "threeMonthsAgo",
-        },
-        dateFields: ["date"],
-    });
-}
-
-function registerEPSTrendEstimateTransformations() {
-    globalTransformationManager.addEndpointConfig(Endpoints.EpsTrend, {
-        dateFields: ["date"],
-    });
-}
-
-function registerEPSRevisionsEstimateTransformations() {
-    globalTransformationManager.addEndpointConfig(Endpoints.EpsRevisions, {
-        dateFields: ["date"],
-    });
-}
-
-function registerAnalystRatingsSnapshotTransformations() {
-    globalTransformationManager.addEndpointConfig(Endpoints.AnalystRatingsSnapshot, {
-        dateFields: ["date"],
-    });
-}
-
-function registerAnalystRatingsUSEquitiesTransformations() {
-    globalTransformationManager.addEndpointConfig(Endpoints.AnalystRatingsUsEquities, {
-        dateFields: ["date"],
+        }
     });
 }

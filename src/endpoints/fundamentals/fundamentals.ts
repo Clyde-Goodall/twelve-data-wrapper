@@ -67,13 +67,15 @@ export default class Fundamentals extends EndpointBase {
         return this.request<DividendsResponse>(Endpoints.Dividends, params);
     }
 
-    async getDividendsCalendar(requestConfig?: DividendsCalendarRequest): Promise<DividendsCalendarResponse> {
+    async getDividendsCalendar(requestConfig: DividendsCalendarRequest, format: "csv"): Promise<string>;
+    async getDividendsCalendar(requestConfig?: DividendsCalendarRequest, format?: "json"): Promise<DividendsCalendarResponse>;
+    async getDividendsCalendar(requestConfig?: DividendsCalendarRequest, format?: "json" | "csv"): Promise<DividendsCalendarResponse | string> {
         if (requestConfig) {
             this.validateRequiredIdentifiers(requestConfig);
         }
 
         const params = this.constructUrlParams(requestConfig, Endpoints.DividendsCalendar);
-        return this.request<DividendsCalendarResponse>(Endpoints.DividendsCalendar, params);
+        return this.requestWithFormat(Endpoints.DividendsCalendar, params, format);
     }
 
     async getSplits(requestConfig: SplitsRequest): Promise<SplitsResponse> {
@@ -92,16 +94,20 @@ export default class Fundamentals extends EndpointBase {
         return this.request<SplitsCalendarResponse>(Endpoints.SplitsCalendar, params);
     }
 
-    async getEarnings(requestConfig: EarningsRequest): Promise<EarningsResponse> {
+    async getEarnings(requestConfig: EarningsRequest, format: "csv"): Promise<string>;
+    async getEarnings(requestConfig: EarningsRequest, format?: "json"): Promise<EarningsResponse>;
+    async getEarnings(requestConfig: EarningsRequest, format?: "json" | "csv"): Promise<EarningsResponse | string> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.Earnings);
-        return this.request<EarningsResponse>(Endpoints.Earnings, params);
+        return this.requestWithFormat(Endpoints.Earnings, params, format);
     }
 
-    async getEarningsCalendar(requestConfig?: EarningsCalendarRequest): Promise<EarningsCalendarResponse> {
+    async getEarningsCalendar(requestConfig: EarningsCalendarRequest, format: "csv"): Promise<string>;
+    async getEarningsCalendar(requestConfig?: EarningsCalendarRequest, format?: "json"): Promise<EarningsCalendarResponse>;
+    async getEarningsCalendar(requestConfig?: EarningsCalendarRequest, format?: "json" | "csv"): Promise<EarningsCalendarResponse | string> {
         const params = this.constructUrlParams(requestConfig, Endpoints.EarningsCalendar);
-        return this.request<EarningsCalendarResponse>(Endpoints.EarningsCalendar, params);
+        return this.requestWithFormat(Endpoints.EarningsCalendar, params, format);
     }
 
     async getIpoCalendar(requestConfig?: IPOCalendarRequest): Promise<IPOCalendarResponse> {

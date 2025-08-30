@@ -13,7 +13,6 @@ export interface StocksRequest {
     micCode?: string;
     country?: string;
     type?: SecurityType;
-    format?: "JSON" | "CSV";
     delimiter?: string;
     showPlan?: boolean;
     includeDelisted?: boolean;
@@ -49,7 +48,6 @@ export interface ForexPairsRequest {
     symbol?: string;
     currencyBase?: string;
     currencyQuote?: string;
-    format?: "JSON" | "CSV";
     delimiter?: string;
 }
 
@@ -72,7 +70,6 @@ export interface CryptocurrencyPairsRequest {
     exchange?: string;
     currencyBase?: string;
     currencyQuote?: string;
-    format?: "JSON" | "CSV";
     delimiter?: string;
 }
 
@@ -98,7 +95,6 @@ export interface ETFsRequest {
     exchange?: string;
     micCode?: string;
     country?: string;
-    format?: "JSON" | "CSV";
     delimiter?: string;
     showPlan?: boolean;
     includeDelisted?: boolean;
@@ -135,7 +131,6 @@ export interface FundsRequest {
     cusip?: string;
     exchange?: string;
     country?: string;
-    format?: "JSON" | "CSV";
     delimiter?: string;
     showPlan?: boolean;
     page?: number;
@@ -173,7 +168,6 @@ export interface FundsResponse {
 export interface CommoditiesRequest {
     symbol?: string;
     category?: string;
-    format?: "JSON" | "CSV";
     delimiter?: string;
 }
 
@@ -195,7 +189,6 @@ export interface FixedIncomeRequest {
     symbol?: string;
     exchange?: string;
     country?: string;
-    format?: "JSON" | "CSV";
     delimiter?: string;
     showPlan?: boolean;
     page?: number;

@@ -104,4 +104,5 @@ export enum Endpoints {
     Instrument = '/instrument_type',
     ExchangeRate = '/exchange_rate',
     CurrencyConversion = '/currency_conversion',
+    LastChanges = '/last_change',
 }

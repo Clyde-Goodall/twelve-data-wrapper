@@ -11,14 +11,14 @@ Contributions welcome!
 - (Partial)     Reference Data
   - (Supported) Asset Catalogs
   - (Supported) Discovery
-  - (Partial) Markets <sub>Only partial because we currently don't have an enterprise key to test it with</sub>
+  - (Partial)   Markets <sub>Only partial because we currently don't have an enterprise key to test it with</sub>
   - (Supported) Technical Indicators
-- (Partial)     Fundamental
+- (Partial)     Fundamental <sub>Only still partial because of some number-to-word formatting issues</sub>
 - (Supported)   Currencies
 - (Unsupported) ETFs
 - (Unsupported) Mutual Funds
 - (Unsupported) Technical Indicators
-- (Supported)     Analysis 
+- (Supported)   Analysis 
 - (Unsupported) Regulatory
 - (Partial)     Advanced
 - (Unsupported) Websocket

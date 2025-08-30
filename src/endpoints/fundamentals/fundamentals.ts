@@ -1,17 +1,39 @@
 import {
-    BalanceSheetRequest, BalanceSheetResponse, CashFlowConsolidatedRequest,
-    CashFlowConsolidatedResponse, CashFlowRequest, CashFlowResponse,
-    DividendsCalendarRequest, DividendsCalendarResponse,
+    BalanceSheetRequest,
+    BalanceSheetResponse,
+    CashFlowConsolidatedRequest,
+    CashFlowConsolidatedResponse,
+    CashFlowRequest,
+    CashFlowResponse,
+    DividendsCalendarRequest,
+    DividendsCalendarResponse,
     DividendsRequest,
-    DividendsResponse, EarningsCalendarRequest, EarningsCalendarResponse, EarningsRequest, EarningsResponse,
-    IncomeStatementConsolidatedRequest, IncomeStatementConsolidatedResponse,
-    IncomeStatementRequest, IncomeStatementResponse,
-    IPOCalendarRequest, IPOCalendarResponse, KeyExecutivesRequest, KeyExecutivesResponse, LastChangeRequest,
+    DividendsResponse,
+    EarningsCalendarRequest,
+    EarningsCalendarResponse,
+    EarningsRequest,
+    EarningsResponse,
+    IncomeStatementConsolidatedRequest,
+    IncomeStatementConsolidatedResponse,
+    IncomeStatementRequest,
+    IncomeStatementResponse,
+    IPOCalendarRequest,
+    IPOCalendarResponse,
+    KeyExecutivesRequest,
+    KeyExecutivesResponse,
+    LastChangeRequest,
     LastChangeResponse,
     LogoRequest,
-    LogoResponse, MarketCapRequest, MarketCapResponse,
+    LogoResponse,
+    MarketCapRequest,
+    MarketCapResponse,
     ProfileRequest,
-    ProfileResponse, SplitsCalendarRequest, SplitsCalendarResponse, SplitsRequest, SplitsResponse, StatisticsRequest,
+    ProfileResponse,
+    SplitsCalendarRequest,
+    SplitsCalendarResponse,
+    SplitsRequest,
+    SplitsResponse,
+    StatisticsRequest,
     StatisticsResponse
 } from "./fundamental.interfaces";
 import { EndpointBase } from "../../defaults";
@@ -84,7 +106,7 @@ export default class Fundamentals extends EndpointBase {
 
     async getIncomeStatementConsolidated(requestConfig: IncomeStatementConsolidatedRequest): Promise<IncomeStatementConsolidatedResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.IncomeStatementConsolidated);
-        return this.request<IncomeStatementConsolidatedResponse>(Endpoints.IncomeStatement, params);
+        return this.request<IncomeStatementConsolidatedResponse>(Endpoints.IncomeStatementConsolidated, params);
     }
 
     async getBalanceSheet(requestConfig: BalanceSheetRequest): Promise<BalanceSheetResponse> {

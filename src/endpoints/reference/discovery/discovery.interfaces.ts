@@ -2,7 +2,7 @@
  /symbol_search
  */
 
-import { AtLeastOne, Interval } from "../../shared.interfaces";
+import { Interval } from "../../shared.interfaces";
 
 export interface SymbolSearchRequest {
     symbol: string;

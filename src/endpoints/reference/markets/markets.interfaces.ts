@@ -1,7 +1,6 @@
 /*
  /exchanges
  */
-import { SecurityType } from "../../shared.interfaces";
 export enum ExchangeType {
     Stock = "stock",
     Etf = "etf",
@@ -72,7 +71,7 @@ export interface CryptocurrencyExchangesRequest {
     delimiter?: string;
 }
 
-export interface CryptocurrencyExchangeeResponse {
+export interface CryptocurrencyExchangesResponse {
     data: Array<{
         name: string;
     }>;

@@ -1,12 +1,4 @@
-import {
-    AssetClassType,
-    AtLeastOne,
-    DecimalPlaces,
-    Interval,
-    Meta,
-    ReqSortOrder,
-    ResponseFormat
-} from "../shared.interfaces";
+import { AssetClassType, AtLeastOne, DecimalPlaces, Interval, Meta, ReqSortOrder } from "../shared.interfaces";
 
 /**
  * /time_series endpoint request and response interfaces

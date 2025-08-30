@@ -2,14 +2,10 @@ import { EndpointBase } from "../../../defaults";
 import type { AxiosInstance } from "axios";
 import { Endpoints } from "../../endpoints";
 import {
-    CountriesRequest,
     CountriesResponse,
-    InstrumentTypeRequest,
     InstrumentTypeResponse,
-    TechnicalIndicatorsRequest,
     TechnicalIndicatorsResponse
 } from "./supportingMetadata.interfaces";
-import { globalTransformationManager } from "../../../serialization";
 
 export default class SupportingMetadata extends EndpointBase {
     constructor(apiClient: AxiosInstance) {

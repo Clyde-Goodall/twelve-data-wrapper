@@ -3,15 +3,15 @@ import assert from "node:assert";
 import nock from "nock";
 import { TwelveDataWrapper } from "../../src/twelveData";
 import {getDefaultConfig} from "../../src/defaults";
-import { 
-    ExchangesRequest, 
+import {
+    ExchangesRequest,
     ExchangesResponse,
     ExchangeScheduleRequest,
     ExchangeScheduleResponse,
     CryptocurrencyExchangesRequest,
-    CryptocurrencyExchangeeResponse,
+    CryptocurrencyExchangesResponse,
     MarketStateRequest,
-    MarketStateResponse
+    MarketStateResponse, ExchangeType
 } from "../../src/endpoints/reference/markets/markets.interfaces";
 import { Endpoints } from "../../src/endpoints/endpoints";
 import { SecurityType } from "../../src/endpoints/shared.interfaces";
@@ -40,7 +40,7 @@ describe('Markets API Endpoint response test', () => {
         };
         const exchangesRequestMockData: ExchangesRequest = {
             country: "United States",
-            type: SecurityType.Bond
+            type: ExchangeType.Stock
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
@@ -81,7 +81,7 @@ describe('Markets API Endpoint response test', () => {
     });
 
     it("Should return a valid CryptocurrencyExchangeeResponse object", async () => {
-        const cryptocurrencyExchangesResponseMockData: CryptocurrencyExchangeeResponse = {
+        const cryptocurrencyExchangesResponseMockData: CryptocurrencyExchangesResponse = {
             data: [{
                 name: "Binance"
             }, {

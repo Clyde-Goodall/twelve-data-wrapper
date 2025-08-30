@@ -1,10 +1,5 @@
 import type { AxiosInstance } from "axios";
 import { EndpointBase } from "../../defaults";
-import {
-    EarningsEstimateRequest,
-    EarningsEstimateResponse,
-    RevenueEstimateRequest, RevenueEstimateResponse
-} from "../analysis/analysis.interfaces";
 import { Endpoints } from "../endpoints";
 import {
     CurrencyConversionRequest,

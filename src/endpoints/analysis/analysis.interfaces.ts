@@ -1,7 +1,7 @@
 import { Meta } from "../shared.interfaces";
 
 /*
-    /earnings_estimate
+ /earnings_estimate
  */
 export interface EarningsEstimateRequest {
     symbol?: string;
@@ -28,8 +28,8 @@ export interface EarningsEstimateEntry {
 }
 
 /*
-    /revenue_estimate
-*/
+ /revenue_estimate
+ */
 export interface RevenueEstimateRequest {
     symbol?: string;
     figi?: string;
@@ -57,8 +57,8 @@ export interface RevenueEstimateEntry {
 }
 
 /*
-    /eps_trend
-*/
+ /eps_trend
+ */
 export interface EPSTrendRequest {
     symbol?: string;
     figi?: string;
@@ -84,8 +84,8 @@ export interface EPSTrendEntry {
 }
 
 /*
-    /eps_revisions
-*/
+ /eps_revisions
+ */
 export interface EPSRevisionsRequest {
     symbol?: string;
     figi?: string;
@@ -110,8 +110,8 @@ export interface EPSRevisionsEntry {
 }
 
 /*
-    /growth_estimates
-*/
+ /growth_estimates
+ */
 export interface GrowthEstimatesRequest {
     symbol?: string;
     figi?: string;
@@ -134,8 +134,8 @@ export interface GrowthEstimatesResponse {
 }
 
 /*
-    /recommendations
-*/
+ /recommendations
+ */
 export interface RecommendationsRequest {
     symbol?: string;
     figi?: string;
@@ -166,8 +166,8 @@ export interface BuySellRating {
 
 
 /*
-    /price_target
-*/
+ /price_target
+ */
 export interface PriceTargetRequest {
     symbol?: string;
     figi?: string;
@@ -186,12 +186,12 @@ export interface PriceTargetResponse {
         average: number;
         current: number;
         currency: string;
-    }
+    };
 }
 
 /*
-    /analyst_ratings/light
-*/
+ /analyst_ratings/light
+ */
 export interface AnalystRatingsSnapshotRequest {
     symbol?: string;
     figi?: string;
@@ -215,8 +215,8 @@ export interface RatingsSnapshotEntry {
 }
 
 /*
-    /analyst_ratings/us_equities
-*/
+ /analyst_ratings/us_equities
+ */
 export interface AnalystRatingsUSEquitiesRequest {
     symbol?: string;
     figi?: string;
@@ -225,7 +225,6 @@ export interface AnalystRatingsUSEquitiesRequest {
     exchange?: string;
     country?: string;
 }
-
 
 
 export interface AnalystRatingsUSEquitiesResponse {

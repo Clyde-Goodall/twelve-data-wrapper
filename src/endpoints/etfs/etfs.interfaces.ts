@@ -1,7 +1,6 @@
-
 /*
-* /etfs/list
-* */
+ * /etfs/list
+ * */
 export interface EtfsDirectoryRequest {
     symbol?: string;
     figi?: string;
@@ -46,8 +45,8 @@ export interface EtfFullDataResponse {
 
 
 /*
-* /etfs/world
-* */
+ * /etfs/world
+ * */
 export interface EtfData {
     summary: EtfSummary;
     performance: EtfPerformance;

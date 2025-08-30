@@ -30,14 +30,14 @@ export default class Currencies extends EndpointBase {
 
 function registerCurrencyConversionTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.CurrencyConversion, {
-        dateTimeFields: ['timestamp'],
-        dateFields: ['date'],
+        dateTimeFields: ["timestamp"],
+        dateFields: ["date"],
     });
 }
 
 function registerExchangeRateTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.ExchangeRate, {
-        dateTimeFields: ['timestamp'],
-        dateFields: ['date'],
+        dateTimeFields: ["timestamp"],
+        dateFields: ["date"],
     });
 }

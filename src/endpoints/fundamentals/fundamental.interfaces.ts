@@ -21,8 +21,8 @@ export interface LogoResponse {
 }
 
 /*
-    /profile
-*/
+ /profile
+ */
 export interface ProfileRequest {
     symbol?: string;
     figi?: string;
@@ -54,8 +54,8 @@ export interface ProfileResponse {
 }
 
 /*
-    /dividends
-*/
+ /dividends
+ */
 export interface DividendsRequest {
     symbol?: string;
     figi?: string;
@@ -79,7 +79,7 @@ export interface DividendsResponse {
         micCode: string;
         exchangeTimezone: string;
     };
-    dividends?: Array<DividendEntry>
+    dividends?: Array<DividendEntry>;
 }
 
 export interface DividendEntry {
@@ -88,7 +88,7 @@ export interface DividendEntry {
 }
 
 /*
-    /dividends_calendar
+ /dividends_calendar
  */
 export interface DividendsCalendarRequest {
     symbol?: string;
@@ -105,7 +105,7 @@ export interface DividendsCalendarRequest {
 }
 
 export interface DividendsCalendarResponse {
-    dividends: Array<DividendCalendarEntry>
+    dividends: Array<DividendCalendarEntry>;
 }
 
 export interface DividendCalendarEntry {
@@ -117,7 +117,7 @@ export interface DividendCalendarEntry {
 }
 
 /*
-    /splits
+ /splits
  */
 export interface SplitsRequest {
     symbol?: string;
@@ -154,7 +154,7 @@ export interface SplitEntry {
 }
 
 /*
-    /splits_calendar
+ /splits_calendar
  */
 export interface SplitsCalendarRequest {
     symbol?: string;
@@ -186,8 +186,8 @@ export interface SplitCalendarEntry {
 }
 
 /*
-   /earnings
-*/
+ /earnings
+ */
 export interface EarningsRequest {
     symbol?: string;
     figi?: string;
@@ -197,9 +197,9 @@ export interface EarningsRequest {
     micCode?: string;
     country?: string;
     type?: SecurityType;
-    period?: 'latest' | 'next';
+    period?: "latest" | "next";
     outputSize?: number;
-    format?: 'JSON' | 'CSV';
+    format?: "JSON" | "CSV";
     delimiter?: string;
     dp?: number;
     startDate?: string;
@@ -228,13 +228,13 @@ export interface EarningEntry {
 }
 
 /*
-    /earnings_calendar
+ /earnings_calendar
  */
 export interface EarningsCalendarRequest {
     exchange?: string;
     micCode?: string;
     country?: string;
-    format?: 'JSON' | 'CSV';
+    format?: "JSON" | "CSV";
     delimiter?: string;
     dp?: number;
     startDate?: string;
@@ -244,13 +244,13 @@ export interface EarningsCalendarRequest {
 export interface EarningsCalendarResponse {
     earnings: {
         [key: string]: Array<EarningsCalendarEntry>;
-    }
+    };
 }
 
 export enum MarketHours {
-    PreMarket = 'Pre Market',
-    AfterHours = 'After Hours',
-    TimeNotSupplied = 'Time Not Supplied',
+    PreMarket = "Pre Market",
+    AfterHours = "After Hours",
+    TimeNotSupplied = "Time Not Supplied",
 }
 
 export interface EarningsCalendarEntry {
@@ -268,7 +268,7 @@ export interface EarningsCalendarEntry {
 }
 
 /*
-    /ipo_calendar
+ /ipo_calendar
  */
 
 export interface IPOCalendarRequest {
@@ -280,7 +280,7 @@ export interface IPOCalendarRequest {
 }
 
 export interface IPOCalendarResponse {
-    [key: string]: Array<IPOCalendarEntry>
+    [key: string]: Array<IPOCalendarEntry>;
 }
 
 export interface IPOCalendarEntry {
@@ -296,8 +296,8 @@ export interface IPOCalendarEntry {
 }
 
 /*
-    /statistics
-    So long lmaoooo
+ /statistics
+ So long lmaoooo
  */
 export interface StatisticsRequest {
     symbol?: string;
@@ -413,7 +413,7 @@ export interface StatisticsResponse {
 }
 
 /*
-    /income_statement
+ /income_statement
  */
 export interface IncomeStatementRequest {
     symbol?: string;
@@ -423,7 +423,7 @@ export interface IncomeStatementRequest {
     exchange?: string;
     micCode?: string;
     country?: string;
-    period?: 'annually' | 'quarterly';
+    period?: "annually" | "quarterly";
     startDate?: string;
     endDate?: string;
     outputSize?: number;
@@ -632,7 +632,7 @@ export interface SpecialIncomeCharges {
 }
 
 /*
-    /income_statement/consolidated
+ /income_statement/consolidated
  */
 export interface IncomeStatementConsolidatedRequest {
     symbol?: string;
@@ -642,7 +642,7 @@ export interface IncomeStatementConsolidatedRequest {
     exchange?: string;
     micCode?: string;
     country?: string;
-    period?: 'annually' | 'quarterly';
+    period?: "annually" | "quarterly";
     startDate?: string;
     endDate?: string;
     outputSize?: number;
@@ -674,8 +674,8 @@ export interface IncomeStatementConsolidatedResponse {
 }
 
 /*
-    /balance_sheet
-    oh my god they're so long lmao
+ /balance_sheet
+ oh my god they're so long lmao
  */
 export interface BalanceSheetRequest {
     symbol?: string;
@@ -685,7 +685,7 @@ export interface BalanceSheetRequest {
     exchange?: string;
     micCode?: string;
     country?: string;
-    period?: 'annually' | 'quarterly';
+    period?: "annually" | "quarterly";
     startDate?: string;
     endDate?: string;
     outputSize?: number;
@@ -790,8 +790,8 @@ export interface BalanceSheetResponse {
 }
 
 /*
-    /cash_flow
-*/
+ /cash_flow
+ */
 export interface CashFlowRequest {
     symbol?: string;
     figi?: string;
@@ -800,7 +800,7 @@ export interface CashFlowRequest {
     exchange?: string;
     micCode?: string;
     country?: string;
-    period?: 'annually' | 'quarterly';
+    period?: "annually" | "quarterly";
     startDate?: string;
     endDate?: string;
     outputSize?: number;
@@ -866,7 +866,7 @@ export interface CashFlowResponse {
 }
 
 /*
-    /cash_flow/consolidated
+ /cash_flow/consolidated
  */
 export interface CashFlowConsolidatedRequest {
     symbol?: string;
@@ -876,7 +876,7 @@ export interface CashFlowConsolidatedRequest {
     exchange?: string;
     micCode?: string;
     country?: string;
-    period?: 'annually' | 'quarterly';
+    period?: "annually" | "quarterly";
     startDate?: string;
     endDate?: string;
     outputSize?: number;
@@ -1042,8 +1042,8 @@ export interface CashFlowConsolidatedResponse {
 }
 
 /*
-    /market_cap
-*/
+ /market_cap
+ */
 export interface MarketCapRequest {
     symbol?: string;
     figi?: string;
@@ -1076,8 +1076,8 @@ export interface MarketCapResponse {
 }
 
 /*
-    /key_executives
-*/
+ /key_executives
+ */
 export interface KeyExecutivesRequest {
     symbol?: string;
     figi?: string;
@@ -1110,8 +1110,8 @@ export interface KeyExecutivesResponse {
 
 
 /*
-    /last_change
-*/
+ /last_change
+ */
 export interface LastChangeRequest {
     endpoint: LastChangeEndpoint;
     startDate?: string;
@@ -1123,34 +1123,34 @@ export interface LastChangeRequest {
     outputSize?: number;
 }
 
-export enum LastChangeEndpoint{
-    PriceTarget = 'price_target',
-    Recommendations = 'recommendations',
-    Statistics = 'statistics',
-    InsiderTransactions = 'insider_transactions',
-    Profile = 'profile',
-    MutualFundsWorldSummary = 'mutual_funds_world_summary',
-    MutualFundsWorld = 'mutual_funds_world',
-    InstitutionalHolders = 'institutional_holders',
-    AnalystRating = 'analyst_rating',
-    IncomeStatement = 'income_statement',
-    IncomeStatementQuarterly = 'income_statement_quarterly',
-    CashFlow = 'cash_flow',
-    CashFlowQuarterly = 'cash_flow_quarterly',
-    BalanceSheet = 'balance_sheet',
-    BalanceSheetQuarterly = 'balance_sheet_quarterly',
-    MutualFundsList = 'mutual_funds_list',
-    MutualFundsWorldSustainability = 'mutual_funds_world_sustainability',
-    MutualFundsWorldRisk = 'mutual_funds_world_risk',
-    MutualFundsWorldPurchaseInfo = 'mutual_funds_world_purchase_info',
-    MutualFundsWorldComposition = 'mutual_funds_world_composition',
-    MutualFundsWorldPerformance = 'mutual_funds_world_performance',
-    EtfsList = 'etfs_list',
-    EtfsWorld = 'etfs_world',
-    EtfsWorldSummary = 'etfs_world_summary',
-    EtfsWorldPerformance = 'etfs_world_performance',
-    EtfsWorldRisk = 'etfs_world_risk',
-    EtfsWorldComposition = 'etfs_world_composition'
+export enum LastChangeEndpoint {
+    PriceTarget = "price_target",
+    Recommendations = "recommendations",
+    Statistics = "statistics",
+    InsiderTransactions = "insider_transactions",
+    Profile = "profile",
+    MutualFundsWorldSummary = "mutual_funds_world_summary",
+    MutualFundsWorld = "mutual_funds_world",
+    InstitutionalHolders = "institutional_holders",
+    AnalystRating = "analyst_rating",
+    IncomeStatement = "income_statement",
+    IncomeStatementQuarterly = "income_statement_quarterly",
+    CashFlow = "cash_flow",
+    CashFlowQuarterly = "cash_flow_quarterly",
+    BalanceSheet = "balance_sheet",
+    BalanceSheetQuarterly = "balance_sheet_quarterly",
+    MutualFundsList = "mutual_funds_list",
+    MutualFundsWorldSustainability = "mutual_funds_world_sustainability",
+    MutualFundsWorldRisk = "mutual_funds_world_risk",
+    MutualFundsWorldPurchaseInfo = "mutual_funds_world_purchase_info",
+    MutualFundsWorldComposition = "mutual_funds_world_composition",
+    MutualFundsWorldPerformance = "mutual_funds_world_performance",
+    EtfsList = "etfs_list",
+    EtfsWorld = "etfs_world",
+    EtfsWorldSummary = "etfs_world_summary",
+    EtfsWorldPerformance = "etfs_world_performance",
+    EtfsWorldRisk = "etfs_world_risk",
+    EtfsWorldComposition = "etfs_world_composition"
 }
 
 export interface LastChangeResponse {

@@ -166,7 +166,7 @@ export default class Fundamentals extends EndpointBase {
     }
 
     async getLastChange(requestConfig: LastChangeRequest): Promise<LastChangeResponse> {
-        const joinedUri = `${Endpoints.LastChanges}/${requestConfig.endpoint}`
+        const joinedUri = `${Endpoints.LastChanges}/${requestConfig.endpoint}`;
         const params = this.constructUrlParams(requestConfig, joinedUri);
         return this.request<LastChangeResponse>(joinedUri, params);
     }
@@ -175,11 +175,11 @@ export default class Fundamentals extends EndpointBase {
 function registerStatisticsTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.Statistics, {
         responseMappings: {
-            'avg_10_volume': 'avgTenVolume',
-            'avg_90_volume': 'avgNinetyVolume',
-            'day_50_ma': 'dayFiftyMa',
-            'day_200_ma': 'dayTwoHundredMa',
-            '5_year_average_dividend_yield': 'fiveYearAverageDividendYield'
+            "avg_10_volume": "avgTenVolume",
+            "avg_90_volume": "avgNinetyVolume",
+            "day_50_ma": "dayFiftyMa",
+            "day_200_ma": "dayTwoHundredMa",
+            "5_year_average_dividend_yield": "fiveYearAverageDividendYield"
         },
     });
 }

@@ -5,9 +5,9 @@ import { ERROR_MESSAGES } from "../endpoints/shared.interfaces";
 
 export function getDefaultConfig(): TwelveDataConfig {
     return {
-        apiKey: 'demo',
+        apiKey: "demo",
         debugMode: false,
-        baseUrl: 'https://api.twelvedata.com',
+        baseUrl: "https://api.twelvedata.com",
         timeout: 30000,
         retryCount: 1,
         retryWaitTime: 1000
@@ -19,7 +19,7 @@ type UrlParams = Record<string, string | number | boolean | undefined> | {} | un
 export interface TwelveDataApiError {
     code: number;
     message: string;
-    status: 'error';
+    status: "error";
 }
 
 export class TwelveDataError extends Error {
@@ -28,7 +28,7 @@ export class TwelveDataError extends Error {
 
     constructor(apiError: TwelveDataApiError) {
         super(apiError.message);
-        this.name = 'TwelveDataError';
+        this.name = "TwelveDataError";
         this.code = apiError.code;
         this.status = apiError.status;
     }
@@ -36,13 +36,14 @@ export class TwelveDataError extends Error {
 
 export abstract class EndpointBase {
     private readonly apiClient: AxiosInstance;
+
     protected constructor(apiClient: AxiosInstance) {
         this.apiClient = apiClient;
     }
 
     protected constructUrlParams(params: UrlParams, endpoint?: string): string {
         if (!params) {
-            return '';
+            return "";
         }
 
         // Transform the params object using endpoint-specific configuration
@@ -57,7 +58,7 @@ export abstract class EndpointBase {
             }
         }
         const paramString = urlParams.toString();
-        return paramString ? `?${paramString}` : '';
+        return paramString ? `?${paramString}` : "";
     }
 
     protected async request<T>(endpoint: string, params: string): Promise<T> {
@@ -68,7 +69,7 @@ export abstract class EndpointBase {
 
             // Check if the response is an API error (even with 200 status)
             const data = response.data as any;
-            if (data && typeof data === 'object' && data.status === 'error') {
+            if (data && typeof data === "object" && data.status === "error") {
                 throw new TwelveDataError(data as TwelveDataApiError);
             }
 
@@ -82,7 +83,7 @@ export abstract class EndpointBase {
             // Handle AxiosError with API error response
             if (error instanceof AxiosError && error.response?.data) {
                 const apiError = error.response.data as any;
-                if (apiError && typeof apiError === 'object' && apiError.status === 'error') {
+                if (apiError && typeof apiError === "object" && apiError.status === "error") {
                     throw new TwelveDataError(apiError as TwelveDataApiError);
                 }
             }
@@ -95,9 +96,9 @@ export abstract class EndpointBase {
     protected async requestWithFormat<TResponse>(
         endpoint: string,
         params: string,
-        format?: 'json' | 'csv'
+        format?: "json" | "csv"
     ): Promise<TResponse | string> {
-        if (format === 'csv') {
+        if (format === "csv") {
             return this.request<string>(endpoint, params);
         }
         return this.request<TResponse>(endpoint, params);
@@ -107,7 +108,7 @@ export abstract class EndpointBase {
         return keys.some(key => obj[key] !== undefined);
     }
 
-    protected validateRequiredIdentifiers<Type>(obj: Type, keys: (keyof Type)[] = ['symbol', 'figi', 'isin', 'cusip'] as (keyof Type)[]): void {
+    protected validateRequiredIdentifiers<Type>(obj: Type, keys: (keyof Type)[] = ["symbol", "figi", "isin", "cusip"] as (keyof Type)[]): void {
         if (!this.atLeastOneOf(obj, keys)) {
             throw new Error(ERROR_MESSAGES.AT_LEAST_ONE_IDENTIFIER_REQUIRED);
         }

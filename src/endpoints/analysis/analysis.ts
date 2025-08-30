@@ -28,7 +28,7 @@ export default class Analysis extends EndpointBase {
         super(apiClient);
         registerEPSTrendEstimateTransformations();
         registerEPSRevisionsEstimateTransformations();
-        registerRecommendationsTransformations()
+        registerRecommendationsTransformations();
         registerRevenueEstimateTransformations();
         registerEarningsEstimateTransformations();
         registerAnalystRatingsSnapshotTransformations();
@@ -77,21 +77,21 @@ export default class Analysis extends EndpointBase {
         const params = this.constructUrlParams(requestConfig, Endpoints.Recommendations);
         return this.request<RecommendationsResponse>(Endpoints.Recommendations, params);
     }
-    
+
     async getPriceTarget(requestConfig: PriceTargetRequest): Promise<PriceTargetResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.PriceTarget);
         return this.request<PriceTargetResponse>(Endpoints.PriceTarget, params);
     }
-    
+
     async getAnalystRatingsSnapshot(requestConfig: AnalystRatingsSnapshotRequest): Promise<AnalystRatingsSnapshotResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.AnalystRatingsSnapshot);
         return this.request<AnalystRatingsSnapshotResponse>(Endpoints.AnalystRatingsSnapshot, params);
     }
-    
+
     async getAnalystRatingsUsEquities(requestConfig: AnalystRatingsUSEquitiesRequest): Promise<AnalystRatingsUSEquitiesResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
@@ -102,46 +102,46 @@ export default class Analysis extends EndpointBase {
 
 function registerEarningsEstimateTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.EarningsEstimate, {
-        dateFields: ['date'],
+        dateFields: ["date"],
     });
 }
 
 function registerRevenueEstimateTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.RevenueEstimate, {
-        dateFields: ['date'],
+        dateFields: ["date"],
     });
 }
 
 function registerRecommendationsTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.Recommendations, {
         responseMappings: {
-            '2_months_ago': 'twoMonthsAgo',
-            '3_months_ago': 'threeMonthsAgo',
+            "2_months_ago": "twoMonthsAgo",
+            "3_months_ago": "threeMonthsAgo",
         },
-        dateFields: ['date'],
+        dateFields: ["date"],
     });
 }
 
 function registerEPSTrendEstimateTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.EpsTrend, {
-        dateFields: ['date'],
+        dateFields: ["date"],
     });
 }
 
 function registerEPSRevisionsEstimateTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.EpsRevisions, {
-        dateFields: ['date'],
+        dateFields: ["date"],
     });
 }
 
 function registerAnalystRatingsSnapshotTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.AnalystRatingsSnapshot, {
-        dateFields: ['date'],
+        dateFields: ["date"],
     });
 }
 
 function registerAnalystRatingsUSEquitiesTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.AnalystRatingsUsEquities, {
-        dateFields: ['date'],
+        dateFields: ["date"],
     });
 }

@@ -6,6 +6,7 @@ export enum ExchangeType {
     Etf = "etf",
     Index = "index",
 }
+
 export interface ExchangesRequest {
     type?: ExchangeType;
     name?: string;
@@ -33,7 +34,7 @@ export interface ExchangesResponse {
 }
 
 /*
-    /exchange_schedule
+ /exchange_schedule
  */
 
 export interface ExchangeScheduleRequest {
@@ -64,7 +65,7 @@ export interface ExchangeScheduleResponse {
 }
 
 /*
-    /cryptocurrency_exchanges
+ /cryptocurrency_exchanges
  */
 export interface CryptocurrencyExchangesRequest {
     format?: "JSON" | "CSV";
@@ -78,7 +79,7 @@ export interface CryptocurrencyExchangesResponse {
 }
 
 /*
-    /market_state
+ /market_state
  */
 export interface MarketStateRequest {
     exchange?: string;
@@ -96,4 +97,5 @@ export interface MarketStateData {
     timeToClose: string;
 }
 
-export interface MarketStateResponse extends Array<MarketStateData> { }
+export interface MarketStateResponse extends Array<MarketStateData> {
+}

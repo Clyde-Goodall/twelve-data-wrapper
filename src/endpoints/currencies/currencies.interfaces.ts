@@ -1,10 +1,10 @@
 /*
-* /exchange_rate
-*/
+ * /exchange_rate
+ */
 export interface ExchangeRateRequest {
     symbol: string;
     date?: string;
-    format?: 'JSON' | 'CSV';
+    format?: "JSON" | "CSV";
     delimiter?: string;
     dp?: number;
     timezone?: string;
@@ -17,13 +17,13 @@ export interface ExchangeRateResponse {
 }
 
 /*
-* /currency_conversion
-*/
+ * /currency_conversion
+ */
 export interface CurrencyConversionRequest {
     symbol: string;
     amount: number;
     date?: string;
-    format?: 'JSON' | 'CSV';
+    format?: "JSON" | "CSV";
     delimiter?: string;
     dp?: number;
     timezone?: string;

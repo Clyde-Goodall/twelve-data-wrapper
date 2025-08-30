@@ -28,7 +28,7 @@ export interface SymbolSearchResponse {
 }
 
 /*
-    /cross_listings
+ /cross_listings
  */
 
 export interface CrossListingsRequest {
@@ -53,9 +53,9 @@ export interface CrossListingsResponse {
 }
 
 /*
-    /earliest_timestamp
+ /earliest_timestamp
  */
-export interface EarliestTimestampRequest{
+export interface EarliestTimestampRequest {
     symbol?: string;
     figi?: string;
     isin?: string;

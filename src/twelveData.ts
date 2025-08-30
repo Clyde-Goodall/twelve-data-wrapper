@@ -14,7 +14,6 @@ import { buildApiClient } from "./apiClient";
 
 
 export class TwelveDataWrapper extends EndpointBase {
-    private readonly config: TwelveDataConfig;
     public readonly advanced: Advanced;
     public readonly analysis: Analysis;
     public readonly core: Core;
@@ -25,6 +24,7 @@ export class TwelveDataWrapper extends EndpointBase {
     public readonly reference: Reference;
     public readonly regulatory: Regulatory;
     public readonly technicalIndicators: TechnicalIndicators;
+    private readonly config: TwelveDataConfig;
 
     constructor(config?: TwelveDataConfig) {
 
@@ -36,7 +36,7 @@ export class TwelveDataWrapper extends EndpointBase {
             timeout: config?.timeout ?? configDefaults.timeout,
             retryCount: config?.retryCount ?? configDefaults.retryCount,
             retryWaitTime: config?.retryWaitTime ?? configDefaults.retryWaitTime
-        }
+        };
 
         const apiClient = buildApiClient(fullConfig);
 

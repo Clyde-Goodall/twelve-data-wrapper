@@ -1,6 +1,7 @@
 import { AxiosError, AxiosInstance } from "axios";
 import { globalTransformationManager } from "../serialization";
 import { TwelveDataConfig } from "../twelveData.interfaces";
+import { ERROR_MESSAGES } from "../endpoints/shared.interfaces";
 
 export function getDefaultConfig(): TwelveDataConfig {
     return {
@@ -104,5 +105,23 @@ export abstract class EndpointBase {
 
     protected atLeastOneOf<Type>(obj: Type, keys: (keyof Type)[]): boolean {
         return keys.some(key => obj[key] !== undefined);
+    }
+
+    protected validateRequiredIdentifiers<Type>(obj: Type, keys: (keyof Type)[] = ['symbol', 'figi', 'isin', 'cusip'] as (keyof Type)[]): void {
+        if (!this.atLeastOneOf(obj, keys)) {
+            throw new Error(ERROR_MESSAGES.AT_LEAST_ONE_IDENTIFIER_REQUIRED);
+        }
+    }
+
+    protected validateInterval<Type extends { interval?: any }>(obj: Type): void {
+        if (!obj.interval) {
+            throw new Error(ERROR_MESSAGES.INTERVAL_REQUIRED);
+        }
+    }
+
+    protected validateBase<Type extends { base?: any }>(obj: Type): void {
+        if (!obj.base) {
+            throw new Error(ERROR_MESSAGES.BASE_REQUIRED);
+        }
     }
 }

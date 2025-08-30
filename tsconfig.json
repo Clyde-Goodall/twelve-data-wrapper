@@ -3,7 +3,7 @@
       "target": "ESNext",
       "module": "NodeNext",
 
-      "lib": ["ESNext", "dom"],
+      "lib": ["ESNext"],
       "moduleResolution": "NodeNext",
       "allowJs": true,
       "outDir": "dist",

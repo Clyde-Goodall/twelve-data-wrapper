@@ -28,6 +28,6 @@ export function buildApiClient(config?: TwelveDataConfig): AxiosInstance {
         const endpoint = response.config.url?.split('?')[0]!;
         response.data = globalTransformationManager.transformResponseForEndpoint(response.data, endpoint);
         return response;
-    })
+    });
     return client;
 }

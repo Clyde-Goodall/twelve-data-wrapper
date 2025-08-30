@@ -1,7 +1,7 @@
 {
   "name": "twelve-data-wrapper",
   "version": "1.0.0",
-  "description": "Typescript TwelveData API wrapper",
+  "description": "TypeScript TwelveData API wrapper",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "bundle": "tsup ./src",
@@ -18,12 +18,12 @@
     "man": "./man"
   },
   "engines": {
-    "node": ""
+    "node": ">=16.0.0"
   },
   "keywords": [
     "API",
-    "Tyescript",
-    "Javascript",
+    "TypeScript",
+    "JavaScript",
     "API",
     "Wrapper",
     "TwelveData",
@@ -43,7 +43,7 @@
   "contributors": [
     {
       "name": "Jonathan Hill",
-      "email": ""
+      "email": "jonathanhill585@gmail.com"
     }
   ],
   "devDependencies": {

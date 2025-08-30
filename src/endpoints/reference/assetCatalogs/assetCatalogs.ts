@@ -31,8 +31,8 @@ export default class AssetCatalogs extends EndpointBase {
     }
 
     async getEtfs(requestConfig?: ETFsRequest): Promise<ETFsResponse> {
-        if (requestConfig && !this.atLeastOneOf(requestConfig, ["symbol", "figi", "isin", "cusip"])) {
-            throw new Error('At least one of symbol, figi, isin or cusip is required');
+        if (requestConfig) {
+            this.validateRequiredIdentifiers(requestConfig);
         }
 
         const params = this.constructUrlParams(requestConfig, Endpoints.ETFs);

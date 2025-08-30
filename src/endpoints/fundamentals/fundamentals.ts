@@ -41,7 +41,22 @@ import { AxiosInstance } from "axios";
 import { Endpoints } from "../endpoints";
 import { globalTransformationManager } from "../../serialization";
 
-
+/*
+* TODO: insert a check for at least one identifier for these endpoints:
+*  /income_statement/consolidated
+*  /balance_sheet
+*  /cash_flow
+*  /market_cap
+*  /key_executives
+*  /profile
+*  /dividends
+*  /dividends_calendar
+*  /splits
+*  /splits_calendar
+*  /earnings
+*  /statistics
+*  /income_statement
+* */
 export default class Fundamentals extends EndpointBase {
     constructor(apiClient: AxiosInstance) {
         super(apiClient);

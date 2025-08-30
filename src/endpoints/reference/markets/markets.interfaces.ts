@@ -12,7 +12,6 @@ export interface ExchangesRequest {
     name?: string;
     code?: string;
     country?: string;
-    format?: "JSON" | "CSV";
     delimiter?: string;
     showPlan?: boolean;
 }
@@ -68,7 +67,6 @@ export interface ExchangeScheduleResponse {
  /cryptocurrency_exchanges
  */
 export interface CryptocurrencyExchangesRequest {
-    format?: "JSON" | "CSV";
     delimiter?: string;
 }
 

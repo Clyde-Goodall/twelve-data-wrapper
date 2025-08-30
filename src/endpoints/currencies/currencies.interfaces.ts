@@ -4,7 +4,6 @@
 export interface ExchangeRateRequest {
     symbol: string;
     date?: string;
-    format?: "JSON" | "CSV";
     delimiter?: string;
     dp?: number;
     timezone?: string;
@@ -23,7 +22,6 @@ export interface CurrencyConversionRequest {
     symbol: string;
     amount: number;
     date?: string;
-    format?: "JSON" | "CSV";
     delimiter?: string;
     dp?: number;
     timezone?: string;

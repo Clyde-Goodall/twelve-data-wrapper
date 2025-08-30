@@ -1,4 +1,4 @@
-import { AssetClassType, AtLeastOne, DecimalPlaces, Interval, Meta, ReqSortOrder } from "../shared.interfaces";
+import { AssetClassType, DecimalPlaces, Interval, Meta, ReqSortOrder } from "../shared.interfaces";
 
 /**
  * /time_series endpoint request and response interfaces
@@ -127,7 +127,7 @@ export interface TimeSeriesCrossResponse {
 /**
  * /quote endpoint request and response interfaces
  */
-interface QuoteRequestBase {
+export interface QuoteRequest {
     // Symbol of the asset (e.g. "AAPL", "BTC/USD")
     symbol?: string;
     // Financial Instrument Global Identifier
@@ -161,8 +161,6 @@ interface QuoteRequestBase {
     // Timezone for the response (e.g. "America/New_York", "UTC"). Defaults to "Exchange"
     timezone?: string;
 }
-
-export type QuoteRequest = AtLeastOne<QuoteRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface QuoteResponse {
     symbol: string;
@@ -201,7 +199,7 @@ export interface QuoteResponse {
     extendedTimestamp?: string;
 }
 
-interface LatestPriceRequestBase {
+export interface LatestPriceRequest {
     // Symbol of the asset (e.g. "AAPL", "BTC/USD")
     symbol?: string;
     // Financial Instrument Global Identifier
@@ -226,13 +224,11 @@ interface LatestPriceRequestBase {
     dp?: DecimalPlaces;
 }
 
-export type LatestPriceRequest = AtLeastOne<LatestPriceRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
-
 export interface LatestPriceResponse {
     price: string;
 }
 
-interface EndOfDayPriceRequestBase {
+export interface EndOfDayPriceRequest {
     // Symbol of the asset (e.g. "AAPL", "BTC/USD")
     symbol?: string;
     // Financial Instrument Global Identifier
@@ -256,8 +252,6 @@ interface EndOfDayPriceRequestBase {
     // Number of decimal places for float values. Supports 0-11, default is 5
     dp?: DecimalPlaces;
 }
-
-export type EndOfDayPriceRequest = AtLeastOne<EndOfDayPriceRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface EndOfDayPriceResponse {
     symbol: string;

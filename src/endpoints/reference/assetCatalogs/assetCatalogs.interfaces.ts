@@ -2,7 +2,7 @@
  /stocks
  */
 
-import { AtLeastOne, SecurityType } from "../../shared.interfaces";
+import { SecurityType } from "../../shared.interfaces";
 
 export interface StocksRequest {
     symbol?: string;
@@ -90,7 +90,7 @@ export interface CryptocurrencyPairsResponse {
 /*
     /etfs
  */
-interface ETFsRequestBase {
+export interface ETFsRequest {
     symbol?: string;
     figi?: string;
     isin?: string;
@@ -103,8 +103,6 @@ interface ETFsRequestBase {
     showPlan?: boolean;
     includeDelisted?: boolean;
 }
-
-export type ETFsRequest = AtLeastOne<ETFsRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
 export interface ETFEntry {
     symbol: string;

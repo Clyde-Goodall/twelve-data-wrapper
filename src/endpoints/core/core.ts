@@ -28,6 +28,7 @@ export default class Core extends EndpointBase {
         registerEndOfDayPriceTransformations();
     }
 
+    // todo: runtime atleastone for 'symbol' | 'figi' | 'isin' | 'cusip'
     async getTimeSeries(req: TimeSeriesRequest, format: 'csv'): Promise<string>;
     async getTimeSeries(req: TimeSeriesRequest, format?: 'json'): Promise<TimeSeriesResponse>;
     async getTimeSeries(req: TimeSeriesRequest, format?: 'json' | 'csv'): Promise<TimeSeriesResponse | string> {
@@ -58,6 +59,7 @@ export default class Core extends EndpointBase {
         return this.requestWithFormat(Endpoints.TimeSeriesCross, params, format);
     }
 
+    // TODO: runtime atleastone for 'symbol' | 'figi' | 'isin' | 'cusip'
     async getQuote(req: QuoteRequest, format: 'csv'): Promise<string>;
     async getQuote(req: QuoteRequest, format?: 'json'): Promise<QuoteResponse>;
     async getQuote(req: QuoteRequest, format?: 'json' | 'csv'): Promise<QuoteResponse | string> {
@@ -65,6 +67,7 @@ export default class Core extends EndpointBase {
         return this.requestWithFormat(Endpoints.Quote, params, format);
     }
 
+    // TODO: runtime atleastone for 'symbol' | 'figi' | 'isin' | 'cusip'
     async getLatestPrice(req: LatestPriceRequest, format: 'csv'): Promise<string>;
     async getLatestPrice(req: LatestPriceRequest, format?: 'json'): Promise<LatestPriceResponse>;
     async getLatestPrice(req: LatestPriceRequest, format?: 'json' | 'csv'): Promise<LatestPriceResponse | string> {
@@ -72,6 +75,7 @@ export default class Core extends EndpointBase {
         return this.requestWithFormat(Endpoints.LatestPrice, params, format);
     }
 
+    // TODO: runtime atleastone for 'symbol' | 'figi' | 'isin' | 'cusip'
     async getEndOfDayPrice(req: EndOfDayPriceRequest): Promise<EndOfDayPriceResponse> {
         const params: string = this.constructUrlParams(req, Endpoints.EndOfDayPrice);
         return this.request<EndOfDayPriceResponse>(Endpoints.EndOfDayPrice, params);

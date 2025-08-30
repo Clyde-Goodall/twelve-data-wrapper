@@ -1,6 +1,5 @@
-
 /*
-    /stocks
+ /stocks
  */
 
 import { AtLeastOne, SecurityType } from "../../shared.interfaces";

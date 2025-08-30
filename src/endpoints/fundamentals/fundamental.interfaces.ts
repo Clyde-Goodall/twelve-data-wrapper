@@ -1,6 +1,6 @@
 /*
-    /logo
-*/
+ /logo
+ */
 import { AtLeastOne, SecurityType, TimeRange } from "../shared.interfaces";
 
 export interface LogoRequest {
@@ -47,7 +47,7 @@ export interface ProfileResponse {
     type: string;
     CEO: string;
     address: string;
-    address2: string;
+    addressTwo: string;
     city: string;
     zip: string;
     state: string;
@@ -181,7 +181,6 @@ interface SplitsCalendarRequestBase {
 
 export type SplitsCalendarRequest = AtLeastOne<SplitsCalendarRequestBase, 'symbol' | 'figi' | 'isin' | 'cusip'>;
 
-
 export interface SplitsCalendarResponse {
     splits: Array<SplitCalendarEntry>;
 }
@@ -286,9 +285,9 @@ export interface EarningsCalendarEntry {
  */
 
 export interface IPOCalendarRequest {
-    exchange: string;
+    exchange?: string;
     micCode?: string;
-    country: string;
+    country?: string;
     startDate?: string;
     endDate?: string;
 }
@@ -1134,4 +1133,63 @@ export interface KeyExecutivesResponse {
         exchangeTimezone: string;
     };
     keyExecutives: Array<KeyExecutiveEntry>;
+}
+
+
+/*
+    /last_change
+*/
+export interface LastChangeRequest {
+    endpoint: LastChangeEndpoint;
+    startDate?: string;
+    symbol?: string;
+    exchange?: string;
+    micCode?: string;
+    country?: string;
+    page?: number;
+    outputSize?: number;
+}
+
+export enum LastChangeEndpoint{
+    PriceTarget = 'price_target',
+    Recommendations = 'recommendations',
+    Statistics = 'statistics',
+    InsiderTransactions = 'insider_transactions',
+    Profile = 'profile',
+    MutualFundsWorldSummary = 'mutual_funds_world_summary',
+    MutualFundsWorld = 'mutual_funds_world',
+    InstitutionalHolders = 'institutional_holders',
+    AnalystRating = 'analyst_rating',
+    IncomeStatement = 'income_statement',
+    IncomeStatementQuarterly = 'income_statement_quarterly',
+    CashFlow = 'cash_flow',
+    CashFlowQuarterly = 'cash_flow_quarterly',
+    BalanceSheet = 'balance_sheet',
+    BalanceSheetQuarterly = 'balance_sheet_quarterly',
+    MutualFundsList = 'mutual_funds_list',
+    MutualFundsWorldSustainability = 'mutual_funds_world_sustainability',
+    MutualFundsWorldRisk = 'mutual_funds_world_risk',
+    MutualFundsWorldPurchaseInfo = 'mutual_funds_world_purchase_info',
+    MutualFundsWorldComposition = 'mutual_funds_world_composition',
+    MutualFundsWorldPerformance = 'mutual_funds_world_performance',
+    EtfsList = 'etfs_list',
+    EtfsWorld = 'etfs_world',
+    EtfsWorldSummary = 'etfs_world_summary',
+    EtfsWorldPerformance = 'etfs_world_performance',
+    EtfsWorldRisk = 'etfs_world_risk',
+    EtfsWorldComposition = 'etfs_world_composition'
+}
+
+export interface LastChangeResponse {
+    pagination: {
+        currentPage: number;
+        perPage: number;
+    };
+    data: Array<LastChangeEntry>;
+}
+
+export interface LastChangeEntry {
+    symbol: string;
+    micCode: string;
+    lastChange: string;
 }

@@ -1,7 +1,7 @@
 import {afterEach, beforeEach, describe, it} from "node:test";
 import assert from "node:assert";
 import nock from "nock";
-import TwelveDataWrapper from "../src/twelveData";
+import { TwelveDataWrapper } from "../src/twelveData";
 import {getDefaultConfig} from "../src/defaults";
 import {
     LogoRequest,
@@ -69,10 +69,10 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`${Endpoints.Logo}?apikey=demo`)
+            .get(`${Endpoints.Logo}?symbol=AAPL&exchange=NASDAQ&mic_code=XNGS&country=US&apikey=demo`)
             .reply(200, logoResponseMockData);
 
-        const result = await client.fundamentals.logo(logoRequestMockData);
+        const result = await client.fundamentals.getLogo(logoRequestMockData);
         assert.deepEqual(result, logoResponseMockData)
     });
 
@@ -90,7 +90,7 @@ describe('Fundamentals API Endpoint response test', () => {
             type: "Common Stock",
             CEO: "Tim Cook",
             address: "One Apple Park Way",
-            address2: "",
+            addressTwo: "",
             city: "Cupertino",
             zip: "95014",
             state: "CA",
@@ -105,10 +105,10 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`${Endpoints.Profile}?apikey=demo`)
+            .get(`${Endpoints.Profile}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`)
             .reply(200, profileResponseMockData);
 
-        const result = await client.fundamentals.profile(profileRequestMockData);
+        const result = await client.fundamentals.getProfile(profileRequestMockData);
         assert.deepEqual(result, profileResponseMockData)
     });
 
@@ -128,16 +128,15 @@ describe('Fundamentals API Endpoint response test', () => {
             }]
         };
         const dividendsRequestMockData: DividendsRequest = {
-            meta: {},
             symbol: "AAPL",
             adjust: true
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`${Endpoints.Dividends}?apikey=demo`)
+            .get(`${Endpoints.Dividends}?symbol=AAPL&adjust=true&apikey=demo`)
             .reply(200, dividendsResponseMockData);
 
-        const result = await client.fundamentals.dividends(dividendsRequestMockData);
+        const result = await client.fundamentals.getDividends(dividendsRequestMockData);
         assert.deepEqual(result, dividendsResponseMockData)
     });
 
@@ -152,15 +151,16 @@ describe('Fundamentals API Endpoint response test', () => {
             }]
         };
         const dividendsCalendarRequestMockData: DividendsCalendarRequest = {
+            symbol: "AAPL",
             startDate: "2023-01-01",
             endDate: "2023-12-31"
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`${Endpoints.DividendsCalendar}?apikey=demo`)
+            .get(`${Endpoints.DividendsCalendar}?symbol=AAPL&start_date=2023-01-01&end_date=2023-12-31&apikey=demo`)
             .reply(200, dividendsCalendarResponseMockData);
 
-        const result = await client.fundamentals.dividendsCalendar(dividendsCalendarRequestMockData);
+        const result = await client.fundamentals.getDividendsCalendar(dividendsCalendarRequestMockData);
         assert.deepEqual(result, dividendsCalendarResponseMockData)
     });
 
@@ -188,10 +188,10 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`${Endpoints.Splits}?apikey=demo`)
+            .get(`${Endpoints.Splits}?symbol=AAPL&range=full&apikey=demo`)
             .reply(200, splitsResponseMockData);
 
-        const result = await client.fundamentals.splits(splitsRequestMockData);
+        const result = await client.fundamentals.getSplits(splitsRequestMockData);
         assert.deepEqual(result, splitsResponseMockData)
     });
 
@@ -209,15 +209,16 @@ describe('Fundamentals API Endpoint response test', () => {
             }]
         };
         const splitsCalendarRequestMockData: SplitsCalendarRequest = {
+            symbol: "AAPL",
             startDate: "2020-01-01",
             endDate: "2020-12-31"
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`${Endpoints.SplitsCalendar}?apikey=demo`)
+            .get(`${Endpoints.SplitsCalendar}?symbol=AAPL&start_date=2020-01-01&end_date=2020-12-31&apikey=demo`)
             .reply(200, splitsCalendarResponseMockData);
 
-        const result = await client.fundamentals.splitsCalendar(splitsCalendarRequestMockData);
+        const result = await client.fundamentals.getSplitsCalendar(splitsCalendarRequestMockData);
         assert.deepEqual(result, splitsCalendarResponseMockData)
     });
 
@@ -246,10 +247,10 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`${Endpoints.Earnings}?apikey=demo`)
+            .get(`${Endpoints.Earnings}?symbol=AAPL&period=latest&apikey=demo`)
             .reply(200, earningsResponseMockData);
 
-        const result = await client.fundamentals.earnings(earningsRequestMockData);
+        const result = await client.fundamentals.getEarnings(earningsRequestMockData);
         assert.deepEqual(result, earningsResponseMockData)
     });
 
@@ -277,10 +278,10 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`${Endpoints.EarningsCalendar}?apikey=demo`)
+            .get(`${Endpoints.EarningsCalendar}?start_date=2023-11-01&end_date=2023-11-30&apikey=demo`)
             .reply(200, earningsCalendarResponseMockData);
 
-        const result = await client.fundamentals.earningsCalendar(earningsCalendarRequestMockData);
+        const result = await client.fundamentals.getEarningsCalendar(earningsCalendarRequestMockData);
         assert.deepEqual(result, earningsCalendarResponseMockData)
     });
 
@@ -299,15 +300,15 @@ describe('Fundamentals API Endpoint response test', () => {
             }]
         };
         const ipoCalendarRequestMockData: IPOCalendarRequest = {
-            startDate: "2023-11-01",
-            endDate: "2023-11-30"
+            exchange: "",
+            country: ""
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`${Endpoints.IpoCalendar}?apikey=demo`)
+            .get(`${Endpoints.IpoCalendar}?exchange=&country=&apikey=demo`)
             .reply(200, ipoCalendarResponseMockData);
 
-        const result = await client.fundamentals.ipoCalendar(ipoCalendarRequestMockData);
+        const result = await client.fundamentals.getIpoCalendar(ipoCalendarRequestMockData);
         assert.deepEqual(result, ipoCalendarResponseMockData)
     });
 
@@ -403,10 +404,10 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`${Endpoints.Statistics}?apikey=demo`)
+            .get(`${Endpoints.Statistics}?symbol=AAPL&apikey=demo`)
             .reply(200, statisticsResponseMockData);
 
-        const result = await client.fundamentals.statistics(statisticsRequestMockData);
+        const result = await client.fundamentals.getStatistics(statisticsRequestMockData);
         assert.deepEqual(result, statisticsResponseMockData)
     });
 
@@ -459,10 +460,10 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`${Endpoints.IncomeStatement}?apikey=demo`)
+            .get(`${Endpoints.IncomeStatement}?symbol=AAPL&period=annually&apikey=demo`)
             .reply(200, incomeStatementResponseMockData);
 
-        const result = await client.fundamentals.incomeStatement(incomeStatementRequestMockData);
+        const result = await client.fundamentals.getIncomeStatement(incomeStatementRequestMockData);
         assert.deepEqual(result, incomeStatementResponseMockData)
     });
 
@@ -612,10 +613,10 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`${Endpoints.IncomeStatementConsolidated}?apikey=demo`)
+            .get(`${Endpoints.IncomeStatementConsolidated}?symbol=AAPL&period=annually&apikey=demo`)
             .reply(200, incomeStatementConsolidatedResponseMockData);
 
-        const result = await client.fundamentals.incomeStatementConsolidated(incomeStatementConsolidatedRequestMockData);
+        const result = await client.fundamentals.getIncomeStatementConsolidated(incomeStatementConsolidatedRequestMockData);
         assert.deepEqual(result, incomeStatementConsolidatedResponseMockData)
     });
 
@@ -705,10 +706,10 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`${Endpoints.BalanceSheet}?apikey=demo`)
+            .get(`${Endpoints.BalanceSheet}?symbol=AAPL&period=annually&apikey=demo`)
             .reply(200, balanceSheetResponseMockData);
 
-        const result = await client.fundamentals.balanceSheet(balanceSheetRequestMockData);
+        const result = await client.fundamentals.getBalanceSheet(balanceSheetRequestMockData);
         assert.deepEqual(result, balanceSheetResponseMockData)
     });
 
@@ -769,10 +770,10 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`${Endpoints.CashFlow}?apikey=demo`)
+            .get(`${Endpoints.CashFlow}?symbol=AAPL&period=annually&apikey=demo`)
             .reply(200, cashFlowResponseMockData);
 
-        const result = await client.fundamentals.cashFlow(cashFlowRequestMockData);
+        const result = await client.fundamentals.getCashFlow(cashFlowRequestMockData);
         assert.deepEqual(result, cashFlowResponseMockData)
     });
 
@@ -925,10 +926,10 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`${Endpoints.CashFlowConsolidated}?apikey=demo`)
+            .get(`${Endpoints.CashFlowConsolidated}?symbol=AAPL&period=annually&apikey=demo`)
             .reply(200, cashFlowConsolidatedResponseMockData);
 
-        const result = await client.fundamentals.cashFlowConsolidated(cashFlowConsolidatedRequestMockData);
+        const result = await client.fundamentals.getCashFlowConsolidated(cashFlowConsolidatedRequestMockData);
         assert.deepEqual(result, cashFlowConsolidatedResponseMockData)
     });
 
@@ -952,10 +953,10 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`${Endpoints.MarketCap}?apikey=demo`)
+            .get(`${Endpoints.MarketCap}?symbol=AAPL&apikey=demo`)
             .reply(200, marketCapResponseMockData);
 
-        const result = await client.fundamentals.marketCap(marketCapRequestMockData);
+        const result = await client.fundamentals.getMarketCap(marketCapRequestMockData);
         assert.deepEqual(result, marketCapResponseMockData)
     });
 
@@ -982,10 +983,10 @@ describe('Fundamentals API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`${Endpoints.KeyExecutives}?apikey=demo`)
+            .get(`${Endpoints.KeyExecutives}?symbol=AAPL&apikey=demo`)
             .reply(200, keyExecutivesResponseMockData);
 
-        const result = await client.fundamentals.keyExecutives(keyExecutivesRequestMockData);
+        const result = await client.fundamentals.getKeyExecutives(keyExecutivesRequestMockData);
         assert.deepEqual(result, keyExecutivesResponseMockData)
     });
 

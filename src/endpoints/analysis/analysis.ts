@@ -20,7 +20,7 @@ import {
     RevenueEstimateRequest,
     RevenueEstimateResponse
 } from "./analysis.interfaces";
-import { Endpoints } from '../endpoints'
+import { Endpoints } from "../endpoints";
 import { globalTransformationManager } from "../../serialization";
 
 export default class Analysis extends EndpointBase {
@@ -28,6 +28,7 @@ export default class Analysis extends EndpointBase {
         super(apiClient);
         registerEPSTrendEstimateTransformations();
         registerEPSRevisionsEstimateTransformations();
+        registerRecommendationsTransformations()
         registerRevenueEstimateTransformations();
         registerEarningsEstimateTransformations();
         registerAnalystRatingsSnapshotTransformations();
@@ -87,6 +88,16 @@ function registerEarningsEstimateTransformations() {
 
 function registerRevenueEstimateTransformations() {
     globalTransformationManager.addEndpointConfig(Endpoints.RevenueEstimate, {
+        dateFields: ['date'],
+    });
+}
+
+function registerRecommendationsTransformations() {
+    globalTransformationManager.addEndpointConfig(Endpoints.Recommendations, {
+        responseMappings: {
+            '2_months_ago': 'twoMonthsAgo',
+            '3_months_ago': 'threeMonthsAgo',
+        },
         dateFields: ['date'],
     });
 }

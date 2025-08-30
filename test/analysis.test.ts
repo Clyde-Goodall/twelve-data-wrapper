@@ -1,7 +1,7 @@
 import {afterEach, beforeEach, describe, it} from "node:test";
 import assert from "node:assert";
 import nock from "nock";
-import TwelveDataWrapper from "../src/twelveData";
+import { TwelveDataWrapper } from "../src/twelveData";
 import {getDefaultConfig} from "../src/defaults";
 import { 
     EarningsEstimateRequest, 
@@ -23,6 +23,7 @@ import {
     AnalystRatingsUSEquitiesRequest,
     AnalystRatingsUSEquitiesResponse
 } from "../src/endpoints/analysis/analysis.interfaces";
+import { Endpoints } from "../src/endpoints/endpoints";
 
 describe('Analysis API Endpoint response test', () => {
     beforeEach(() => {
@@ -54,10 +55,10 @@ describe('Analysis API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/earnings_estimate?apikey=demo`) // with no config it should only be appending the apikey
+            .get(`${Endpoints.EarningsEstimate}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`) // with no config it should only be appending the apikey
             .reply(200, earningsEstimateResponseMockData);
 
-        const result = await client.analysis.earningsEstimate(earningsEstimateRequestMockData);
+        const result = await client.analysis.getEarningsEstimate(earningsEstimateRequestMockData);
         assert.deepEqual(result, earningsEstimateResponseMockData)
     });
 
@@ -83,10 +84,10 @@ describe('Analysis API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/revenue_estimate?apikey=demo`)
+            .get(`${Endpoints.RevenueEstimate}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`)
             .reply(200, revenueEstimateResponseMockData);
 
-        const result = await client.analysis.revenueEstimate(revenueEstimateRequestMockData);
+        const result = await client.analysis.getRevenueEstimate(revenueEstimateRequestMockData);
         assert.deepEqual(result, revenueEstimateResponseMockData)
     });
 
@@ -111,10 +112,10 @@ describe('Analysis API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/eps_trend?apikey=demo`)
+            .get(`${Endpoints.EpsTrend}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`)
             .reply(200, epsTrendResponseMockData);
 
-        const result = await client.analysis.epsTrend(epsTrendRequestMockData);
+        const result = await client.analysis.getEpsTrend(epsTrendRequestMockData);
         assert.deepEqual(result, epsTrendResponseMockData)
     });
 
@@ -138,10 +139,10 @@ describe('Analysis API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/eps_revisions?apikey=demo`)
+            .get(`${Endpoints.EpsRevisions}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`)
             .reply(200, epsRevisionsResponseMockData);
 
-        const result = await client.analysis.epsRevisions(epsRevisionsRequestMockData);
+        const result = await client.analysis.getEpsRevisions(epsRevisionsRequestMockData);
         assert.deepEqual(result, epsRevisionsResponseMockData)
     });
 
@@ -165,10 +166,10 @@ describe('Analysis API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/growth_estimates?apikey=demo`)
+            .get(`${Endpoints.GrowthEstimates}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`)
             .reply(200, growthEstimatesResponseMockData);
 
-        const result = await client.analysis.growthEstimates(growthEstimatesRequestMockData);
+        const result = await client.analysis.getGrowthEstimates(growthEstimatesRequestMockData);
         assert.deepEqual(result, growthEstimatesResponseMockData)
     });
 
@@ -223,10 +224,10 @@ describe('Analysis API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/recommendations?apikey=demo`)
+            .get(`${Endpoints.Recommendations}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`)
             .reply(200, recommendationsResponseMockData);
 
-        const result = await client.analysis.recommendations(recommendationsRequestMockData);
+        const result = await client.analysis.getRecommendations(recommendationsRequestMockData);
         assert.deepEqual(result, recommendationsResponseMockData)
     });
 
@@ -250,10 +251,10 @@ describe('Analysis API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/price_target?apikey=demo`)
+            .get(`${Endpoints.PriceTarget}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`)
             .reply(200, priceTargetResponseMockData);
 
-        const result = await client.analysis.priceTarget(priceTargetRequestMockData);
+        const result = await client.analysis.getPriceTarget(priceTargetRequestMockData);
         assert.deepEqual(result, priceTargetResponseMockData)
     });
 
@@ -276,10 +277,10 @@ describe('Analysis API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/analyst_ratings/light?apikey=demo`)
+            .get(`${Endpoints.AnalystRatingsSnapshot}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`)
             .reply(200, analystRatingsSnapshotResponseMockData);
 
-        const result = await client.analysis.analystRatingsSnapshot(analystRatingsSnapshotRequestMockData);
+        const result = await client.analysis.getAnalystRatingsSnapshot(analystRatingsSnapshotRequestMockData);
         assert.deepEqual(result, analystRatingsSnapshotResponseMockData)
     });
 
@@ -307,10 +308,10 @@ describe('Analysis API Endpoint response test', () => {
         };
         const client = new TwelveDataWrapper();
         nock(getDefaultConfig().baseUrl!)
-            .get(`/analyst_ratings/us_equities?apikey=demo`)
+            .get(`${Endpoints.AnalystRatingsUsEquities}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`)
             .reply(200, analystRatingsUSEquitiesResponseMockData);
 
-        const result = await client.analysis.analystRatingsUsEquities(analystRatingsUSEquitiesRequestMockData);
+        const result = await client.analysis.getAnalystRatingsUsEquities(analystRatingsUSEquitiesRequestMockData);
         assert.deepEqual(result, analystRatingsUSEquitiesResponseMockData)
     });
 

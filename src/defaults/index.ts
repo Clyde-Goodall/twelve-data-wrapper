@@ -1,4 +1,4 @@
-import { AxiosInstance, AxiosError } from "axios";
+import { AxiosError, AxiosInstance } from "axios";
 import { globalTransformationManager } from "../serialization";
 import { TwelveDataConfig } from "../twelveData.interfaces";
 
@@ -89,5 +89,16 @@ export abstract class EndpointBase {
             // Re-throw any other errors (network errors, etc.)
             throw error;
         }
+    }
+
+    protected async requestWithFormat<TResponse>(
+        endpoint: string,
+        params: string,
+        format?: 'json' | 'csv'
+    ): Promise<TResponse | string> {
+        if (format === 'csv') {
+            return this.request<string>(endpoint, params);
+        }
+        return this.request<TResponse>(endpoint, params);
     }
 }

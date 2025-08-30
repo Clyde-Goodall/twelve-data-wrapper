@@ -7,12 +7,10 @@ import {
     ExchangeRateRequest,
     ExchangeRateResponse
 } from "./currencies.interfaces";
-import { globalTransformationManager } from "../../serialization";
 
 export default class Currencies extends EndpointBase {
     constructor(apiClient: AxiosInstance) {
         super(apiClient);
-        registerCurrencyConversionTransformations();
     }
 
     // Endpoint fetching functions starts here
@@ -26,18 +24,4 @@ export default class Currencies extends EndpointBase {
 
         return this.request<CurrencyConversionResponse>(Endpoints.CurrencyConversion, params);
     }
-}
-
-function registerCurrencyConversionTransformations() {
-    globalTransformationManager.addEndpointConfig(Endpoints.CurrencyConversion, {
-        dateTimeFields: ["timestamp"],
-        dateFields: ["date"],
-    });
-}
-
-function registerExchangeRateTransformations() {
-    globalTransformationManager.addEndpointConfig(Endpoints.ExchangeRate, {
-        dateTimeFields: ["timestamp"],
-        dateFields: ["date"],
-    });
 }

@@ -87,9 +87,7 @@ function registerTimeSeriesTransformations() {
         },
         responseMappings: {
             datetime: "dateTime",
-        },
-        dateFields: ["date"],
-        dateTimeFields: ["startDate", "endDate", "dateTime"]
+        }
     });
 }
 
@@ -101,9 +99,7 @@ function registerTimeSeriesCrossTransformations() {
         },
         responseMappings: {
             datetime: "dateTime",
-        },
-        dateFields: ["date"],
-        dateTimeFields: ["startDate", "endDate", "dateTime"]
+        }
     });
 }
 
@@ -118,7 +114,6 @@ function registerQuoteTransformations() {
             rolling_1d_change: "rollingOneDayChange",
             rolling_7d_change: "rollingSevenDayChange"
         },
-        dateTimeFields: ["dateTime", "timestamp", "lastQuoteAt", "extendedTimestamp"],
     });
 }
 
@@ -135,8 +130,6 @@ function registerEndOfDayPriceTransformations() {
         },
         responseMappings: {
             datetime: "dateTime",
-        },
-        dateFields: ["date"],
-        dateTimeFields: ["dateTime", "timestamp"],
+        }
     });
 }

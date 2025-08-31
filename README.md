@@ -1,7 +1,10 @@
 # TwelveData Typescript Wrapper
 ### A modern library for the TwelveData financial API
 ---------
-This wrapper provides an option I felt was missing in the official/unofficial TwelveData libraries section for those who are more liable to use Typescript over vanilla Javascript. That being said, this is **very** much a work in progress.
+This wrapper provides an option I felt was missing in the official/unofficial TwelveData libraries section for those who are more liable to use TypeScript over vanilla JavaScript. 
+That being said, this is still a work in progress. The ultimate goal is 100% API coverage. 
+
+BIG thanks to [@jonnotjohn](https://github.com/jonnotjohn) <3
 
 Contributions welcome!
 
@@ -11,11 +14,11 @@ Contributions welcome!
 - (Partial)     Reference Data
   - (Supported) Asset Catalogs
   - (Supported) Discovery
-  - (Partial)   Markets <sub>Only partial because we currently don't have an enterprise key to test it with</sub>
+  - (Partial)   Markets 
   - (Supported) Technical Indicators
 - (Supported)   Fundamental 
 - (Supported)   Currencies
-- (Unsupported) ETFs <sub>Only partial because we currently don't have an enterprise/ultra key to test it with</sub>
+- (Partial) ETFs 
 - (Unsupported) Mutual Funds
 - (Unsupported) Technical Indicators
 - (Supported)   Analysis 
@@ -25,12 +28,50 @@ Contributions welcome!
 
 Many of the partial categories have all of their endpoints mapped and typed, but have not been exhaustively tested, so until then, they are listed as "partial."
 
+---
+# Installation
+
+```
+npm install twelve-data
+```
+
+## Getting Started
+```typescript
+const client = new TwelveData({
+  apiKey: "demo",
+});
+```
+Endpoints are organized by section as in the official TwelveData documentation. 
+Endpoints are nested in the same hierarchy as they appear in the documentation.
+
+```typescript
+const timeSeriesReq: TimeSeriesRequest = {
+            symbol: "AAPL",
+            interval: Interval.FiveMin,
+            outputSize: 30,
+        };
+const res = await client.core.getTimeSeries(timeSeriesReq);
+```
+
+```typescript
+// Endpoints that have no required parameters can omit a request object.
+const json: ETFsResponse = await client.reference.assetCatalogs.getEtfs();
+// If an endpoint supports CSV format, a string will be returned.
+const csv: string = await client.reference.assetCatalogs.getEtfs({}, "csv");
+
+```
+Each supported endpoint has a corresponding request and response interface defining the available request/response parameters.
+Endpoint functions that support either CSV or JSON output also have an optional argument.
+
 
 ---
 ### Important Notes
-- Currently CSV responses are unformatted.
-- Technical Indicators will probably be the last to get support due to the sheer amount of endpoints to account for.
-- Some of the API documentation request/response descriptions and examples include options that aren't supported. This includes anything from fields that show up for crypto but not stocks (and not explicitly mentioned in the documentation), typos/different spelling in the response objects versus what the documentation tells us to expect, or certain time intervals being unsupported despite being explicitly listed in the request options.
+- We currently don't have access to an ultra plan to test many of these endpoints. 
+- Technical Indicators will probably be the last to get support due to the sheer number of endpoints to account for.
+- Some of the API documentation request/response descriptions and examples include options that aren't supported. This includes but is not limited to: 
+  - fields that show up for crypto but not stocks (and not explicitly mentioned in the documentation)
+  - typos/different spelling in the response objects versus what the documentation tells us to expect
+  - certain time intervals being unsupported despite being explicitly listed in the request options
 We will document every case of this that we come across simply because it may help developers down the line somewhere. These discrepancies are organized by endpoint URI in the next section
 
 ---

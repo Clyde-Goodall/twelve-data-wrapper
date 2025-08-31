@@ -1,3 +1,3 @@
-import { TwelveDataWrapper as TwelveData } from "./twelveData";
+import { TwelveDataWrapper } from "./twelveData";
 
-module.exports = TwelveData;
+export { TwelveDataWrapper as TwelveData };

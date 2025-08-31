@@ -2,7 +2,6 @@ import { AxiosError, AxiosInstance } from "axios";
 import { globalTransformationManager } from "../serialization";
 import { TwelveDataConfig } from "../twelveData.interfaces";
 import { ERROR_MESSAGES } from "../endpoints/shared.interfaces";
-import * as url from "node:url";
 
 export function getDefaultConfig(): TwelveDataConfig {
     return {

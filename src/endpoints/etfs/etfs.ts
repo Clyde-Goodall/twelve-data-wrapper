@@ -2,22 +2,22 @@ import type { AxiosInstance } from "axios";
 import { EndpointBase } from "../../defaults";
 import { Endpoints } from "../endpoints";
 import {
-    EtfsDirectoryRequest, 
-    EtfsDirectoryResponse,
+    EtfCompositionRequest,
+    EtfCompositionResponse,
     EtfFullDataRequest,
     EtfFullDataResponse,
-    EtfSummaryRequest,
-    EtfSummaryResponse,
     EtfPerformanceRequest,
     EtfPerformanceResponse,
     EtfRiskRequest,
     EtfRiskResponse,
-    EtfCompositionRequest,
-    EtfCompositionResponse,
+    EtfsDirectoryRequest,
+    EtfsDirectoryResponse,
     EtfsFamilyRequest,
     EtfsFamilyResponse,
     EtfsTypeRequest,
-    EtfsTypeResponse
+    EtfsTypeResponse,
+    EtfSummaryRequest,
+    EtfSummaryResponse
 } from "./etfs.interfaces";
 
 export default class ETFs extends EndpointBase {

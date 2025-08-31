@@ -1,6 +1,6 @@
 {
   "name": "twelvedata-ts",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "TypeScript TwelveData API wrapper",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",

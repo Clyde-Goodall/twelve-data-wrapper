@@ -34,63 +34,63 @@ export default class Analysis extends EndpointBase {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.EarningsEstimate);
-        return this.request<EarningsEstimateResponse>(Endpoints.EarningsEstimate, params);
+        return this.get<EarningsEstimateResponse>(Endpoints.EarningsEstimate, params);
     }
 
     async getRevenueEstimate(requestConfig: RevenueEstimateRequest): Promise<RevenueEstimateResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.RevenueEstimate);
-        return this.request<RevenueEstimateResponse>(Endpoints.RevenueEstimate, params);
+        return this.get<RevenueEstimateResponse>(Endpoints.RevenueEstimate, params);
     }
 
     async getEpsTrend(requestConfig: EPSTrendRequest): Promise<EPSTrendResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.EpsTrend);
-        return this.request<EPSTrendResponse>(Endpoints.EpsTrend, params);
+        return this.get<EPSTrendResponse>(Endpoints.EpsTrend, params);
     }
 
     async getEpsRevisions(requestConfig: EPSRevisionsRequest): Promise<EPSRevisionsResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.EpsRevisions);
-        return this.request<EPSRevisionsResponse>(Endpoints.EpsRevisions, params);
+        return this.get<EPSRevisionsResponse>(Endpoints.EpsRevisions, params);
     }
 
     async getGrowthEstimates(requestConfig: GrowthEstimatesRequest): Promise<GrowthEstimatesResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.GrowthEstimates);
-        return this.request<GrowthEstimatesResponse>(Endpoints.GrowthEstimates, params);
+        return this.get<GrowthEstimatesResponse>(Endpoints.GrowthEstimates, params);
     }
 
     async getRecommendations(requestConfig: RecommendationsRequest): Promise<RecommendationsResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.Recommendations);
-        return this.request<RecommendationsResponse>(Endpoints.Recommendations, params);
+        return this.get<RecommendationsResponse>(Endpoints.Recommendations, params);
     }
 
     async getPriceTarget(requestConfig: PriceTargetRequest): Promise<PriceTargetResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.PriceTarget);
-        return this.request<PriceTargetResponse>(Endpoints.PriceTarget, params);
+        return this.get<PriceTargetResponse>(Endpoints.PriceTarget, params);
     }
 
     async getAnalystRatingsSnapshot(requestConfig: AnalystRatingsSnapshotRequest): Promise<AnalystRatingsSnapshotResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.AnalystRatingsSnapshot);
-        return this.request<AnalystRatingsSnapshotResponse>(Endpoints.AnalystRatingsSnapshot, params);
+        return this.get<AnalystRatingsSnapshotResponse>(Endpoints.AnalystRatingsSnapshot, params);
     }
 
     async getAnalystRatingsUsEquities(requestConfig: AnalystRatingsUSEquitiesRequest): Promise<AnalystRatingsUSEquitiesResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.AnalystRatingsUsEquities);
-        return this.request<AnalystRatingsUSEquitiesResponse>(Endpoints.AnalystRatingsUsEquities, params);
+        return this.get<AnalystRatingsUSEquitiesResponse>(Endpoints.AnalystRatingsUsEquities, params);
     }
 }
 

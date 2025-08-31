@@ -37,6 +37,8 @@ npm install twelve-data
 
 ## Getting Started
 ```typescript
+import TwelveData from 'twelve-data';
+
 const client = new TwelveData({
   apiKey: "demo",
 });

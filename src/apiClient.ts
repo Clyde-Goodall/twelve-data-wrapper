@@ -15,7 +15,7 @@ export function buildApiClient(config?: TwelveDataConfig): AxiosInstance {
     client.interceptors.request.use(async (request) => {
         const method = request.method?.toLowerCase();
         if (method === "get") {
-            request.params = request.params ?? {}; // should I pull these out to the top of the function?
+            request.params = request.params ?? {};
             request.params["apikey"] = config.apiKey;
         } else if (method === "post") {
             request.headers["Authorization"] = `apikey ${config.apiKey}`;

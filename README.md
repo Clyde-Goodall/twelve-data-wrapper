@@ -1,8 +1,8 @@
-# TwelveData Typescript Wrapper
+# TwelveData in TypeScript!
 ### A modern library for the TwelveData financial API
 ---------
-This wrapper provides an option I felt was missing in the official/unofficial TwelveData libraries section for those who are more liable to use TypeScript over vanilla JavaScript. 
-That being said, this is still a work in progress. The ultimate goal is 100% API coverage. 
+This is a TypeScript wrapper for the [TwelveData](https://www.twelvedata.com) API. Supported endpoints are well-typed.
+The ultimate goal is 100% API coverage, that being said, this is still a work in progress.
 
 BIG thanks to [@jonnotjohn](https://github.com/jonnotjohn) <3
 

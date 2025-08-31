@@ -1,4 +1,4 @@
-# TwelveData in TypeScript! ✨
+# ✨ TwelveData in TypeScript ✨
 ### A modern library for the TwelveData financial API
 ---------
 This is a TypeScript wrapper for the [TwelveData](https://www.twelvedata.com) API. Supported endpoints are well-typed.

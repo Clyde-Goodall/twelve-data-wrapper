@@ -63,51 +63,61 @@ export abstract class EndpointBase {
     }
 
 
-    protected async request<T>(endpoint: string, params: string, body?: any): Promise<T> {
+    protected async get<T>(endpoint: string, params: string): Promise<T> {
         try {
-            let response;
-            if(!body) {
-                const url = `${endpoint}${params}`;
-                response = await this.apiClient.get<T>(url);
-            } else {
-                response = await this.apiClient.post<T>(endpoint, body);
-            }
+            const url = `${endpoint}${params}`;
 
-            // Check if the response is an API error (even with 200 status)
-            const data = response.data as any;
-            if (data && typeof data === "object" && data.status === "error") {
-                throw new TwelveDataError(data as TwelveDataApiError);
-            }
-
+            const response = await this.apiClient.get<T>(url);
+            this.validateResponse(response.data);
             return response.data;
         } catch (error) {
-            // Re-throw TwelveDataError as-is
-            if (error instanceof TwelveDataError) {
-                throw error;
-            }
-
-            // Handle AxiosError with API error response
-            if (error instanceof AxiosError && error.response?.data) {
-                const apiError = error.response.data as any;
-                if (apiError && typeof apiError === "object" && apiError.status === "error") {
-                    throw new TwelveDataError(apiError as TwelveDataApiError);
-                }
-            }
-
-            // Re-throw any other errors (network errors, etc.)
-            throw error;
+            this.handle(error);
         }
     }
 
+    protected async post<T>(endpoint: string, params: string, body?: any): Promise<T> {
+        try {
+            const response = await this.apiClient.post<T>(endpoint, body);
+            this.validateResponse(response.data);
+            return response.data;
+        } catch (error) {
+            this.handle(error);
+        }
+    }
+
+    private validateResponse(response: any): void {
+        if (response && typeof response === "object" && response.status === "error") {
+            throw new TwelveDataError(response as TwelveDataApiError);
+        }
+    }
+    
+    private handle(error: any): never {
+        // Re-throw TwelveDataError as-is
+        if (error instanceof TwelveDataError) {
+            throw error;
+        }
+
+        // Handle AxiosError with API error response
+        if (error instanceof AxiosError && error.response?.data) {
+            const apiError = error.response.data as any;
+            if (apiError && typeof apiError === "object" && apiError.status === "error") {
+                throw new TwelveDataError(apiError as TwelveDataApiError);
+            }
+        }
+
+        // Re-throw any other errors (network errors, etc.)
+        throw error;
+    }
+    
     protected async requestWithFormat<TResponse>(
         endpoint: string,
         params: string,
         format?: "json" | "csv"
     ): Promise<TResponse | string> {
         if (format === "csv") {
-            return this.request<string>(endpoint, params);
+            return this.get<string>(endpoint, params);
         }
-        return this.request<TResponse>(endpoint, params);
+        return this.get<TResponse>(endpoint, params);
     }
 
     protected atLeastOneOf<Type>(obj: Type, keys: (keyof Type)[]): boolean {

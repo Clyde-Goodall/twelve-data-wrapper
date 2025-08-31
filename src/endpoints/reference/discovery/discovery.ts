@@ -18,17 +18,17 @@ export default class Discovery extends EndpointBase {
     // Endpoint fetching functions starts here
     async getSymbolSearch(requestConfig: SymbolSearchRequest): Promise<SymbolSearchResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.SymbolSearch);
-        return this.request<SymbolSearchResponse>(Endpoints.SymbolSearch, params);
+        return this.get<SymbolSearchResponse>(Endpoints.SymbolSearch, params);
     }
 
     async getCrossListings(requestConfig: CrossListingsRequest): Promise<CrossListingsResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.CrossListings);
-        return this.request<CrossListingsResponse>(Endpoints.CrossListings, params);
+        return this.get<CrossListingsResponse>(Endpoints.CrossListings, params);
     }
 
     async getEarliestTimestamp(requestConfig: EarliestTimestampRequest): Promise<EarliestTimestampResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.EarliestTimestamp);
-        return this.request<EarliestTimestampResponse>(Endpoints.EarliestTimestamp, params);
+        return this.get<EarliestTimestampResponse>(Endpoints.EarliestTimestamp, params);
     }
 
 }

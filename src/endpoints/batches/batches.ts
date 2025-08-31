@@ -19,6 +19,6 @@ export class Batches extends EndpointBase {
                 url: `${endpoint}${params}`
             };
         }
-        return this.request<BatchesResponse>(Endpoints.Batches, "", batchRequestUrls);
+        return this.post<BatchesResponse>(Endpoints.Batches, "", batchRequestUrls);
     }
 }

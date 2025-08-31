@@ -21,18 +21,29 @@
     "node": ">=16.0.0"
   },
   "keywords": [
-    "API",
     "TypeScript",
     "JavaScript",
-    "API",
-    "Wrapper",
+    "wrapper",
     "TwelveData",
+    "crypto",
+    "cryptocurrency",
+    "stock",
+    "forex",
+    "funds",
+    "typed",
+    "technical-indicators",
+    "fundamental-analysis",
+    "ETF",
+    "Web3",
+    "trading",
     "finance",
-    "financial",
-    "stocks",
+    "financial-data",
+    "big-data",
+    "investment",
     "market",
     "data",
-    "REST"
+    "REST",
+    "API"
   ],
   "author": "Clyde Goodall <clyde.goodall.cs@gmail.com>",
   "license": "(MIT)",
@@ -48,14 +59,14 @@
   ],
   "devDependencies": {
     "tsup": "^8.5.0",
-    "typescript": "^5.9.2"
-  },
-  "dependencies": {
-    "axios": "^1.11.0",
-    "axios-retry": "^4.5.0",
+    "typescript": "^5.9.2",
     "dotenv": "^16.3.1",
     "nock": "^14.0.10",
     "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "axios-retry": "^4.5.0"
   },
   "main": "dist/index.js",
   "files": [

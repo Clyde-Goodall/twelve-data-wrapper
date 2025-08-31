@@ -12,7 +12,7 @@ import Regulatory from "./endpoints/regulatory/regulatory";
 import TechnicalIndicators from "./endpoints/technicalIndicators/technicalIndicators";
 import { buildApiClient } from "./apiClient";
 
-export class TwelveDataWrapper extends EndpointBase {
+export default class TwelveData extends EndpointBase {
     public readonly advanced: Advanced;
     public readonly analysis: Analysis;
     public readonly core: Core;

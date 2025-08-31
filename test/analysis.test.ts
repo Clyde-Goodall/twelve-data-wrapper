@@ -1,7 +1,7 @@
 import {afterEach, beforeEach, describe, it} from "node:test";
 import assert from "node:assert";
 import nock from "nock";
-import { TwelveDataWrapper } from "../src/twelveData";
+import { TwelveData } from "../src/twelveData";
 import {getDefaultConfig} from "../src/defaults";
 import { 
     EarningsEstimateRequest, 
@@ -53,7 +53,7 @@ describe('Analysis API Endpoint response test', () => {
             isin: "US0378331005",
             cusip: "037833100"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.EarningsEstimate}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`) // with no config it should only be appending the apikey
             .reply(200, earningsEstimateResponseMockData);
@@ -82,7 +82,7 @@ describe('Analysis API Endpoint response test', () => {
             isin: "US0378331005",
             cusip: "037833100"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.RevenueEstimate}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`)
             .reply(200, revenueEstimateResponseMockData);
@@ -110,7 +110,7 @@ describe('Analysis API Endpoint response test', () => {
             isin: "US0378331005",
             cusip: "037833100"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.EpsTrend}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`)
             .reply(200, epsTrendResponseMockData);
@@ -137,7 +137,7 @@ describe('Analysis API Endpoint response test', () => {
             isin: "US0378331005",
             cusip: "037833100"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.EpsRevisions}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`)
             .reply(200, epsRevisionsResponseMockData);
@@ -164,7 +164,7 @@ describe('Analysis API Endpoint response test', () => {
             isin: "US0378331005",
             cusip: "037833100"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.GrowthEstimates}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`)
             .reply(200, growthEstimatesResponseMockData);
@@ -222,7 +222,7 @@ describe('Analysis API Endpoint response test', () => {
             isin: "US0378331005",
             cusip: "037833100"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.Recommendations}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`)
             .reply(200, recommendationsResponseMockData);
@@ -249,7 +249,7 @@ describe('Analysis API Endpoint response test', () => {
             isin: "US0378331005",
             cusip: "037833100"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.PriceTarget}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`)
             .reply(200, priceTargetResponseMockData);
@@ -275,7 +275,7 @@ describe('Analysis API Endpoint response test', () => {
             isin: "US0378331005",
             cusip: "037833100"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.AnalystRatingsSnapshot}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`)
             .reply(200, analystRatingsSnapshotResponseMockData);
@@ -306,7 +306,7 @@ describe('Analysis API Endpoint response test', () => {
             isin: "US0378331005",
             cusip: "037833100"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.AnalystRatingsUsEquities}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`)
             .reply(200, analystRatingsUSEquitiesResponseMockData);

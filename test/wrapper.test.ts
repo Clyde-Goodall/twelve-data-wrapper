@@ -1,6 +1,6 @@
 import {describe, it} from "node:test";
 import assert from "node:assert";
-import { TwelveDataWrapper } from "../src/twelveData";
+import { TwelveData } from "../src/twelveData";
 import Advanced from "../src/endpoints/advanced/advanced";
 import Analysis from "../src/endpoints/analysis/analysis";
 import Core from "../src/endpoints/core/core";
@@ -24,8 +24,8 @@ const testConfig: TwelveDataConfig = {
 
 describe("TwelveData Class constructor initialization", () => {
     it("Should return the TwelveData instance with default config options", () => {
-        const client = new TwelveDataWrapper({apiKey: 'demo'});
-        assert.strictEqual(client instanceof TwelveDataWrapper, true);
+        const client = new TwelveData({apiKey: 'demo'});
+        assert.strictEqual(client instanceof TwelveData, true);
         assert.strictEqual(client.advanced instanceof Advanced, true);
         assert.strictEqual(client.analysis instanceof Analysis, true);
         assert.strictEqual(client.core instanceof Core, true);
@@ -38,8 +38,8 @@ describe("TwelveData Class constructor initialization", () => {
         assert.strictEqual(client.technicalIndicators instanceof TechnicalIndicators, true);
     });
     it("Should return the TwelveData instance with custom config options", () => {
-        const client = new TwelveDataWrapper(testConfig);
-        assert.strictEqual(client instanceof TwelveDataWrapper, true);
+        const client = new TwelveData(testConfig);
+        assert.strictEqual(client instanceof TwelveData, true);
         assert.strictEqual(client.advanced instanceof Advanced, true);
         assert.strictEqual(client.analysis instanceof Analysis, true);
         assert.strictEqual(client.core instanceof Core, true);

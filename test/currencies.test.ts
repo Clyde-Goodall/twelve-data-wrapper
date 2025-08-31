@@ -1,7 +1,7 @@
 import {afterEach, beforeEach, describe, it} from "node:test";
 import assert from "node:assert";
 import nock from "nock";
-import { TwelveDataWrapper } from "../src/twelveData";
+import { TwelveData } from "../src/twelveData";
 import {getDefaultConfig} from "../src/defaults";
 import {
     ExchangeRateRequest,
@@ -33,7 +33,7 @@ describe('Currencies API Endpoint response test', () => {
             dp: 2,
             timezone: "America/New_York"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.ExchangeRate}?symbol=USD%2FEUR&date=2023-11-01&format=JSON&dp=2&timezone=America%2FNew_York&apikey=demo`)
             .reply(200, exchangeRateResponseMockData);
@@ -51,7 +51,7 @@ describe('Currencies API Endpoint response test', () => {
         const exchangeRateRequestMockData: ExchangeRateRequest = {
             symbol: "GBP/USD"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.ExchangeRate}?symbol=GBP%2FUSD&apikey=demo`)
             .reply(200, exchangeRateResponseMockData);
@@ -75,7 +75,7 @@ describe('Currencies API Endpoint response test', () => {
             dp: 2,
             timezone: "America/New_York"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.CurrencyConversion}?symbol=USD%2FEUR&amount=100&date=2023-11-01&format=JSON&dp=2&timezone=America%2FNew_York&apikey=demo`)
             .reply(200, currencyConversionResponseMockData);
@@ -95,7 +95,7 @@ describe('Currencies API Endpoint response test', () => {
             symbol: "EUR/JPY",
             amount: 10
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.CurrencyConversion}?symbol=EUR%2FJPY&amount=10&apikey=demo`)
             .reply(200, currencyConversionResponseMockData);

@@ -1,7 +1,7 @@
 import {afterEach, beforeEach, describe, it} from "node:test";
 import assert from "node:assert";
 import nock from "nock";
-import { TwelveDataWrapper } from "../../src/twelveData";
+import { TwelveData } from "../../src/twelveData";
 import {getDefaultConfig} from "../../src/defaults";
 import {
     ExchangesRequest,
@@ -42,7 +42,7 @@ describe('Markets API Endpoint response test', () => {
             country: "United States",
             type: ExchangeType.Stock
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.Exchanges}?country=United+States&type=Bond&apikey=demo`)
             .reply(200, exchangesResponseMockData);
@@ -71,7 +71,7 @@ describe('Markets API Endpoint response test', () => {
             date: "2023-12-01",
             country: "United States"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.ExchangeSchedule}?date=2023-12-01&country=United+States&apikey=demo`)
             .reply(200, exchangeScheduleResponseMockData);
@@ -91,7 +91,7 @@ describe('Markets API Endpoint response test', () => {
         const cryptocurrencyExchangesRequestMockData: CryptocurrencyExchangesRequest = {
             format: "JSON"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.CryptocurrencyExchanges}?format=JSON&apikey=demo`)
             .reply(200, cryptocurrencyExchangesResponseMockData);
@@ -114,7 +114,7 @@ describe('Markets API Endpoint response test', () => {
             exchange: "NYSE",
             country: "United States"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.MarketState}?exchange=NYSE&country=United+States&apikey=demo`)
             .reply(200, marketStateResponseMockData);

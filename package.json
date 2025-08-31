@@ -1,5 +1,5 @@
 {
-  "name": "twelve-data-wrapper",
+  "name": "twelve-data",
   "version": "1.0.0",
   "description": "TypeScript TwelveData API wrapper",
   "scripts": {

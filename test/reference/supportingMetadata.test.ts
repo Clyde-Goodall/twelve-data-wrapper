@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, it } from "node:test";
 import assert from "node:assert";
 import nock from "nock";
-import { TwelveDataWrapper } from "../../src/twelveData";
+import { TwelveData } from "../../src/twelveData";
 import { getDefaultConfig } from "../../src/defaults";
 import {
     CountriesResponse,
@@ -30,7 +30,7 @@ describe('Supporting Metadata API Endpoint response test', () => {
                 currency: "US Dollar"
             }]
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.Countries}?apikey=demo`)
             .reply(200, countriesResponseMockData);
@@ -49,7 +49,7 @@ describe('Supporting Metadata API Endpoint response test', () => {
                 "REIT"
             ]
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.InstrumentType}?apikey=demo`)
             .reply(200, instrumentTypeResponseMockData);
@@ -94,7 +94,7 @@ describe('Supporting Metadata API Endpoint response test', () => {
                 }
             }
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.TechnicalIndicators}?apikey=demo`)
             .reply(200, technicalIndicatorsResponseMockData);

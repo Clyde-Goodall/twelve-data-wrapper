@@ -1,7 +1,7 @@
 import {afterEach, beforeEach, describe, it} from "node:test";
 import assert from "node:assert";
 import nock from "nock";
-import { TwelveDataWrapper } from "../../src/twelveData";
+import { TwelveData } from "../../src/twelveData";
 import {getDefaultConfig} from "../../src/defaults";
 import { 
     SymbolSearchRequest, 
@@ -43,7 +43,7 @@ describe('Discovery API Endpoint response test', () => {
             symbol: "AAPL",
             outputSize: 10
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.SymbolSearch}?symbol=AAPL&output_size=10&apikey=demo`)
             .reply(200, symbolSearchResponseMockData);
@@ -68,7 +68,7 @@ describe('Discovery API Endpoint response test', () => {
             symbol: "AAPL",
             country: "United Kingdom"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.CrossListings}?symbol=AAPL&country=United+Kingdom&apikey=demo`)
             .reply(200, crossListingsResponseMockData);
@@ -86,7 +86,7 @@ describe('Discovery API Endpoint response test', () => {
             symbol: "AAPL",
             interval: Interval.OneMin,
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.EarliestTimestamp}?symbol=AAPL&interval=1min&apikey=demo`)
             .reply(200, earliestTimestampResponseMockData);

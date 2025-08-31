@@ -1,7 +1,7 @@
 import {afterEach, beforeEach, describe, it} from "node:test";
 import assert from "node:assert";
 import nock from "nock";
-import { TwelveDataWrapper } from "../../src/twelveData";
+import { TwelveData } from "../../src/twelveData";
 import {getDefaultConfig} from "../../src/defaults";
 import { 
     StocksRequest, 
@@ -54,7 +54,7 @@ describe('Asset Catalogs API Endpoint response test', () => {
             exchange: "NASDAQ",
             country: "United States"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.Stocks}?symbol=AAPL&exchange=NASDAQ&country=United+States&apikey=demo`)
             .reply(200, stocksResponseMockData);
@@ -85,7 +85,7 @@ describe('Asset Catalogs API Endpoint response test', () => {
         const etfsRequestMockData: ETFsRequest = {
             symbol: "SPY"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.ETFs}?symbol=SPY&apikey=demo`)
             .reply(200, etfsResponseMockData);
@@ -106,7 +106,7 @@ describe('Asset Catalogs API Endpoint response test', () => {
         const forexPairsRequestMockData: ForexPairsRequest = {
             symbol: "EUR/USD"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.ForexPairs}?symbol=EUR%2FUSD&apikey=demo`)
             .reply(200, forexPairsResponseMockData);
@@ -127,7 +127,7 @@ describe('Asset Catalogs API Endpoint response test', () => {
         const cryptocurrencyPairsRequestMockData: CryptocurrencyPairsRequest = {
             symbol: "BTC/USD"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.Cryptocurrencies}?symbol=BTC%2FUSD&apikey=demo`)
             .reply(200, cryptocurrencyPairsResponseMockData);
@@ -162,7 +162,7 @@ describe('Asset Catalogs API Endpoint response test', () => {
         const fundsRequestMockData: FundsRequest = {
             symbol: "VTSAX"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.Funds}?symbol=VTSAX&apikey=demo`)
             .reply(200, fundsResponseMockData);
@@ -183,7 +183,7 @@ describe('Asset Catalogs API Endpoint response test', () => {
         const commoditiesRequestMockData: CommoditiesRequest = {
             symbol: "WTI"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.Commodities}?symbol=WTI&apikey=demo`)
             .reply(200, commoditiesResponseMockData);
@@ -215,7 +215,7 @@ describe('Asset Catalogs API Endpoint response test', () => {
             symbol: "US10Y",
             country: "United States"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.Bonds}?symbol=US10Y&country=United+States&apikey=demo`)
             .reply(200, fixedIncomeResponseMockData);

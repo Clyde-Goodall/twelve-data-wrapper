@@ -1,7 +1,7 @@
 import {afterEach, beforeEach, describe, it} from "node:test";
 import assert from "node:assert";
 import nock from "nock";
-import { TwelveDataWrapper } from "../src/twelveData";
+import { TwelveData } from "../src/twelveData";
 import {getDefaultConfig} from "../src/defaults";
 import {
     EtfsDirectoryRequest,
@@ -61,7 +61,7 @@ describe('ETFs API Endpoint response test', () => {
             page: 1,
             outputSize: 5000
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.EtfsDirectory}?country=US&page=1&output_size=5000&apikey=demo`)
             .reply(200, etfsDirectoryResponseMockData);
@@ -179,7 +179,7 @@ describe('ETFs API Endpoint response test', () => {
         const etfFullDataRequestMockData: EtfFullDataRequest = {
             symbol: "SPY"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.EtfsFullData}?symbol=SPY&apikey=demo`)
             .reply(200, etfFullDataResponseMockData);
@@ -212,7 +212,7 @@ describe('ETFs API Endpoint response test', () => {
         const etfSummaryRequestMockData: EtfSummaryRequest = {
             symbol: "SPY"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.EtfsSummary}?symbol=SPY&apikey=demo`)
             .reply(200, etfSummaryResponseMockData);
@@ -260,7 +260,7 @@ describe('ETFs API Endpoint response test', () => {
         const etfPerformanceRequestMockData: EtfPerformanceRequest = {
             symbol: "SPY"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.ETfsPerformance}?symbol=SPY&apikey=demo`)
             .reply(200, etfPerformanceResponseMockData);
@@ -304,7 +304,7 @@ describe('ETFs API Endpoint response test', () => {
         const etfRiskRequestMockData: EtfRiskRequest = {
             symbol: "SPY"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.EtfsRisk}?symbol=SPY&apikey=demo`)
             .reply(200, etfRiskResponseMockData);
@@ -376,7 +376,7 @@ describe('ETFs API Endpoint response test', () => {
         const etfCompositionRequestMockData: EtfCompositionRequest = {
             symbol: "SPY"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.EtfsComposition}?symbol=SPY&apikey=demo`)
             .reply(200, etfCompositionResponseMockData);
@@ -396,7 +396,7 @@ describe('ETFs API Endpoint response test', () => {
         const etfsFamilyRequestMockData: EtfsFamilyRequest = {
             country: "US"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.EtfsFamilies}?country=US&apikey=demo`)
             .reply(200, etfsFamilyResponseMockData);
@@ -416,7 +416,7 @@ describe('ETFs API Endpoint response test', () => {
         const etfsTypeRequestMockData: EtfsTypeRequest = {
             country: "US"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.EtfsTypes}?country=US&apikey=demo`)
             .reply(200, etfsTypeResponseMockData);

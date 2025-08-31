@@ -1,5 +1,5 @@
 {
-  "name": "twelve-data-wrapper",
+  "name": "twelve-data",
   "version": "1.0.0",
   "description": "TypeScript TwelveData API wrapper",
   "scripts": {
@@ -34,8 +34,8 @@
     "data",
     "REST"
   ],
-  "author": "Clyde Goodall",
-  "license": "(MIT OR Apache-2.0)",
+  "author": "Clyde Goodall <clyde.goodall.cs@gmail.com>",
+  "license": "(MIT)",
   "bugs": {
     "url": "https://github.com/Clyde-Goodall/TwelveDataWrapper/issues"
   },

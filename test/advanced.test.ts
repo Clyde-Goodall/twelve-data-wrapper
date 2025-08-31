@@ -1,7 +1,7 @@
 import {afterEach, beforeEach, describe, it} from "node:test";
 import assert from "node:assert";
 import nock from "nock";
-import { TwelveDataWrapper } from "../src/twelveData";
+import { TwelveData } from "../src/twelveData";
 import {getDefaultConfig} from "../src/defaults";
 import { Endpoints } from "../src/endpoints/endpoints";
 
@@ -20,7 +20,7 @@ describe('Analysis API Endpoint response test', () => {
             currentUsage: 100,
             planLimit: 1000
         }
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.APIUsage}?apikey=demo`) // with no config it should only be appending the apikey
             .reply(200, apiUsageResponseMockData);

@@ -1,7 +1,7 @@
 import {afterEach, beforeEach, describe, it} from "node:test";
 import assert from "node:assert";
 import nock from "nock";
-import { TwelveDataWrapper } from "../src/twelveData";
+import { TwelveData } from "../src/twelveData";
 import {getDefaultConfig} from "../src/defaults";
 import {
     LogoRequest,
@@ -67,7 +67,7 @@ describe('Fundamentals API Endpoint response test', () => {
             micCode: "XNGS",
             country: "US"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.Logo}?symbol=AAPL&exchange=NASDAQ&mic_code=XNGS&country=US&apikey=demo`)
             .reply(200, logoResponseMockData);
@@ -103,7 +103,7 @@ describe('Fundamentals API Endpoint response test', () => {
             isin: "US0378331005",
             cusip: "037833100"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.Profile}?symbol=AAPL&figi=BBG000B9XRY4&isin=US0378331005&cusip=037833100&apikey=demo`)
             .reply(200, profileResponseMockData);
@@ -131,7 +131,7 @@ describe('Fundamentals API Endpoint response test', () => {
             symbol: "AAPL",
             adjust: true
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.Dividends}?symbol=AAPL&adjust=true&apikey=demo`)
             .reply(200, dividendsResponseMockData);
@@ -155,7 +155,7 @@ describe('Fundamentals API Endpoint response test', () => {
             startDate: "2023-01-01",
             endDate: "2023-12-31"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.DividendsCalendar}?symbol=AAPL&start_date=2023-01-01&end_date=2023-12-31&apikey=demo`)
             .reply(200, dividendsCalendarResponseMockData);
@@ -186,7 +186,7 @@ describe('Fundamentals API Endpoint response test', () => {
             symbol: "AAPL",
             range: TimeRange.Full
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.Splits}?symbol=AAPL&range=full&apikey=demo`)
             .reply(200, splitsResponseMockData);
@@ -213,7 +213,7 @@ describe('Fundamentals API Endpoint response test', () => {
             startDate: "2020-01-01",
             endDate: "2020-12-31"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.SplitsCalendar}?symbol=AAPL&start_date=2020-01-01&end_date=2020-12-31&apikey=demo`)
             .reply(200, splitsCalendarResponseMockData);
@@ -245,7 +245,7 @@ describe('Fundamentals API Endpoint response test', () => {
             symbol: "AAPL",
             period: "latest"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.Earnings}?symbol=AAPL&period=latest&apikey=demo`)
             .reply(200, earningsResponseMockData);
@@ -276,7 +276,7 @@ describe('Fundamentals API Endpoint response test', () => {
             startDate: "2023-11-01",
             endDate: "2023-11-30"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.EarningsCalendar}?start_date=2023-11-01&end_date=2023-11-30&apikey=demo`)
             .reply(200, earningsCalendarResponseMockData);
@@ -303,7 +303,7 @@ describe('Fundamentals API Endpoint response test', () => {
             exchange: "",
             country: ""
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.IpoCalendar}?exchange=&country=&apikey=demo`)
             .reply(200, ipoCalendarResponseMockData);
@@ -402,7 +402,7 @@ describe('Fundamentals API Endpoint response test', () => {
         const statisticsRequestMockData: StatisticsRequest = {
             symbol: "AAPL"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.Statistics}?symbol=AAPL&apikey=demo`)
             .reply(200, statisticsResponseMockData);
@@ -458,7 +458,7 @@ describe('Fundamentals API Endpoint response test', () => {
             symbol: "AAPL",
             period: "annually",
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.IncomeStatement}?symbol=AAPL&period=annually&apikey=demo`)
             .reply(200, incomeStatementResponseMockData);
@@ -611,7 +611,7 @@ describe('Fundamentals API Endpoint response test', () => {
             symbol: "AAPL",
             period: "annually",
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.IncomeStatementConsolidated}?symbol=AAPL&period=annually&apikey=demo`)
             .reply(200, incomeStatementConsolidatedResponseMockData);
@@ -704,7 +704,7 @@ describe('Fundamentals API Endpoint response test', () => {
             symbol: "AAPL",
             period: "annually",
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.BalanceSheet}?symbol=AAPL&period=annually&apikey=demo`)
             .reply(200, balanceSheetResponseMockData);
@@ -768,7 +768,7 @@ describe('Fundamentals API Endpoint response test', () => {
             symbol: "AAPL",
             period: "annually",
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.CashFlow}?symbol=AAPL&period=annually&apikey=demo`)
             .reply(200, cashFlowResponseMockData);
@@ -924,7 +924,7 @@ describe('Fundamentals API Endpoint response test', () => {
             symbol: "AAPL",
             period: "annually",
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.CashFlowConsolidated}?symbol=AAPL&period=annually&apikey=demo`)
             .reply(200, cashFlowConsolidatedResponseMockData);
@@ -951,7 +951,7 @@ describe('Fundamentals API Endpoint response test', () => {
         const marketCapRequestMockData: MarketCapRequest = {
             symbol: "AAPL"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.MarketCap}?symbol=AAPL&apikey=demo`)
             .reply(200, marketCapResponseMockData);
@@ -981,7 +981,7 @@ describe('Fundamentals API Endpoint response test', () => {
         const keyExecutivesRequestMockData: KeyExecutivesRequest = {
             symbol: "AAPL"
         };
-        const client = new TwelveDataWrapper();
+        const client = new TwelveData();
         nock(getDefaultConfig().baseUrl!)
             .get(`${Endpoints.KeyExecutives}?symbol=AAPL&apikey=demo`)
             .reply(200, keyExecutivesResponseMockData);

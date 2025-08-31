@@ -68,7 +68,7 @@
     "axios": "^1.11.0",
     "axios-retry": "^4.5.0"
   },
-  "main": "dist/twelveData.js",
+  "main": "dist/index.js",
   "files": [
     "dist"
   ],

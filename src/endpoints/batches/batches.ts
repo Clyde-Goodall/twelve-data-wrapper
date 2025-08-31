@@ -11,10 +11,10 @@ export class Batches extends EndpointBase {
 
     async getBatches(requestConfig: BatchesRequest[]): Promise<BatchesResponse> {
         let batchRequestUrls: BatchesRequestConfig = {}
-        for(let i = 0; i < requestConfig.length; i++) {
-            const requestKey = `req_${i + 1}`;
-            const endpoint = requestConfig[i].endpoint;
-            const params = this.constructUrlParams(requestConfig[i].request, endpoint);
+        for(const [idx, req] of requestConfig.entries()) {
+            const requestKey = `req_${idx + 1}`;
+            const endpoint = req.endpoint;
+            const params = this.constructUrlParams(req.request, endpoint);
             batchRequestUrls[requestKey] = {
                 url: `${endpoint}${params}`
             };

@@ -1,9 +1,6 @@
-import { TwelveData } from "./twelveData";
-import { TwelveDataConfig } from "./twelveData.interfaces";
-
 // Main wrapper class
-export { TwelveData as default };
-export { TwelveDataConfig };
+export { TwelveData as default } from "./twelveData";
+export { TwelveDataConfig } from "./twelveData.interfaces";
 
 export * from "./endpoints/advanced/advanced.interfaces";
 export * from "./endpoints/analysis/analysis.interfaces";
@@ -18,3 +15,5 @@ export * from "./endpoints/reference/markets/markets.interfaces";
 export * from "./endpoints/reference/supportingMetadata/supportingMetadata.interfaces";
 // regulatory goes here when implemented
 // technicalIndicators go here when implemented
+
+export { Meta, Interval, SecurityType, TimeRange, AssetClassType } from "./endpoints/shared.interfaces";

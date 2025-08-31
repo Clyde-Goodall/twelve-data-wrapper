@@ -50,21 +50,21 @@ export default class Fundamentals extends EndpointBase {
     // Endpoint fetching functions starts here
     async getLogo(requestConfig: LogoRequest): Promise<LogoResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.Logo);
-        return this.request<LogoResponse>(Endpoints.Logo, params);
+        return this.get<LogoResponse>(Endpoints.Logo, params);
     }
 
     async getProfile(requestConfig: ProfileRequest): Promise<ProfileResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.Profile,);
-        return this.request<ProfileResponse>(Endpoints.Profile, params);
+        return this.get<ProfileResponse>(Endpoints.Profile, params);
     }
 
     async getDividends(requestConfig: DividendsRequest): Promise<DividendsResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.Dividends);
-        return this.request<DividendsResponse>(Endpoints.Dividends, params);
+        return this.get<DividendsResponse>(Endpoints.Dividends, params);
     }
 
     async getDividendsCalendar(requestConfig: DividendsCalendarRequest, format: "csv"): Promise<string>;
@@ -82,7 +82,7 @@ export default class Fundamentals extends EndpointBase {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.Splits);
-        return this.request<SplitsResponse>(Endpoints.Splits, params);
+        return this.get<SplitsResponse>(Endpoints.Splits, params);
     }
 
     async getSplitsCalendar(requestConfig?: SplitsCalendarRequest): Promise<SplitsCalendarResponse> {
@@ -91,7 +91,7 @@ export default class Fundamentals extends EndpointBase {
         }
 
         const params = this.constructUrlParams(requestConfig, Endpoints.SplitsCalendar);
-        return this.request<SplitsCalendarResponse>(Endpoints.SplitsCalendar, params);
+        return this.get<SplitsCalendarResponse>(Endpoints.SplitsCalendar, params);
     }
 
     async getEarnings(requestConfig: EarningsRequest, format: "csv"): Promise<string>;
@@ -112,69 +112,69 @@ export default class Fundamentals extends EndpointBase {
 
     async getIpoCalendar(requestConfig?: IPOCalendarRequest): Promise<IPOCalendarResponse> {
         const params = this.constructUrlParams(requestConfig, Endpoints.IpoCalendar);
-        return this.request<IPOCalendarResponse>(Endpoints.IpoCalendar, params);
+        return this.get<IPOCalendarResponse>(Endpoints.IpoCalendar, params);
     }
 
     async getStatistics(requestConfig: StatisticsRequest): Promise<StatisticsResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.Statistics);
-        return this.request<StatisticsResponse>(Endpoints.Statistics, params);
+        return this.get<StatisticsResponse>(Endpoints.Statistics, params);
     }
 
     async getIncomeStatement(requestConfig: IncomeStatementRequest): Promise<IncomeStatementResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.IncomeStatement);
-        return this.request<IncomeStatementResponse>(Endpoints.IncomeStatement, params);
+        return this.get<IncomeStatementResponse>(Endpoints.IncomeStatement, params);
     }
 
     async getIncomeStatementConsolidated(requestConfig: IncomeStatementConsolidatedRequest): Promise<IncomeStatementConsolidatedResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.IncomeStatementConsolidated);
-        return this.request<IncomeStatementConsolidatedResponse>(Endpoints.IncomeStatementConsolidated, params);
+        return this.get<IncomeStatementConsolidatedResponse>(Endpoints.IncomeStatementConsolidated, params);
     }
 
     async getBalanceSheet(requestConfig: BalanceSheetRequest): Promise<BalanceSheetResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.BalanceSheet);
-        return this.request<BalanceSheetResponse>(Endpoints.BalanceSheet, params);
+        return this.get<BalanceSheetResponse>(Endpoints.BalanceSheet, params);
     }
 
     async getCashFlow(requestConfig: CashFlowRequest): Promise<CashFlowResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.CashFlow);
-        return this.request<CashFlowResponse>(Endpoints.CashFlow, params);
+        return this.get<CashFlowResponse>(Endpoints.CashFlow, params);
     }
 
     async getCashFlowConsolidated(requestConfig: CashFlowConsolidatedRequest): Promise<CashFlowConsolidatedResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.CashFlowConsolidated);
-        return this.request<CashFlowConsolidatedResponse>(Endpoints.CashFlowConsolidated, params);
+        return this.get<CashFlowConsolidatedResponse>(Endpoints.CashFlowConsolidated, params);
     }
 
     async getMarketCap(requestConfig: MarketCapRequest): Promise<MarketCapResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.MarketCap);
-        return this.request<MarketCapResponse>(Endpoints.MarketCap, params);
+        return this.get<MarketCapResponse>(Endpoints.MarketCap, params);
     }
 
     async getKeyExecutives(requestConfig: KeyExecutivesRequest): Promise<KeyExecutivesResponse> {
         this.validateRequiredIdentifiers(requestConfig);
 
         const params = this.constructUrlParams(requestConfig, Endpoints.KeyExecutives);
-        return this.request<KeyExecutivesResponse>(Endpoints.KeyExecutives, params);
+        return this.get<KeyExecutivesResponse>(Endpoints.KeyExecutives, params);
     }
 
     async getLastChange(requestConfig: LastChangeRequest): Promise<LastChangeResponse> {
         const joinedUri = `${Endpoints.LastChanges}/${requestConfig.endpoint}`;
         const params = this.constructUrlParams(requestConfig, joinedUri);
-        return this.request<LastChangeResponse>(joinedUri, params);
+        return this.get<LastChangeResponse>(joinedUri, params);
     }
 }
 

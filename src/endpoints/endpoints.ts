@@ -48,11 +48,9 @@ export enum Endpoints {
     Countries = "/countries",
     InstrumentType = "/instrument_type",
     TechnicalIndicators = "/technical_indicators",
-    Instrument = "/instrument_type",
     ExchangeRate = "/exchange_rate",
     CurrencyConversion = "/currency_conversion",
     LastChanges = "/last_change",
-    // Etfs
     EtfsDirectory = "/etfs/list",
     EtfsFullData = "/etfs/world",
     EtfsSummary = "/etfs/world/summary",

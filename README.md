@@ -1,12 +1,12 @@
-# TwelveData in TypeScript!
+# TwelveData in TypeScript! ✨
 ### A modern library for the TwelveData financial API
 ---------
 This is a TypeScript wrapper for the [TwelveData](https://www.twelvedata.com) API. Supported endpoints are well-typed.
 The ultimate goal is 100% API coverage, that being said, this is still a work in progress.
 
-BIG thanks to [@jonnotjohn](https://github.com/jonnotjohn) <3
+BIG thanks to [@jonnotjohn](https://github.com/jonnotjohn) ❤️
 
-Contributions welcome!
+Contributions welcome! 🥺👍
 
 ---
 ### Support
@@ -66,7 +66,8 @@ Endpoint functions that support either CSV or JSON output also have an optional 
 
 ---
 ### Important Notes
-- We currently don't have access to an ultra plan to test many of these endpoints. 
+- We currently don't have access to an ultra plan to test many of these endpoints.
+  - If you do, and you find an issue, please open one! 🥹
 - Technical Indicators will probably be the last to get support due to the sheer number of endpoints to account for.
 - Some of the API documentation request/response descriptions and examples include options that aren't supported. This includes but is not limited to: 
   - fields that show up for crypto but not stocks (and not explicitly mentioned in the documentation)

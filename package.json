@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Clyde-Goodall/TwelveDataWrapper.git"
+    "url": "git+https://github.com/Clyde-Goodall/twelve-data-wrapper.git"
   },
   "directories": {
     "doc": "./doc",
@@ -48,9 +48,9 @@
   "author": "Clyde Goodall <clyde.goodall.cs@gmail.com>",
   "license": "(MIT)",
   "bugs": {
-    "url": "https://github.com/Clyde-Goodall/TwelveDataWrapper/issues"
+    "url": "https://github.com/Clyde-Goodall/twelve-data-wrapper/issues"
   },
-  "homepage": "https://github.com/Clyde-Goodall/TwelveDataWrapper#readme",
+  "homepage": "https://github.com/Clyde-Goodall/twelve-data-wrapper",
   "contributors": [
     {
       "name": "Jonathan Hill",

@@ -72,5 +72,5 @@
   "files": [
     "dist"
   ],
-  "types": "dist/twelveData.d.ts"
+  "types": "dist/index.d.ts"
 }

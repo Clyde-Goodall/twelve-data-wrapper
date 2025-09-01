@@ -32,12 +32,12 @@ Many of the partial categories have all of their endpoints mapped and typed, but
 # Installation
 
 ```
-npm install twelve-data
+npm install twelvedata-ts
 ```
 
 ## Getting Started
 ```typescript
-import TwelveData from 'twelve-data';
+import TwelveData from 'twelvedata-ts';
 
 const client = new TwelveData({
   apiKey: "demo",

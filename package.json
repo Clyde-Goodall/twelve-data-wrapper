@@ -3,7 +3,8 @@
   "version": "1.0.8",
   "description": "TypeScript TwelveData API wrapper",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
+    "build": "rm -rf ./dist && tsc -p tsconfig.build.json",
     "bundle": "tsup ./src",
     "test": "node --require ts-node/register --test",
     "predevstart": "tsc -p tsconfig.json --sourceMap",

@@ -6,10 +6,14 @@ import {
     InstrumentTypeResponse,
     TechnicalIndicatorsResponse
 } from "./supportingMetadata.interfaces";
+import { RateLimiter } from "../../../rateLimiter";
 
 export default class SupportingMetadata extends EndpointBase {
-    constructor(apiClient: AxiosInstance) {
-        super(apiClient);
+    constructor(
+        apiClient: AxiosInstance,
+        rateLimiter: RateLimiter
+    ) {
+        super(apiClient, rateLimiter);
     }
 
     // Endpoint fetching functions starts here

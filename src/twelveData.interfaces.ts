@@ -5,4 +5,5 @@ export interface TwelveDataConfig {
     timeout?: number;
     retryCount?: number;
     retryWaitTime?: number;
+    creditsPerMinute?: number;
 }

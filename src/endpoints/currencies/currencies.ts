@@ -7,10 +7,14 @@ import {
     ExchangeRateRequest,
     ExchangeRateResponse
 } from "./currencies.interfaces";
+import { RateLimiter } from "../../rateLimiter";
 
 export default class Currencies extends EndpointBase {
-    constructor(apiClient: AxiosInstance) {
-        super(apiClient);
+    constructor(
+        apiClient: AxiosInstance,
+        rateLimiter: RateLimiter
+    ) {
+        super(apiClient, rateLimiter);
     }
 
     // Endpoint fetching functions starts here

@@ -17,11 +17,15 @@ import {
     StocksResponse
 } from "./assetCatalogs.interfaces";
 import { Endpoints } from "../../endpoints";
+import { RateLimiter } from "../../../rateLimiter";
 
 
 export default class AssetCatalogs extends EndpointBase {
-    constructor(apiClient: AxiosInstance) {
-        super(apiClient);
+    constructor(
+        apiClient: AxiosInstance,
+        rateLimiter: RateLimiter
+    ) {
+        super(apiClient, rateLimiter);
     }
 
     // Endpoint fetching functions starts here

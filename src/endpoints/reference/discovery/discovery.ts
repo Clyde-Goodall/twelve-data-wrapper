@@ -9,10 +9,14 @@ import {
     SymbolSearchRequest,
     SymbolSearchResponse
 } from "./discovery.interfaces";
+import { RateLimiter } from "../../../rateLimiter";
 
 export default class Discovery extends EndpointBase {
-    constructor(apiClient: AxiosInstance) {
-        super(apiClient);
+    constructor(
+        apiClient: AxiosInstance,
+        rateLimiter: RateLimiter
+    ) {
+        super(apiClient, rateLimiter);
     }
 
     // Endpoint fetching functions starts here

@@ -11,6 +11,7 @@ import Reference from "./endpoints/reference/reference";
 import Regulatory from "./endpoints/regulatory/regulatory";
 import TechnicalIndicators from "./endpoints/technicalIndicators/technicalIndicators";
 import { buildApiClient } from "./apiClient";
+import { RateLimiter } from "./rateLimiter";
 
 export class TwelveData extends EndpointBase {
     public readonly advanced: Advanced;
@@ -34,24 +35,26 @@ export class TwelveData extends EndpointBase {
             baseUrl: config?.baseUrl ?? configDefaults.baseUrl,
             timeout: config?.timeout ?? configDefaults.timeout,
             retryCount: config?.retryCount ?? configDefaults.retryCount,
-            retryWaitTime: config?.retryWaitTime ?? configDefaults.retryWaitTime
+            retryWaitTime: config?.retryWaitTime ?? configDefaults.retryWaitTime,
+            creditsPerMinute: config?.creditsPerMinute ?? configDefaults.creditsPerMinute,
         };
 
         const apiClient = buildApiClient(fullConfig);
+        const rateLimiter = new RateLimiter(fullConfig.creditsPerMinute ?? 0);
 
-        super(apiClient);
+        super(apiClient, rateLimiter);
         this.config = fullConfig;
 
         // endpoint class binding
-        this.advanced = new Advanced(apiClient);
-        this.analysis = new Analysis(apiClient);
-        this.core = new Core(apiClient);
-        this.currencies = new Currencies(apiClient);
-        this.etfs = new ETFs(apiClient);
-        this.fundamentals = new Fundamentals(apiClient);
-        this.mutualFunds = new MutualFunds(apiClient);
-        this.reference = new Reference(apiClient);
-        this.regulatory = new Regulatory(apiClient);
-        this.technicalIndicators = new TechnicalIndicators(apiClient);
+        this.advanced = new Advanced(apiClient, rateLimiter);
+        this.analysis = new Analysis(apiClient, rateLimiter);
+        this.core = new Core(apiClient, rateLimiter);
+        this.currencies = new Currencies(apiClient, rateLimiter);
+        this.etfs = new ETFs(apiClient, rateLimiter);
+        this.fundamentals = new Fundamentals(apiClient, rateLimiter);
+        this.mutualFunds = new MutualFunds(apiClient, rateLimiter);
+        this.reference = new Reference(apiClient, rateLimiter);
+        this.regulatory = new Regulatory(apiClient, rateLimiter);
+        this.technicalIndicators = new TechnicalIndicators(apiClient, rateLimiter);
     }
 }

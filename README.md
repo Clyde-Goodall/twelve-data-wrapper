@@ -41,8 +41,11 @@ import TwelveData from 'twelvedata-ts';
 
 const client = new TwelveData({
   apiKey: "demo",
+  creditsPerMinute: 1597, // Put your plan's credits per minute here for automatic rate limiting
 });
 ```
+If the creditsPerMinute option is provided, the client will rate limit requests to avoid exceeding your plan's per-minute limit. The client is also aware of each endpoint's credit cost and will intelligently attempt to maximize each minute's credit usage. Rate limiting is disabled by default.
+
 Endpoints are organized by section as in the official TwelveData documentation. 
 Endpoints are nested in the same hierarchy as they appear in the documentation.
 

@@ -11,10 +11,14 @@ import {
     MarketStateRequest,
     MarketStateResponse
 } from "./markets.interfaces";
+import { RateLimiter } from "../../../rateLimiter";
 
 export default class Markets extends EndpointBase {
-    constructor(apiClient: AxiosInstance) {
-        super(apiClient);
+    constructor(
+        apiClient: AxiosInstance,
+        rateLimiter: RateLimiter
+    ) {
+        super(apiClient, rateLimiter);
     }
 
     // Endpoint fetching functions starts here

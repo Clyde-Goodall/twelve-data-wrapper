@@ -20,7 +20,7 @@ import {
     IPOCalendarRequest,
     IPOCalendarResponse,
     KeyExecutivesRequest,
-    KeyExecutivesResponse,
+    KeyExecutivesResponse, LastChangeEndpoint,
     LastChangeRequest,
     LastChangeResponse,
     LogoRequest,
@@ -40,10 +40,14 @@ import { EndpointBase } from "../../defaults";
 import { AxiosInstance } from "axios";
 import { Endpoints } from "../endpoints";
 import { globalTransformationManager } from "../../serialization";
+import { RateLimiter } from "../../rateLimiter";
 
 export default class Fundamentals extends EndpointBase {
-    constructor(apiClient: AxiosInstance) {
-        super(apiClient);
+    constructor(
+        apiClient: AxiosInstance,
+        rateLimiter: RateLimiter
+    ) {
+        super(apiClient, rateLimiter);
         registerStatisticsTransformations();
     }
 
@@ -171,10 +175,9 @@ export default class Fundamentals extends EndpointBase {
         return this.get<KeyExecutivesResponse>(Endpoints.KeyExecutives, params);
     }
 
-    async getLastChange(requestConfig: LastChangeRequest): Promise<LastChangeResponse> {
-        const joinedUri = `${Endpoints.LastChanges}/${requestConfig.endpoint}`;
-        const params = this.constructUrlParams(requestConfig, joinedUri);
-        return this.get<LastChangeResponse>(joinedUri, params);
+    async getLastChange(lastChangeEndpoint: LastChangeEndpoint, requestConfig: LastChangeRequest): Promise<LastChangeResponse> {
+        const params = `/${lastChangeEndpoint}` + this.constructUrlParams(requestConfig, Endpoints.LastChanges);
+        return this.get<LastChangeResponse>(Endpoints.LastChanges, params);
     }
 }
 

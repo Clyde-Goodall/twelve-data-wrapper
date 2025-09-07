@@ -14,12 +14,16 @@ import {
 } from "./core.interfaces";
 import { globalTransformationManager } from "../../serialization";
 import { Endpoints } from "../endpoints";
+import { RateLimiter } from "../../rateLimiter";
 
 // TODO: Implement /market_movers/{market} endpoint when we have a Pro plan
 
 export default class Core extends EndpointBase {
-    constructor(apiClient: AxiosInstance) {
-        super(apiClient);
+    constructor(
+        apiClient: AxiosInstance,
+        rateLimiter: RateLimiter
+    ) {
+        super(apiClient, rateLimiter);
         registerTimeSeriesTransformations();
         registerTimeSeriesCrossTransformations();
         registerQuoteTransformations();

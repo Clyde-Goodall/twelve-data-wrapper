@@ -2,6 +2,8 @@ import { AxiosError, AxiosInstance } from "axios";
 import { globalTransformationManager } from "../serialization";
 import { TwelveDataConfig } from "../twelveData.interfaces";
 import { ERROR_MESSAGES } from "../endpoints/shared.interfaces";
+import { RateLimiter } from "../rateLimiter";
+import { EndpointCostMap, EndpointType } from "../endpoints/endpoints";
 
 export function getDefaultConfig(): TwelveDataConfig {
     return {
@@ -10,7 +12,8 @@ export function getDefaultConfig(): TwelveDataConfig {
         baseUrl: "https://api.twelvedata.com",
         timeout: 30000,
         retryCount: 1,
-        retryWaitTime: 1000
+        retryWaitTime: 1000,
+        creditsPerMinute: 0,
     };
 }
 
@@ -36,9 +39,14 @@ export class TwelveDataError extends Error {
 
 export abstract class EndpointBase {
     private readonly apiClient: AxiosInstance;
+    private readonly rateLimiter: RateLimiter;
 
-    protected constructor(apiClient: AxiosInstance) {
+    protected constructor(
+        apiClient: AxiosInstance,
+        rateLimiter: RateLimiter
+    ) {
         this.apiClient = apiClient;
+        this.rateLimiter = rateLimiter;
     }
 
     protected constructUrlParams(params: UrlParams, endpoint?: string): string {
@@ -62,9 +70,11 @@ export abstract class EndpointBase {
     }
 
 
-    protected async get<T>(endpoint: string, params: string): Promise<T> {
+    protected async get<T>(endpoint: EndpointType, params: string): Promise<T> {
         try {
             const url = `${endpoint}${params}`;
+
+            await this.rateLimiter.throttle(EndpointCostMap[endpoint]);
 
             const response = await this.apiClient.get<T>(url);
             this.validateResponse(response.data);
@@ -109,7 +119,7 @@ export abstract class EndpointBase {
     }
     
     protected async requestWithFormat<TResponse>(
-        endpoint: string,
+        endpoint: EndpointType,
         params: string,
         format?: "json" | "csv"
     ): Promise<TResponse | string> {

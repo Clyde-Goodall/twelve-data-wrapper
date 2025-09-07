@@ -19,10 +19,14 @@ import {
     EtfSummaryRequest,
     EtfSummaryResponse
 } from "./etfs.interfaces";
+import { RateLimiter } from "../../rateLimiter";
 
 export default class ETFs extends EndpointBase {
-    constructor(apiClient: AxiosInstance) {
-        super(apiClient);
+    constructor(
+        apiClient: AxiosInstance,
+        rateLimiter: RateLimiter
+    ) {
+        super(apiClient, rateLimiter);
     }
 
     // Endpoint fetching functions starts here

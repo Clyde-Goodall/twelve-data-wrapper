@@ -17,3 +17,4 @@ export * from "./endpoints/reference/supportingMetadata/supportingMetadata.inter
 // technicalIndicators go here when implemented
 
 export { Meta, Interval, SecurityType, TimeRange, AssetClassType } from "./endpoints/shared.interfaces";
+export { Endpoints, EndpointCostMap } from "./endpoints/endpoints";

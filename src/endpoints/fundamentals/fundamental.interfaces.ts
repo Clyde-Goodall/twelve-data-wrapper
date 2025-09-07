@@ -1111,7 +1111,6 @@ export interface KeyExecutivesResponse {
  /last_change
  */
 export interface LastChangeRequest {
-    endpoint: LastChangeEndpoint;
     startDate?: string;
     symbol?: string;
     exchange?: string;

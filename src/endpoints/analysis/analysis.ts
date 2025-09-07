@@ -22,10 +22,14 @@ import {
 } from "./analysis.interfaces";
 import { Endpoints } from "../endpoints";
 import { globalTransformationManager } from "../../serialization";
+import { RateLimiter } from "../../rateLimiter";
 
 export default class Analysis extends EndpointBase {
-    constructor(apiClient: AxiosInstance) {
-        super(apiClient);
+    constructor(
+        apiClient: AxiosInstance,
+        rateLimiter: RateLimiter
+    ) {
+        super(apiClient, rateLimiter);
         registerRecommendationsTransformations();
     }
 
